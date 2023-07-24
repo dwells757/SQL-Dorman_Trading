@@ -1,0 +1,130 @@
+USE [GMIDATA]
+GO
+
+DROP PROCEDURE [dbo].[PROC_Get_Current_Transactions_Portal_Back_Office]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[PROC_Get_Current_Transactions_Portal_Back_Office]
+																	@Account VARCHAR(20)
+
+AS
+
+SET NOCOUNT ON
+
+--PRINT '************************************************************************************************************'
+--PRINT ' [dbo].[PROC_Get_Current_Transactions_Portal_Back_Office] STARTED'
+--PRINT '************************************************************************************************************'
+--SELECT GETDATE() "Start Time"
+
+--******************************************************************************
+-- Create #GMI_Current_Positions_Detailed
+--******************************************************************************
+CREATE TABLE #GMI_Current_Positions_Detailed
+(Id INT IDENTITY(1,1),
+Account VARCHAR(20),
+PBS VARCHAR(1),
+Quantity NUMERIC(18),
+Product VARCHAR(50),
+GMI_Security_Type VARCHAR(30),
+GMI_Description VARCHAR(30),
+GMI_Trade_Price NUMERIC(18,9),
+GMI_Current_Price NUMERIC(18,9),
+GMI_Multiplier NUMERIC(18,9),
+Account_Balance MONEY,
+OTE_Top_Day MONEY,
+LOV MONEY,
+SOV MONEY,
+Option_Unrealized_Top_Day MONEY,
+Currency_Code VARCHAR(3),
+Trade_Date VARCHAR(8),
+Snapshot_Time VARCHAR(30))
+
+--******************************************************************************
+-- Load #GMI_Current_Positions_Detailed
+--******************************************************************************
+INSERT INTO #GMI_Current_Positions_Detailed
+(Account,
+PBS,
+Quantity,
+Product,
+GMI_Security_Type,
+GMI_Description,
+GMI_Trade_Price,
+GMI_Current_Price,
+GMI_Multiplier,
+Account_Balance,
+OTE_Top_Day,
+LOV,
+SOV,
+Option_Unrealized_Top_Day,
+Currency_Code,
+Trade_Date,
+Snapshot_Time)
+SELECT
+Account,
+PBS,
+Quantity,
+Product,
+GMI_Security_Type,
+GMI_Description,
+GMI_Trade_Price,
+GMI_Current_Price,
+GMI_Multiplier,
+Account_Balance,
+OTE_Top_Day,
+LOV,
+SOV,
+Option_Unrealized_Top_Day,
+Currency_Code,
+CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
+CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
+FROM [dbo].[GMI_Current_Positions_Detailed]
+WHERE (Source_Table='Global_Risk_File_Current_Transactions')
+AND (Account=@Account)
+ORDER BY
+GMI_Security_Type,
+Product,
+GMI_Trade_Price,
+PBS
+
+SELECT
+Id,
+Account,
+PBS,
+CONVERT(VARCHAR,Quantity) "Quantity",
+GMI_Security_Type "Security_Type",
+GMI_Description "Description",
+FORMAT(GMI_Trade_Price,'0.#########') "Trade_Price",
+FORMAT(GMI_Current_Price,'0.#########') "Current_Price",
+FORMAT(GMI_Multiplier,'0.#########') "Multiplier",
+CONVERT(NUMERIC(15,2),Account_Balance) "Account_Balance",
+CONVERT(NUMERIC(15,2),OTE_Top_Day) "OTE_Top_Day",
+CONVERT(NUMERIC(15,2),LOV) "LOV",
+CONVERT(NUMERIC(15,2),SOV) "SOV",
+CONVERT(NUMERIC(15,2),Option_Unrealized_Top_Day) "Option_Unrealized_Top_Day",
+Currency_Code,
+Trade_Date,
+Snapshot_Time
+FROM #GMI_Current_Positions_Detailed
+ORDER BY Id
+--GMI_Security_Type,
+--Product,
+--GMI_Trade_Price,
+--PBS
+
+DROP TABLE #GMI_Current_Positions_Detailed
+
+--PRINT '************************************************************************************************************'
+--PRINT ' [dbo].[PROC_Get_Current_Transactions_Portal_Back_Office] ENDED'
+--PRINT '************************************************************************************************************'
+--SELECT GETDATE() "End Time"
+
+SET NOCOUNT OFF
+
+GO

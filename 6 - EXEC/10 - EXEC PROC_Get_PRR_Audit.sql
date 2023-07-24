@@ -1,0 +1,10 @@
+USE [GMIDATA]
+GO
+
+SET NOCOUNT ON
+
+EXEC [dbo].[PROC_Get_PRR_Audit]
+							@GMI_Table='GMIPOSF1' --@GMI_Table VARCHAR(8)
+							--@GMI_Table='GMIST4F1' --@GMI_Table VARCHAR(8)
+
+SET NOCOUNT OFF

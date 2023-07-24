@@ -1,0 +1,82 @@
+USE [GMIDATA]
+GO
+
+SET NOCOUNT ON
+
+DECLARE
+@dte_Current_Processing_Date DATE
+
+SELECT @dte_Current_Processing_Date=Current_Processing_Date
+FROM [dbo].[GMI_Information]
+
+SELECT @dte_Current_Processing_Date "@dte_Current_Processing_Date"
+
+SELECT 
+COUNT(*) "GMIMNYF1_File_Current",
+MIN(DateLoaded) "MIN(DateLoaded)",
+MAX(DateLoaded) "MAX(DateLoaded)"
+FROM [dbo].[GMIMNYF1_File_Current]
+
+SELECT TOP 3
+Processing_Date,
+COUNT(*) "GMIMNYF1_File_History",
+MIN(DateLoaded) "MIN(DateLoaded)",
+MAX(DateLoaded) "MAX(DateLoaded)",
+MIN(DateLoaded_Local) "MIN(DateLoaded_Local)",
+MAX(DateLoaded_Local) "MAX(DateLoaded_Local)"
+FROM [dbo].[GMIMNYF1_File_History]
+GROUP BY Processing_Date
+ORDER BY Processing_Date
+
+SELECT 
+COUNT(*) "GMIPOSF1_File_Current",
+MIN(DateLoaded) "MIN(DateLoaded)",
+MAX(DateLoaded) "MAX(DateLoaded)"
+FROM [dbo].[GMIPOSF1_File_Current]
+
+SELECT TOP 3
+Processing_Date,
+COUNT(*) "GMIPOSF1_File_History",
+MIN(DateLoaded) "MIN(DateLoaded)",
+MAX(DateLoaded) "MAX(DateLoaded)",
+MIN(DateLoaded_Local) "MIN(DateLoaded_Local)",
+MAX(DateLoaded_Local) "MAX(DateLoaded_Local)"
+FROM [dbo].[GMIPOSF1_File_History]
+GROUP BY Processing_Date
+ORDER BY Processing_Date
+
+SELECT 
+COUNT(*) "GMIST4F1_File_Current",
+MIN(DateLoaded) "MIN(DateLoaded)",
+MAX(DateLoaded) "MAX(DateLoaded)"
+FROM [dbo].[GMIST4F1_File_Current]
+
+SELECT TOP 3 
+Processing_Date,
+COUNT(*) "GMIST4F1_File_History",
+MIN(DateLoaded) "MIN(DateLoaded)",
+MAX(DateLoaded) "MAX(DateLoaded)",
+MIN(DateLoaded_Local) "MIN(DateLoaded_Local)",
+MAX(DateLoaded_Local) "MAX(DateLoaded_Local)"
+FROM [dbo].[GMIST4F1_File_History]
+GROUP BY Processing_Date
+ORDER BY Processing_Date
+
+SELECT 
+COUNT(*) "GNACMFF1_File_Current",
+MIN(DateLoaded) "MIN(DateLoaded)",
+MAX(DateLoaded) "MAX(DateLoaded)"
+FROM [dbo].[GNACMFF1_File_Current]
+
+SELECT TOP 3
+Processing_Date,
+COUNT(*) "GNACMFF1_File_History",
+MIN(DateLoaded) "MIN(DateLoaded)",
+MAX(DateLoaded) "MAX(DateLoaded)",
+MIN(DateLoaded_Local) "MIN(DateLoaded_Local)",
+MAX(DateLoaded_Local) "MAX(DateLoaded_Local)"
+FROM [dbo].[GNACMFF1_File_History]
+GROUP BY Processing_Date
+ORDER BY Processing_Date
+
+SET NOCOUNT OFF

@@ -1,0 +1,58 @@
+USE [GMIDATA]
+GO
+
+SET NOCOUNT ON
+
+DECLARE
+@Current_Processing_Date DATE
+
+SELECT @Current_Processing_Date=Current_Processing_Date
+FROM [dbo].[Current_Information]
+
+--SELECT @Current_Processing_Date "@Current_Processing_Date"
+
+SELECT
+CONVERT(VARCHAR,@Current_Processing_Date,101) "Date",
+MOFFIC,
+MACCT,
+MRR,
+MCLASS,
+MSUBCL,
+MATYPE,
+MCURAT,
+MSNAME,
+MREL1O,
+MREL1A,
+MBAL,
+MLMV,
+MLOV,
+MSOV,
+MTC,
+MWF,
+MFIR,
+MFMR,
+MME,
+MOTE,
+MAVGEQ,
+MMTDCM,
+MMTDPL,
+MLQVAL,
+MTE,
+MPRFXM,
+MPRFXI,
+MPROTE,
+MPRTE,
+MPRLQV,
+MPRRCV,
+MDLACT	
+FROM [dbo].[GMIMNYF1_File_Current]
+ORDER BY
+MOFFIC,
+MACCT,
+MRR,
+MCLASS,
+MSUBCL,
+MATYPE,
+MCURAT
+
+SET NOCOUNT OFF

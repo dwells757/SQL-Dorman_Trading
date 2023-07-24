@@ -1,0 +1,30 @@
+USE [GMIDATA]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PRR_Audit]') AND type in (N'U'))
+DROP TABLE [dbo].[PRR_Audit]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PRR_Audit](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[GMI_Table] [varchar](8) NOT NULL,
+	[PRR] [varchar](5) NOT NULL,
+	[Master_Common_Name] [varchar](100) NOT NULL,
+	[DateLoaded] [datetime] NOT NULL,
+ CONSTRAINT [PK_PRR_Audit] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[PRR_Audit] ADD  DEFAULT (getdate()) FOR [DateLoaded]
+GO
+
+

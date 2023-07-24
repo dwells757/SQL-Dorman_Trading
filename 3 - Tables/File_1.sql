@@ -1,0 +1,31 @@
+USE [GMIDATA]
+GO
+
+DROP TABLE [dbo].[File_1]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[File_1](
+	[Field_1] [varchar](255) NOT NULL,
+	[Field_2] [varchar](255) NOT NULL,
+	[Field_3] [varchar](255) NOT NULL,
+	
+	CONSTRAINT [PK_File_1] PRIMARY KEY CLUSTERED
+	(
+		[Field_1] ASC,
+		[Field_2] ASC,
+		[Field_3] ASC
+	)
+) ON [PRIMARY]
+GO
+
+SET ANSI_PADDING OFF
+GO
