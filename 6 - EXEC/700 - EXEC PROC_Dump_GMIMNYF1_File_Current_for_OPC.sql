@@ -1,0 +1,8 @@
+USE [GMIDATA]
+GO
+
+SET NOCOUNT ON
+
+EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_for_OPC]
+
+SET NOCOUNT OFF

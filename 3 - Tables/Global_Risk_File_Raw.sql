@@ -52,7 +52,7 @@ CREATE TABLE [dbo].[Global_Risk_File_Raw](
 	[PCLOSE] [varchar](255) NOT NULL DEFAULT '',
 	[PSDATE] [varchar](255) NOT NULL DEFAULT '',
 	[PNET] [varchar](255) NOT NULL DEFAULT '',
-	--[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
+	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
 	
 ) ON [PRIMARY]
 GO

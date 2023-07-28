@@ -1,0 +1,8 @@
+USE [GMIDATA]
+GO
+
+SET NOCOUNT ON
+
+EXEC [dbo].[PROC_Generate_DTN_File_for_OPC]
+
+SET NOCOUNT OFF
