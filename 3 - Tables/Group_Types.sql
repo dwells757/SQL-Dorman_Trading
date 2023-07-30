@@ -14,7 +14,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [dbo].[Group_Types](
-	[Group_Type] [numeric](5) NOT NULL,
+	[Group_Type] [varchar](30) NOT NULL,
 	[Description] [varchar](255) NOT NULL,
 	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
 	

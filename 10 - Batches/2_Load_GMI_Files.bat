@@ -120,6 +120,9 @@ sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GMI_Products]" -S REACT -b -h-1 >> 
 
 echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GMI_Snapshot_SOD]" -S REACT -b -h-1 >> %Log%
 sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GMI_Snapshot_SOD]" -S REACT -b -h-1 >> %Log%
+
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Groups]" -S REACT -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Groups]" -S REACT -b -h-1 >> %Log%
 REM **************************************************************
 REM END - Load "SOD" Tables
 REM **************************************************************
