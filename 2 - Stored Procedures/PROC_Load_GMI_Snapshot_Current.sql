@@ -27,7 +27,7 @@ SELECT GETDATE() "Start Time"
 CREATE TABLE #GMI_Snapshot_Current
 (Account VARCHAR(20),
 Account_Type VARCHAR(2),
---Related_Account VARCHAR(20),
+Related_Account VARCHAR(20),
 Currency_Code VARCHAR(3),
 Balance_SOD MONEY DEFAULT 0,
 Balance_Top_Day MONEY DEFAULT 0,
@@ -78,6 +78,7 @@ SELECT GETDATE() "Start Time"
 INSERT INTO #GMI_Snapshot_Current
 (Account,
 Account_Type,
+Related_Account,
 Currency_Code,
 Balance_SOD,
 OTE_SOD,
@@ -95,6 +96,7 @@ IN_GMI_Snapshot_SOD_YN)
 SELECT
 Account,
 Account_Type,
+Related_Account,
 Currency_Code,
 Account_Balance, --Balance_SOD,
 Open_Trade_Equity, --OTE_SOD,
@@ -153,6 +155,7 @@ SELECT GETDATE() "Start Time"
 INSERT INTO #GMI_Snapshot_Current
 (Account,
 Account_Type,
+Related_Account,
 Currency_Code,
 Balance_Top_Day,
 OTE_Top_Day,
@@ -166,6 +169,7 @@ IN_GMI_Snapshot_Top_Day_YN)
 SELECT
 A.Account,
 A.Account_Type,
+A.Related_Account,
 A.Currency_Code,
 A.Account_Balance, --Balance_Top_Day,
 A.Open_Trade_Equity, --OTE_Top_Day,
@@ -282,7 +286,7 @@ SELECT GETDATE() "Start Time"
 INSERT INTO [dbo].[GMI_Snapshot_Current]
 (Account,
 Account_Type,
---Related_Account,
+Related_Account,
 Currency_Code,
 Balance_SOD,
 Balance_Top_Day,
@@ -323,7 +327,7 @@ Securities_on_Deposit)
 SELECT
 Account,
 Account_Type,
---Related_Account,
+Related_Account, --WARNING: This may cause a PRIMARY KEY violation!!!
 Currency_Code,
 Balance_SOD,
 Balance_Top_Day,

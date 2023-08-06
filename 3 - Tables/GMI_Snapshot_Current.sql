@@ -16,7 +16,7 @@ GO
 CREATE TABLE [dbo].[GMI_Snapshot_Current](
 	[Account] [varchar](20) NOT NULL,
 	[Account_Type] [varchar](2) NOT NULL,
-	--[Related_Account] [varchar](20) NOT NULL,
+	[Related_Account] [varchar](20) NOT NULL, --WARNING: This may cause a PRIMARY KEY violation!!!
 	[Currency_Code] [varchar](3) NOT NULL,
 	[Balance_SOD] [money] NOT NULL,
 	[Balance_Top_Day] [money] NOT NULL,

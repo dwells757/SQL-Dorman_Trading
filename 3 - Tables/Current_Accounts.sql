@@ -15,6 +15,7 @@ GO
 
 CREATE TABLE [dbo].[Current_Accounts](
 	[Account] [varchar](20) NOT NULL,
+	[Related_Account] [varchar](20) NOT NULL, --WARNING: This may cause a PRIMARY KEY violation!!!
 	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
 	
 	CONSTRAINT [PK_Current_Accounts] PRIMARY KEY CLUSTERED

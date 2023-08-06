@@ -26,6 +26,7 @@ SELECT GETDATE() "Start Time"
 --******************************************************************************
 CREATE TABLE #GMI_Current_Positions_Detailed_1
 (Account VARCHAR(20),
+Related_Account VARCHAR(20),
 Product VARCHAR(50),
 GMI_Security_Type VARCHAR(10),
 GMI_Description VARCHAR(30),
@@ -65,6 +66,7 @@ SELECT GETDATE() "Start Time"
 
 INSERT INTO #GMI_Current_Positions_Detailed_1
 (Account,
+Related_Account,
 Product,
 GMI_Security_Type,
 GMI_Description,
@@ -84,6 +86,7 @@ Account_Type,
 Currency_Code)
 SELECT
 Account,
+Related_Account,
 Product,
 MAX(GMI_Security_Type), --GMI_Security_Type,
 MAX(GMI_Description),
@@ -106,6 +109,7 @@ MAX(Currency_Code) --Currency_Code
 FROM [dbo].[GMI_SOD_Positions_Detailed]
 GROUP BY
 Account,
+Related_Account, --WARNING: This may cause a PRIMARY KEY violation!!!
 Product,
 PBS,
 GMI_Trade_Price,
@@ -125,6 +129,7 @@ SELECT GETDATE() "Start Time"
 
 INSERT INTO #GMI_Current_Positions_Detailed_1
 (Account,
+Related_Account,
 Product,
 GMI_Security_Type,
 GMI_Description,
@@ -140,6 +145,7 @@ Account_Type,
 Currency_Code)
 SELECT
 Account,
+Related_Account,
 Product,
 MAX(GMI_Security_Type), --GMI_Security_Type,
 MAX(GMI_Description),
@@ -161,6 +167,7 @@ FROM [dbo].[Global_Risk_File_Current_Transactions]
 WHERE (IN_GMI_Contracts_SOD='Y')
 GROUP BY
 Account,
+Related_Account, --WARNING: This may cause a PRIMARY KEY violation!!!
 Product,
 PBS,
 GMI_Trade_Price,
@@ -375,6 +382,7 @@ SELECT GETDATE() "Start Time"
 
 INSERT INTO [dbo].[GMI_Current_Positions_Detailed]
 (Account,
+Related_Account,
 Product,
 GMI_Security_Type,
 GMI_Description,
@@ -406,6 +414,7 @@ LOV,
 SOV)
 SELECT
 Account,
+Related_Account, --WARNING: This may cause a PRIMARY KEY violation!!!
 Product,
 GMI_Security_Type,
 GMI_Description,

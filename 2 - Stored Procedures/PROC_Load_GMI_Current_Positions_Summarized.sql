@@ -26,6 +26,7 @@ SELECT GETDATE() "Start Time"
 --******************************************************************************
 CREATE TABLE #GMI_Current_Positions_Summarized
 (Account VARCHAR(20),
+Related_Account VARCHAR(20),
 Product VARCHAR(50),
 GMI_Description VARCHAR(30),
 Long_Quantity NUMERIC(18),
@@ -51,6 +52,7 @@ SELECT GETDATE() "Start Time"
 
 INSERT INTO #GMI_Current_Positions_Summarized
 (Account,
+Related_Account,
 Product,
 GMI_Description,
 Long_Quantity,
@@ -67,6 +69,7 @@ Currency_Code,
 Expiration_Date)
 SELECT
 Account,
+Related_Account,
 Product,
 MAX(GMI_Description),
 SUM(CASE PBS
@@ -90,6 +93,7 @@ MAX(GMI_Expiration_Date) --Expiration_Date
 FROM [dbo].[GMI_Current_Positions_Detailed]
 GROUP BY
 Account,
+Related_Account, --WARNING: This may cause a PRIMARY KEY violation!!!
 Product
 
 SELECT @@ROWCOUNT "Records Loaded"
@@ -123,6 +127,7 @@ SELECT GETDATE() "Start Time"
 
 INSERT INTO [dbo].[GMI_Current_Positions_Summarized]
 (Account,
+Related_Account,
 Product,
 GMI_Description,
 Long_Quantity,
@@ -140,6 +145,7 @@ Currency_Code,
 Expiration_Date)
 SELECT
 Account,
+Related_Account, --WARNING: This may cause a PRIMARY KEY violation!!!
 Product,
 GMI_Description,
 Long_Quantity,
