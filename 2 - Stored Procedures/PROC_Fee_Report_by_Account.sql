@@ -29,11 +29,13 @@ SET NOCOUNT ON
 CREATE TABLE #Fee_Report_by_Account
 (Account VARCHAR(20),
 Currency VARCHAR(3),
+Quantity NUMERIC(18),
 COMM_AMOUNT NUMERIC(15,2),
 CLF_FEE NUMERIC(15,2),
 EXF_FEE NUMERIC(15,2),
 NFA_FEE NUMERIC(15,2),
 TRN_FEE NUMERIC(15,2),
+BKG_FEE NUMERIC(15,2),
 Related_Account VARCHAR(20),
 PRR VARCHAR(5))
 
@@ -43,21 +45,25 @@ PRR VARCHAR(5))
 INSERT INTO #Fee_Report_by_Account
 (Account,
 Currency,
+Quantity,
 COMM_AMOUNT,
 CLF_FEE,
 EXF_FEE,
 NFA_FEE,
 TRN_FEE,
+BKG_FEE,
 Related_Account,
 PRR)
 SELECT
 Account,
 PCURAT, --Currency,
+SUM(Quantity), --Quantity,
 SUM(PCOMM), --COMM_AMOUNT,
 SUM(PFEE1), --CLF_FEE,
 SUM(PFEE2 + PFEE8), --EXF_FEE,
 SUM(PFEE3), --NFA_FEE,
 SUM(POTHER), --TRN_FEE,
+SUM(PBKCHG), --BKG_FEE,
 Related_Account,
 PRR
 FROM [dbo].[Commission_Fees_Volume_History]
