@@ -43,8 +43,7 @@ SELECT
 Account, --Group_ID,
 'Account' --Group_Type
 FROM [dbo].[GMI_SOD_Money]
-WHERE (MRECID='M')
-AND (Account<>'')
+WHERE (Account<>'')
 GROUP BY Account
 
 SELECT @@ROWCOUNT "Records Loaded"
@@ -66,8 +65,7 @@ SELECT
 Related_Account, --Group_ID,
 'Related_Account' --Group_Type
 FROM [dbo].[GMI_SOD_Money]
-WHERE (MRECID='M')
-AND (Related_Account<>'')
+WHERE (Related_Account<>'')
 GROUP BY Related_Account
 
 SELECT @@ROWCOUNT "Records Loaded"

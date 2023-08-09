@@ -15,6 +15,7 @@ GO
 
 CREATE TABLE [dbo].[GMI_Current_Positions_Detailed](
 	[Account] [varchar](20) NOT NULL, --PRIMARY KEY
+	[Related_Account] [varchar](20) NOT NULL, --WARNING: This may cause a PRIMARY KEY violation!!!
 	[Product] [varchar](50) NOT NULL, --PRIMARY KEY
 	[GMI_Security_Type] [varchar](30) NOT NULL,
 	[GMI_Description] [varchar](30) NOT NULL,

@@ -27,7 +27,7 @@ SELECT GETDATE() "Start Time"
 CREATE TABLE #GMI_Snapshot_Top_Day_1
 (Account VARCHAR(20),
 Account_Type VARCHAR(2),
---Related_Account VARCHAR(20),
+Related_Account VARCHAR(20),
 --AT_Curr VARCHAR(3),
 Account_Balance NUMERIC(15,2),
 Open_Trade_Equity NUMERIC(15,2) DEFAULT 0,
@@ -45,6 +45,7 @@ SELECT GETDATE() "Start Time"
 INSERT INTO #GMI_Snapshot_Top_Day_1
 (Account,
 Account_Type,
+Related_Account,
 Account_Balance,
 Open_Trade_Equity,
 LOV,
@@ -53,6 +54,7 @@ Option_Unrealized)
 SELECT
 Account,
 Account_Type,
+Related_Account,
 SUM(Account_Balance), --Account_Balance,
 SUM(OTE_Top_Day), --Open_Trade_Equity,
 SUM(LOV), --LOV,
@@ -61,10 +63,12 @@ SUM(Option_Unrealized_Top_Day) --Option_Unrealized
 FROM [dbo].[GMI_Current_Positions_Detailed]
 GROUP BY
 Account,
-Account_Type
+Account_Type,
+Related_Account --WARNING: This may cause a PRIMARY KEY violation!!!
 ORDER BY
 Account,
-Account_Type
+Account_Type,
+Related_Account
 
 SELECT @@ROWCOUNT "Records Loaded"
 
@@ -103,7 +107,7 @@ SELECT GETDATE() "End Time"
 CREATE TABLE #GMI_Snapshot_Top_Day_2
 (Account VARCHAR(20),
 Account_Type VARCHAR(2),
---Related_Account VARCHAR(20),
+Related_Account VARCHAR(20),
 Currency_Code VARCHAR(3) DEFAULT '',
 Account_Balance NUMERIC(15,2),
 Open_Trade_Equity NUMERIC(15,2),
@@ -124,6 +128,7 @@ SELECT GETDATE() "Start Time"
 INSERT INTO #GMI_Snapshot_Top_Day_2
 (Account,
 Account_Type,
+Related_Account,
 Account_Balance,
 Open_Trade_Equity,
 LOV,
@@ -132,6 +137,7 @@ Option_Unrealized)
 SELECT
 Account,
 Account_Type,
+Related_Account,
 SUM(Account_Balance), --Account_Balance,
 SUM(Open_Trade_Equity), --Open_Trade_Equity,
 SUM(LOV), --LOV,
@@ -140,7 +146,8 @@ SUM(Option_Unrealized) --Option_Unrealized
 FROM #GMI_Snapshot_Top_Day_1
 GROUP BY
 Account,
-Account_Type
+Account_Type,
+Related_Account --WARNING: This may cause a PRIMARY KEY violation!!!
 
 SELECT @@ROWCOUNT "Records Loaded"
 
@@ -219,7 +226,7 @@ SELECT GETDATE() "Start Time"
 INSERT INTO [dbo].[GMI_Snapshot_Top_Day]
 (Account,
 Account_Type,
---Related_Account,
+Related_Account,
 Currency_Code,
 Account_Balance,
 Open_Trade_Equity,
@@ -236,7 +243,7 @@ Option_Unrealized)
 SELECT
 Account,
 Account_Type,
---Related_Account,
+Related_Account,
 Currency_Code,
 Account_Balance,
 Open_Trade_Equity,

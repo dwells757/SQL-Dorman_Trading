@@ -19,6 +19,7 @@ CREATE TABLE [dbo].[GMI_SOD_Money](
 	[MFIRM] [varchar](1) NOT NULL,
 	[MOFFIC] [varchar](3) NOT NULL,
 	[MACCT] [varchar](5) NOT NULL,
+	[MCLASS] [varchar](1) NOT NULL,
 	[Account] [varchar](20) NOT NULL,
 	[Related_Account] [varchar](20) NOT NULL,
 	[Account_Type] [varchar](2) NOT NULL,

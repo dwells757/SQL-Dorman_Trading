@@ -25,21 +25,26 @@ SELECT GETDATE() "Start Time"
 -- Create #Current_Accounts_1
 --************************************************************************************
 CREATE TABLE #Current_Accounts_1
-(Account VARCHAR(20))
+(Account VARCHAR(20),
+Related_Account VARCHAR(20))
 
 PRINT '**************************************************************************'
 PRINT ' Load #Current_Accounts_1'
-PRINT ' with [dbo].[GMI_Current_Positions_Summarized]'
+PRINT ' with [dbo].[GMI_Snapshot_Current]'
 PRINT '**************************************************************************'
 
 SELECT GETDATE() "Start Time"
 
 INSERT INTO #Current_Accounts_1
-(Account)
+(Account,
+Related_Account)
 SELECT
-Account
-FROM [dbo].[GMI_Current_Positions_Summarized]
-GROUP BY Account
+Account,
+Related_Account
+FROM [dbo].[GMI_Snapshot_Current]
+GROUP BY 
+Account,
+Related_Account --WARNING: This may cause a PRIMARY KEY violation!!!
 
 SELECT @@ROWCOUNT "Records Loaded"
 
@@ -53,11 +58,15 @@ PRINT '*************************************************************************
 SELECT GETDATE() "Start Time"
 
 INSERT INTO #Current_Accounts_1
-(Account)
+(Account,
+Related_Account)
 SELECT
-Account
+Account,
+Related_Account
 FROM [dbo].[GMI_Current_Positions_Summarized]
-GROUP BY Account
+GROUP BY 
+Account,
+Related_Account --WARNING: This may cause a PRIMARY KEY violation!!!
 
 SELECT @@ROWCOUNT "Records Loaded"
 
@@ -67,7 +76,8 @@ SELECT GETDATE() "End Time"
 -- Create #Current_Accounts_2
 --************************************************************************************
 CREATE TABLE #Current_Accounts_2
-(Account VARCHAR(20))
+(Account VARCHAR(20),
+Related_Account VARCHAR(20))
 
 PRINT '**************************************************************************'
 PRINT ' Load #Current_Accounts_2'
@@ -77,11 +87,15 @@ PRINT '*************************************************************************
 SELECT GETDATE() "Start Time"
 
 INSERT INTO #Current_Accounts_2
-(Account)
+(Account,
+Related_Account)
 SELECT
-Account
+Account,
+Related_Account
 FROM #Current_Accounts_1
-GROUP BY Account
+GROUP BY 
+Account,
+Related_Account --WARNING: This may cause a PRIMARY KEY violation!!!
 
 SELECT @@ROWCOUNT "Records Loaded"
 
@@ -102,9 +116,11 @@ PRINT '*************************************************************************
 SELECT GETDATE() "Start Time"
 
 INSERT INTO [dbo].[Current_Accounts]
-(Account)
+(Account,
+Related_Account)
 SELECT
-Account
+Account,
+Related_Account --WARNING: This may cause a PRIMARY KEY violation!!!
 FROM #Current_Accounts_2
 
 SELECT @@ROWCOUNT "Records Loaded"

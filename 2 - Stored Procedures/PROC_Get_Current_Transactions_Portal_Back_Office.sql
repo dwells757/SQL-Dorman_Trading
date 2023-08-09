@@ -11,7 +11,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[PROC_Get_Current_Transactions_Portal_Back_Office]
-																	@Account VARCHAR(20)
+																	--@Account VARCHAR(20)
+																	@Group_ID VARCHAR(30)
 
 AS
 
@@ -22,12 +23,17 @@ SET NOCOUNT ON
 --PRINT '************************************************************************************************************'
 --SELECT GETDATE() "Start Time"
 
+DECLARE
+@Group_Type VARCHAR(30)
+
 --******************************************************************************
 -- Create #GMI_Current_Positions_Detailed
 --******************************************************************************
 CREATE TABLE #GMI_Current_Positions_Detailed
 (Id INT IDENTITY(1,1),
-Account VARCHAR(20),
+--Account VARCHAR(20),
+Group_ID VARCHAR(30),
+Group_Type VARCHAR(30),
 PBS VARCHAR(1),
 Quantity NUMERIC(18),
 Product VARCHAR(50),
@@ -46,56 +52,130 @@ Trade_Date VARCHAR(8),
 Snapshot_Time VARCHAR(30))
 
 --******************************************************************************
--- Load #GMI_Current_Positions_Detailed
+-- Try to get @Group_Type
 --******************************************************************************
-INSERT INTO #GMI_Current_Positions_Detailed
-(Account,
-PBS,
-Quantity,
-Product,
-GMI_Security_Type,
-GMI_Description,
-GMI_Trade_Price,
-GMI_Current_Price,
-GMI_Multiplier,
-Account_Balance,
-OTE_Top_Day,
-LOV,
-SOV,
-Option_Unrealized_Top_Day,
-Currency_Code,
-Trade_Date,
-Snapshot_Time)
-SELECT
-Account,
-PBS,
-Quantity,
-Product,
-GMI_Security_Type,
-GMI_Description,
-GMI_Trade_Price,
-GMI_Current_Price,
-GMI_Multiplier,
-Account_Balance,
-OTE_Top_Day,
-LOV,
-SOV,
-Option_Unrealized_Top_Day,
-Currency_Code,
-CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
-CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
-FROM [dbo].[GMI_Current_Positions_Detailed]
-WHERE (Source_Table='Global_Risk_File_Current_Transactions')
-AND (Account=@Account)
-ORDER BY
-GMI_Security_Type,
-Product,
-GMI_Trade_Price,
-PBS
+SELECT @Group_Type=Group_Type
+FROM [dbo].[Groups]
+WHERE (Group_ID=@Group_ID)
+
+--*********************************************************************************************************************************************************************************
+-- START - Load #GMI_Current_Positions_Detailed
+--*********************************************************************************************************************************************************************************
+--***1***
+IF (@Group_Type='Account') BEGIN
+
+	INSERT INTO #GMI_Current_Positions_Detailed
+	(--Account,
+	Group_ID,
+	Group_Type,
+	PBS,
+	Quantity,
+	Product,
+	GMI_Security_Type,
+	GMI_Description,
+	GMI_Trade_Price,
+	GMI_Current_Price,
+	GMI_Multiplier,
+	Account_Balance,
+	OTE_Top_Day,
+	LOV,
+	SOV,
+	Option_Unrealized_Top_Day,
+	Currency_Code,
+	Trade_Date,
+	Snapshot_Time)
+	SELECT
+	--Account,
+	@Group_ID, --Group_ID,
+	@Group_Type, --Group_Type,
+	PBS,
+	Quantity,
+	Product,
+	GMI_Security_Type,
+	GMI_Description,
+	GMI_Trade_Price,
+	GMI_Current_Price,
+	GMI_Multiplier,
+	Account_Balance,
+	OTE_Top_Day,
+	LOV,
+	SOV,
+	Option_Unrealized_Top_Day,
+	Currency_Code,
+	CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
+	CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
+	FROM [dbo].[GMI_Current_Positions_Detailed]
+	WHERE (Source_Table='Global_Risk_File_Current_Transactions')
+	AND (Account=@Group_ID)
+	ORDER BY
+	GMI_Security_Type,
+	Product,
+	GMI_Trade_Price,
+	PBS
+
+--***1***
+END
+
+--***2***
+IF (@Group_Type='Related_Account') BEGIN
+
+	INSERT INTO #GMI_Current_Positions_Detailed
+	(--Account,
+	Group_ID,
+	Group_Type,
+	PBS,
+	Quantity,
+	Product,
+	GMI_Security_Type,
+	GMI_Description,
+	GMI_Trade_Price,
+	GMI_Current_Price,
+	GMI_Multiplier,
+	Account_Balance,
+	OTE_Top_Day,
+	LOV,
+	SOV,
+	Option_Unrealized_Top_Day,
+	Currency_Code,
+	Trade_Date,
+	Snapshot_Time)
+	SELECT
+	--Account,
+	@Group_ID, --Group_ID,
+	@Group_Type, --Group_Type,
+	PBS,
+	Quantity,
+	Product,
+	GMI_Security_Type,
+	GMI_Description,
+	GMI_Trade_Price,
+	GMI_Current_Price,
+	GMI_Multiplier,
+	Account_Balance,
+	OTE_Top_Day,
+	LOV,
+	SOV,
+	Option_Unrealized_Top_Day,
+	Currency_Code,
+	CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
+	CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
+	FROM [dbo].[GMI_Current_Positions_Detailed]
+	WHERE (Source_Table='Global_Risk_File_Current_Transactions')
+	AND (Related_Account=@Group_ID)
+	ORDER BY
+	GMI_Security_Type,
+	Product,
+	GMI_Trade_Price,
+	PBS
+
+--***2***
+END
 
 SELECT
 Id,
-Account,
+--Account,
+Group_ID,
+Group_Type,
 PBS,
 CONVERT(VARCHAR,Quantity) "Quantity",
 GMI_Security_Type "Security_Type",
