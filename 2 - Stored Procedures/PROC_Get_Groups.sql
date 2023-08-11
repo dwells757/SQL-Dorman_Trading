@@ -24,7 +24,8 @@ SET NOCOUNT ON
 
 SELECT
 Group_ID,
-Group_Type
+Group_Type,
+Group_Name
 FROM [dbo].[Groups]
 WHERE (Group_Type=@Group_Type)
 AND (Group_ID NOT LIKE '%$%')

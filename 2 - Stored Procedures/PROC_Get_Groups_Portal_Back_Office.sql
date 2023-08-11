@@ -11,7 +11,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[PROC_Get_Groups_Portal_Back_Office]
-														@Group_Type VARCHAR(30)
 
 AS
 
@@ -28,21 +27,25 @@ SET NOCOUNT ON
 CREATE TABLE #Groups
 (Id INT IDENTITY(1,1),
 Group_ID VARCHAR(30),
-Group_Type VARCHAR(30))
+Group_Type VARCHAR(30),
+Group_Name VARCHAR(50))
 
 --******************************************************************************
 -- Load #Groups
 --******************************************************************************
 INSERT INTO #Groups
 (Group_ID,
-Group_Type)
+Group_Type,
+Group_Name)
 SELECT
 Group_ID,
-Group_Type
+Group_Type,
+Group_Name
 FROM [dbo].[Groups]
-WHERE (Group_Type=@Group_Type)
-AND (Group_ID NOT LIKE '%$%')
-ORDER BY Group_ID
+WHERE (Group_ID NOT LIKE '%$%')
+ORDER BY 
+Group_Type DESC,
+Group_ID
 
 --******************************************************************************
 -- Return Records
@@ -50,7 +53,8 @@ ORDER BY Group_ID
 SELECT
 Id,
 Group_ID,
-Group_Type
+Group_Type,
+Group_Name
 FROM #Groups
 ORDER BY Id
 

@@ -74,134 +74,278 @@ WHERE (Group_ID=@Group_ID)
 --***1***
 IF (@Group_Type='Account') BEGIN
 
-	INSERT INTO #GMI_Current_Positions_Detailed
-	(--Processing_Date,
-	--Account,
-	Group_ID,
-	Group_Type,
-	Product,
-	GMI_Description,
-	PBS,
-	Quantity,
-	Trade_Price,
-	Last_Closing_Price,
-	Market_Price,
-	GMI_Multiplier,
-	OTE_SOD,
-	OTE_Top_Day,
-	OTE_Current,
-	OTE_Change,
-	Market_Value,
-	Option_Unrealized_SOD,
-	Option_Unrealized_Top_Day,
-	Option_Unrealized_Current,
-	Option_Unrealized_Change,
-	Currency_Code,
-	Expiration_Date,
-	Trade_Date,
-	Snapshot_Time)
-	SELECT
-	--Processing_Date,
-	--Account,
-	@Group_ID, --Group_ID,
-	@Group_Type, --Group_Type,
-	Product,
-	GMI_Description,
-	PBS,
-	Quantity,
-	GMI_Trade_Price, --Trade_Price,
-	GMI_Last_Closing_Price, --Last_Closing_Price,
-	GMI_Current_Price, --Market_Price,
-	GMI_Multiplier,
-	OTE_SOD,
-	OTE_Top_Day,
-	OTE_Current,
-	OTE_Change,
-	Market_Value,
-	Option_Unrealized_SOD,
-	Option_Unrealized_Top_Day,
-	Option_Unrealized_Current,
-	Option_Unrealized_Change,
-	Currency_Code,
-	GMI_Expiration_Date, --Expiration_Date,
-	CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
-	CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
-	FROM [dbo].[GMI_Current_Positions_Detailed]
-	WHERE (Account=@Group_ID)
-	AND (Product=@Product)
-	ORDER BY
-	Account,
-	Product,
-	GMI_Trade_Price,
-	PBS,
-	Source_Table
+	--***2***
+	IF (@Product='ALL') BEGIN
+
+		INSERT INTO #GMI_Current_Positions_Detailed
+		(--Processing_Date,
+		--Account,
+		Group_ID,
+		Group_Type,
+		Product,
+		GMI_Description,
+		PBS,
+		Quantity,
+		Trade_Price,
+		Last_Closing_Price,
+		Market_Price,
+		GMI_Multiplier,
+		OTE_SOD,
+		OTE_Top_Day,
+		OTE_Current,
+		OTE_Change,
+		Market_Value,
+		Option_Unrealized_SOD,
+		Option_Unrealized_Top_Day,
+		Option_Unrealized_Current,
+		Option_Unrealized_Change,
+		Currency_Code,
+		Expiration_Date,
+		Trade_Date,
+		Snapshot_Time)
+		SELECT
+		--Processing_Date,
+		--Account,
+		@Group_ID, --Group_ID,
+		@Group_Type, --Group_Type,
+		Product,
+		GMI_Description,
+		PBS,
+		Quantity,
+		GMI_Trade_Price, --Trade_Price,
+		GMI_Last_Closing_Price, --Last_Closing_Price,
+		GMI_Current_Price, --Market_Price,
+		GMI_Multiplier,
+		OTE_SOD,
+		OTE_Top_Day,
+		OTE_Current,
+		OTE_Change,
+		Market_Value,
+		Option_Unrealized_SOD,
+		Option_Unrealized_Top_Day,
+		Option_Unrealized_Current,
+		Option_Unrealized_Change,
+		Currency_Code,
+		GMI_Expiration_Date, --Expiration_Date,
+		CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
+		CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
+		FROM [dbo].[GMI_Current_Positions_Detailed]
+		WHERE (Account=@Group_ID)
+		ORDER BY
+		Account,
+		Product,
+		GMI_Trade_Price,
+		PBS,
+		Source_Table
+
+	--***2***
+	END
+	--***2***
+	ELSE BEGIN
+	
+		INSERT INTO #GMI_Current_Positions_Detailed
+		(--Processing_Date,
+		--Account,
+		Group_ID,
+		Group_Type,
+		Product,
+		GMI_Description,
+		PBS,
+		Quantity,
+		Trade_Price,
+		Last_Closing_Price,
+		Market_Price,
+		GMI_Multiplier,
+		OTE_SOD,
+		OTE_Top_Day,
+		OTE_Current,
+		OTE_Change,
+		Market_Value,
+		Option_Unrealized_SOD,
+		Option_Unrealized_Top_Day,
+		Option_Unrealized_Current,
+		Option_Unrealized_Change,
+		Currency_Code,
+		Expiration_Date,
+		Trade_Date,
+		Snapshot_Time)
+		SELECT
+		--Processing_Date,
+		--Account,
+		@Group_ID, --Group_ID,
+		@Group_Type, --Group_Type,
+		Product,
+		GMI_Description,
+		PBS,
+		Quantity,
+		GMI_Trade_Price, --Trade_Price,
+		GMI_Last_Closing_Price, --Last_Closing_Price,
+		GMI_Current_Price, --Market_Price,
+		GMI_Multiplier,
+		OTE_SOD,
+		OTE_Top_Day,
+		OTE_Current,
+		OTE_Change,
+		Market_Value,
+		Option_Unrealized_SOD,
+		Option_Unrealized_Top_Day,
+		Option_Unrealized_Current,
+		Option_Unrealized_Change,
+		Currency_Code,
+		GMI_Expiration_Date, --Expiration_Date,
+		CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
+		CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
+		FROM [dbo].[GMI_Current_Positions_Detailed]
+		WHERE (Account=@Group_ID)
+		AND (Product=@Product)
+		ORDER BY
+		Account,
+		Product,
+		GMI_Trade_Price,
+		PBS,
+		Source_Table
+
+	--***2***
+	END
 --***1***
 END
 
 --***2***
 IF (@Group_Type='Related_Account') BEGIN
 
-	INSERT INTO #GMI_Current_Positions_Detailed
-	(--Processing_Date,
-	--Account,
-	Group_ID,
-	Group_Type,
-	Product,
-	GMI_Description,
-	PBS,
-	Quantity,
-	Trade_Price,
-	Last_Closing_Price,
-	Market_Price,
-	GMI_Multiplier,
-	OTE_SOD,
-	OTE_Top_Day,
-	OTE_Current,
-	OTE_Change,
-	Market_Value,
-	Option_Unrealized_SOD,
-	Option_Unrealized_Top_Day,
-	Option_Unrealized_Current,
-	Option_Unrealized_Change,
-	Currency_Code,
-	Expiration_Date,
-	Trade_Date,
-	Snapshot_Time)
-	SELECT
-	--Processing_Date,
-	--Account,
-	@Group_ID, --Group_ID,
-	@Group_Type, --Group_Type,
-	Product,
-	GMI_Description,
-	PBS,
-	Quantity,
-	GMI_Trade_Price, --Trade_Price,
-	GMI_Last_Closing_Price, --Last_Closing_Price,
-	GMI_Current_Price, --Market_Price,
-	GMI_Multiplier,
-	OTE_SOD,
-	OTE_Top_Day,
-	OTE_Current,
-	OTE_Change,
-	Market_Value,
-	Option_Unrealized_SOD,
-	Option_Unrealized_Top_Day,
-	Option_Unrealized_Current,
-	Option_Unrealized_Change,
-	Currency_Code,
-	GMI_Expiration_Date, --Expiration_Date,
-	CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
-	CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
-	FROM [dbo].[GMI_Current_Positions_Detailed]
-	WHERE (Related_Account=@Group_ID)
-	AND (Product=@Product)
-	ORDER BY
-	Account,
-	Product,
-	GMI_Trade_Price,
-	PBS,
-	Source_Table
+	--***3***
+	IF (@Product='ALL') BEGIN
+
+		INSERT INTO #GMI_Current_Positions_Detailed
+		(--Processing_Date,
+		--Account,
+		Group_ID,
+		Group_Type,
+		Product,
+		GMI_Description,
+		PBS,
+		Quantity,
+		Trade_Price,
+		Last_Closing_Price,
+		Market_Price,
+		GMI_Multiplier,
+		OTE_SOD,
+		OTE_Top_Day,
+		OTE_Current,
+		OTE_Change,
+		Market_Value,
+		Option_Unrealized_SOD,
+		Option_Unrealized_Top_Day,
+		Option_Unrealized_Current,
+		Option_Unrealized_Change,
+		Currency_Code,
+		Expiration_Date,
+		Trade_Date,
+		Snapshot_Time)
+		SELECT
+		--Processing_Date,
+		--Account,
+		@Group_ID, --Group_ID,
+		@Group_Type, --Group_Type,
+		Product,
+		GMI_Description,
+		PBS,
+		Quantity,
+		GMI_Trade_Price, --Trade_Price,
+		GMI_Last_Closing_Price, --Last_Closing_Price,
+		GMI_Current_Price, --Market_Price,
+		GMI_Multiplier,
+		OTE_SOD,
+		OTE_Top_Day,
+		OTE_Current,
+		OTE_Change,
+		Market_Value,
+		Option_Unrealized_SOD,
+		Option_Unrealized_Top_Day,
+		Option_Unrealized_Current,
+		Option_Unrealized_Change,
+		Currency_Code,
+		GMI_Expiration_Date, --Expiration_Date,
+		CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
+		CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
+		FROM [dbo].[GMI_Current_Positions_Detailed]
+		WHERE (Related_Account=@Group_ID)
+		ORDER BY
+		Account,
+		Product,
+		GMI_Trade_Price,
+		PBS,
+		Source_Table
+
+	--***3***
+	END
+	--***3***
+	ELSE BEGIN
+
+		INSERT INTO #GMI_Current_Positions_Detailed
+		(--Processing_Date,
+		--Account,
+		Group_ID,
+		Group_Type,
+		Product,
+		GMI_Description,
+		PBS,
+		Quantity,
+		Trade_Price,
+		Last_Closing_Price,
+		Market_Price,
+		GMI_Multiplier,
+		OTE_SOD,
+		OTE_Top_Day,
+		OTE_Current,
+		OTE_Change,
+		Market_Value,
+		Option_Unrealized_SOD,
+		Option_Unrealized_Top_Day,
+		Option_Unrealized_Current,
+		Option_Unrealized_Change,
+		Currency_Code,
+		Expiration_Date,
+		Trade_Date,
+		Snapshot_Time)
+		SELECT
+		--Processing_Date,
+		--Account,
+		@Group_ID, --Group_ID,
+		@Group_Type, --Group_Type,
+		Product,
+		GMI_Description,
+		PBS,
+		Quantity,
+		GMI_Trade_Price, --Trade_Price,
+		GMI_Last_Closing_Price, --Last_Closing_Price,
+		GMI_Current_Price, --Market_Price,
+		GMI_Multiplier,
+		OTE_SOD,
+		OTE_Top_Day,
+		OTE_Current,
+		OTE_Change,
+		Market_Value,
+		Option_Unrealized_SOD,
+		Option_Unrealized_Top_Day,
+		Option_Unrealized_Current,
+		Option_Unrealized_Change,
+		Currency_Code,
+		GMI_Expiration_Date, --Expiration_Date,
+		CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
+		CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
+		FROM [dbo].[GMI_Current_Positions_Detailed]
+		WHERE (Related_Account=@Group_ID)
+		AND (Product=@Product)
+		ORDER BY
+		Account,
+		Product,
+		GMI_Trade_Price,
+		PBS,
+		Source_Table
+
+	--***3***
+	END
 --***2***
 END
 --*********************************************************************************************************************************************************************************

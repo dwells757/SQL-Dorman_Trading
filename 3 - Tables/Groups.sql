@@ -16,6 +16,7 @@ GO
 CREATE TABLE [dbo].[Groups](
 	[Group_ID] [varchar](30) NOT NULL,
 	[Group_Type] [varchar](30) NOT NULL,
+	[Group_Name] [varchar](50) NOT NULL,
 	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
 	
 	CONSTRAINT [PK_Groups] PRIMARY KEY CLUSTERED

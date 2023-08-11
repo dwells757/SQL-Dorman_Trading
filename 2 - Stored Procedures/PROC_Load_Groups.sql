@@ -26,7 +26,8 @@ SELECT GETDATE() "Start Time"
 --********************************************************************
 CREATE TABLE #Groups
 (Group_ID VARCHAR(30),
-Group_Type VARCHAR(30))
+Group_Type VARCHAR(30),
+Group_Name VARCHAR(50) DEFAULT '')
 
 PRINT '**************************************************************************'
 PRINT ' Load #Groups'
@@ -72,6 +73,23 @@ SELECT @@ROWCOUNT "Records Loaded"
 
 SELECT GETDATE() "End Time"
 
+PRINT '**************************************************************************'
+PRINT ' Update Group_Name'
+PRINT ' with [dbo].[GMI_Customer_Master]'
+PRINT '**************************************************************************'
+
+SELECT GETDATE() "Start Time"
+
+UPDATE A
+SET Group_Name=B.YSNAME
+FROM #Groups A
+INNER JOIN [dbo].[GMI_Customer_Master] B
+ON (A.Group_ID=B.Account)
+
+SELECT @@ROWCOUNT "Records Updated"
+
+SELECT GETDATE() "End Time"
+
 PRINT '******************************************************************************************************************'
 PRINT ' TRUNCATE TABLE [dbo].[Groups]'
 PRINT '******************************************************************************************************************'
@@ -86,10 +104,12 @@ SELECT GETDATE() "Start Time"
 
 INSERT INTO [dbo].[Groups]
 (Group_ID,
-Group_Type)
+Group_Type,
+Group_Name)
 SELECT
 Group_ID,
-Group_Type
+Group_Type,
+Group_Name
 FROM #Groups
 
 SELECT @@ROWCOUNT "Records Loaded"
