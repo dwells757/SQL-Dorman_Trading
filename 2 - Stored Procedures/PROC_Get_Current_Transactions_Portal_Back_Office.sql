@@ -35,7 +35,7 @@ CREATE TABLE #GMI_Current_Positions_Detailed
 Group_ID VARCHAR(30),
 Group_Type VARCHAR(30),
 PBS VARCHAR(1),
-Quantity NUMERIC(18),
+Quantity INT,
 Product VARCHAR(50),
 GMI_Security_Type VARCHAR(30),
 GMI_Description VARCHAR(30),
@@ -44,10 +44,14 @@ GMI_Current_Price NUMERIC(18,9),
 GMI_Multiplier NUMERIC(18,9),
 Account_Balance MONEY,
 OTE_Top_Day MONEY,
+OTE_Current MONEY, --*******
 LOV MONEY,
 SOV MONEY,
 Option_Unrealized_Top_Day MONEY,
+Option_Unrealized_Current MONEY, --*******
+Market_Value MONEY, --*******
 Currency_Code VARCHAR(3),
+Expiration_Date VARCHAR(8), --*******
 Trade_Date VARCHAR(8),
 Snapshot_Time VARCHAR(30))
 
@@ -78,10 +82,14 @@ IF (@Group_Type='Account') BEGIN
 	GMI_Multiplier,
 	Account_Balance,
 	OTE_Top_Day,
+	OTE_Current, --*******
 	LOV,
 	SOV,
 	Option_Unrealized_Top_Day,
+	Option_Unrealized_Current, --*******
+	Market_Value, --*******
 	Currency_Code,
+	Expiration_Date, --*******
 	Trade_Date,
 	Snapshot_Time)
 	SELECT
@@ -98,10 +106,14 @@ IF (@Group_Type='Account') BEGIN
 	GMI_Multiplier,
 	Account_Balance,
 	OTE_Top_Day,
+	OTE_Current, --*******
 	LOV,
 	SOV,
 	Option_Unrealized_Top_Day,
+	Option_Unrealized_Current, --*******
+	Market_Value, --*******
 	Currency_Code,
+	GMI_Expiration_Date, --Expiration_Date, --*******
 	CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
 	CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
 	FROM [dbo].[GMI_Current_Positions_Detailed]
@@ -133,10 +145,14 @@ IF (@Group_Type='Related_Account') BEGIN
 	GMI_Multiplier,
 	Account_Balance,
 	OTE_Top_Day,
+	OTE_Current, --*******
 	LOV,
 	SOV,
 	Option_Unrealized_Top_Day,
+	Option_Unrealized_Current, --*******
+	Market_Value, --*******
 	Currency_Code,
+	Expiration_Date, --*******
 	Trade_Date,
 	Snapshot_Time)
 	SELECT
@@ -153,10 +169,14 @@ IF (@Group_Type='Related_Account') BEGIN
 	GMI_Multiplier,
 	Account_Balance,
 	OTE_Top_Day,
+	OTE_Current, --*******
 	LOV,
 	SOV,
 	Option_Unrealized_Top_Day,
+	Option_Unrealized_Current, --*******
+	Market_Value, --*******
 	Currency_Code,
+	GMI_Expiration_Date, --Expiration_Date, --*******
 	CONVERT(VARCHAR,Trade_Date,112), --Trade_Date,
 	CONVERT(VARCHAR,DateLoaded,100) --Snapshot_Time
 	FROM [dbo].[GMI_Current_Positions_Detailed]
@@ -177,7 +197,7 @@ Id,
 Group_ID,
 Group_Type,
 PBS,
-CONVERT(VARCHAR,Quantity) "Quantity",
+Quantity,
 GMI_Security_Type "Security_Type",
 GMI_Description "Description",
 FORMAT(GMI_Trade_Price,'0.#########') "Trade_Price",
@@ -185,10 +205,14 @@ FORMAT(GMI_Current_Price,'0.#########') "Current_Price",
 FORMAT(GMI_Multiplier,'0.#########') "Multiplier",
 CONVERT(NUMERIC(15,2),Account_Balance) "Account_Balance",
 CONVERT(NUMERIC(15,2),OTE_Top_Day) "OTE_Top_Day",
+CONVERT(NUMERIC(15,2),OTE_Current) "OTE_Current", --*******
 CONVERT(NUMERIC(15,2),LOV) "LOV",
 CONVERT(NUMERIC(15,2),SOV) "SOV",
 CONVERT(NUMERIC(15,2),Option_Unrealized_Top_Day) "Option_Unrealized_Top_Day",
+CONVERT(NUMERIC(15,2),Option_Unrealized_Current) "Option_Unrealized_Current", --*******
+CONVERT(NUMERIC(15,2),Market_Value) "Market_Value", --*******
 Currency_Code,
+Expiration_Date, --*******
 Trade_Date,
 Snapshot_Time
 FROM #GMI_Current_Positions_Detailed

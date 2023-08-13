@@ -32,6 +32,9 @@ GMI_Description VARCHAR(30),
 Long_Quantity NUMERIC(18),
 Short_Quantity NUMERIC(18),
 NET_Quantity NUMERIC(18) DEFAULT 0,
+Quantity_Times_Price NUMERIC(18,9),
+Total_Quantity NUMERIC(18),
+Average_Trade_Price NUMERIC(18,9) DEFAULT 0,
 Market_Price NUMERIC(18,9),
 OTE_SOD MONEY,
 OTE_Current MONEY,
@@ -57,6 +60,8 @@ Product,
 GMI_Description,
 Long_Quantity,
 Short_Quantity,
+Quantity_Times_Price,
+Total_Quantity,
 Market_Price,
 OTE_SOD,
 OTE_Current,
@@ -80,6 +85,8 @@ SUM(CASE PBS
 	WHEN '2' THEN Quantity
 	ELSE 0
 END), --Short_Quantity,
+SUM(ABS(Quantity) * GMI_Trade_Price), --Quantity_Times_Price,
+SUM(ABS(Quantity)), --Total_Quantity,
 MAX(GMI_Current_Price), --Market_Price,
 SUM(OTE_SOD), --OTE_SOD,
 SUM(OTE_Current), --OTE_Current,
@@ -114,6 +121,20 @@ SELECT @@ROWCOUNT "Records Updated"
 SELECT GETDATE() "End Time"
 
 PRINT '**************************************************************************'
+PRINT ' Generate Average_Trade_Price'
+PRINT '**************************************************************************'
+
+SELECT GETDATE() "Start Time"
+
+UPDATE #GMI_Current_Positions_Summarized
+SET Average_Trade_Price = Quantity_Times_Price / Total_Quantity
+WHERE (Total_Quantity<>0)
+
+SELECT @@ROWCOUNT "Records Updated"
+
+SELECT GETDATE() "End Time"
+
+PRINT '**************************************************************************'
 PRINT ' TRUNCATE TABLE [dbo].[GMI_Current_Positions_Summarized]'
 PRINT '**************************************************************************'
 TRUNCATE TABLE [dbo].[GMI_Current_Positions_Summarized]
@@ -133,6 +154,9 @@ GMI_Description,
 Long_Quantity,
 Short_Quantity,
 NET_Quantity,
+Quantity_Times_Price,
+Total_Quantity,
+Average_Trade_Price,
 Market_Price,
 OTE_SOD,
 OTE_Current,
@@ -151,6 +175,9 @@ GMI_Description,
 Long_Quantity,
 Short_Quantity,
 NET_Quantity,
+Quantity_Times_Price,
+Total_Quantity,
+Average_Trade_Price,
 Market_Price,
 OTE_SOD,
 OTE_Current,
