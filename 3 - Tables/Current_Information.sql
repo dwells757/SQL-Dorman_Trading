@@ -15,6 +15,7 @@ GO
 
 CREATE TABLE [dbo].[Current_Information](
 	[Current_Processing_Date] [date] NOT NULL,
+	[Snapshot_Time] [datetime] NOT NULL,	
 	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
 	
 ) ON [PRIMARY]
