@@ -84,18 +84,22 @@ SELECT GETDATE() "Start Time"
 INSERT INTO #GMI_Snapshot_Top_Day_1
 (Account,
 Account_Type,
+Related_Account,
 Account_Balance)
 SELECT
 Account,
 PATYPE, --Account_Type,
+Related_Account,
 SUM(PNET) --Account_Balance
 FROM [dbo].[Global_Risk_File_Current_Cash]
 GROUP BY
 Account,
-PATYPE
+PATYPE,
+Related_Account
 ORDER BY
 Account,
-PATYPE
+PATYPE,
+Related_Account
 
 SELECT @@ROWCOUNT "Records Loaded"
 
