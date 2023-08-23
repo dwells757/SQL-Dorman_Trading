@@ -44,6 +44,23 @@ IF (@str_Current_Processing_Date IS NOT NULL) BEGIN
 
 	SELECT @@ROWCOUNT "Records Updated"
 END
+ELSE BEGIN
+	PRINT '**************************************************************************'
+	PRINT ' @str_Current_Processing_Date IS NULL!!!!!!!'
+	PRINT ' @str_Current_Processing_Date IS NULL!!!!!!!'
+	PRINT ' @str_Current_Processing_Date IS NULL!!!!!!!'
+	PRINT ' @str_Current_Processing_Date IS NULL!!!!!!!'
+	PRINT ' @str_Current_Processing_Date IS NULL!!!!!!!'
+	PRINT ' @str_Current_Processing_Date IS NULL!!!!!!!'
+	PRINT ' @str_Current_Processing_Date IS NULL!!!!!!!'
+	PRINT ' '
+	PRINT ' Update [dbo].[Current_Information]'
+	PRINT '**************************************************************************'
+	UPDATE [dbo].[Current_Information]
+	SET Current_Processing_Date = GETDATE() --This is to avoid deleting any historical data
+
+	SELECT @@ROWCOUNT "Records Updated"
+END
 
 SELECT *
 FROM [dbo].[Current_Information]
