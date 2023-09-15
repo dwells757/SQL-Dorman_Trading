@@ -21,7 +21,7 @@ CREATE TABLE [dbo].[GMI_Current_Positions_Summarized](
 	[Long_Quantity] [numeric](18) NOT NULL,
 	[Short_Quantity] [numeric](18) NOT NULL,
 	[NET_Quantity] [numeric](18) NOT NULL,
-	[Quantity_Times_Price] [numeric](18,9) NOT NULL,
+	[Quantity_Times_Price] [money] NOT NULL,
 	[Total_Quantity] [numeric](18) NOT NULL,
 	[Average_Trade_Price] [numeric](18,9) NOT NULL,
 	[Market_Price] [numeric](18,9) NOT NULL,
