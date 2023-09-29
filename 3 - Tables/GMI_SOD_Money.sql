@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP TABLE [dbo].[GMI_SOD_Money]
 GO
 

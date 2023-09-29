@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP PROCEDURE [dbo].[PROC_Update_GMI_Current_Price]
 GO
 

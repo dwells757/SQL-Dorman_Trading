@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP PROCEDURE [dbo].[PROC_Load_GMI_Customer_Master]
 GO
 

@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP PROCEDURE [dbo].[PROC_Update_Current_Information_with_GMIPOSF1]
 GO
 

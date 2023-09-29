@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP TABLE [dbo].[GMI_Snapshot_Top_Day]
 GO
 

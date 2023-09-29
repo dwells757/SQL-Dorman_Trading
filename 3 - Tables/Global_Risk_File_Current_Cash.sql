@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP TABLE [dbo].[Global_Risk_File_Current_Cash]
 GO
 
