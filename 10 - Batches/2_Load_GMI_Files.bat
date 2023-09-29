@@ -94,8 +94,8 @@ REM **************************************************************
 REM **************************************************************
 REM START - Load [dbo].[Current_Information]
 REM **************************************************************
-echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Current_Information_with_GMIPOSF1]" -S REACT -b -h-1 >> %Log%
-sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Current_Information_with_GMIPOSF1]" -S REACT -b -h-1 >> %Log%
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_with_GMIPOSF1]" -S REACT -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_with_GMIPOSF1]" -S REACT -b -h-1 >> %Log%
 REM **************************************************************
 REM END - Load [dbo].[Current_Information]
 REM **************************************************************
@@ -140,4 +140,12 @@ echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_ST4F1_File_History_with_GMIST4
 sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_ST4F1_File_History_with_GMIST4F1_File_Current]" -S REACT -b -h-1 >> %Log%
 REM **************************************************************
 REM END - Load History Tables
+REM **************************************************************
+
+REM **************************************************************
+REM START - Run 5_Dump_GMI_Files_Current.bat
+REM **************************************************************
+CALL C:\React\Code\Batches\5_Dump_GMI_Files_Current
+REM **************************************************************
+REM END - Run 5_Dump_GMI_Files_Current.bat
 REM **************************************************************
