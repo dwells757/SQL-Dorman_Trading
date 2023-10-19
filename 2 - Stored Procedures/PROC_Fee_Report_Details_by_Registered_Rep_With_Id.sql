@@ -11,9 +11,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[PROC_Fee_Report_Details_by_Registered_Rep_With_Id]
-																	@Registered_Rep VARCHAR(5)--,
-																	--@Start_Date DATE,
-																	--@End_Date DATE
+																	@Registered_Rep VARCHAR(5),
+																	@Start_Date DATE,
+																	@End_Date DATE
 																	
 
 AS
@@ -97,7 +97,7 @@ SUM(POTHER), --TRN_FEE,
 SUM(PBKCHG) --BKG_FEE
 FROM [dbo].[Commission_Fees_Volume_History]
 WHERE (PRR=@Registered_Rep)
---AND (Processing_Date BETWEEN @Start_Date AND @End_Date)
+AND (Processing_Date BETWEEN @Start_Date AND @End_Date)
 GROUP BY
 Processing_Date,
 Account,
