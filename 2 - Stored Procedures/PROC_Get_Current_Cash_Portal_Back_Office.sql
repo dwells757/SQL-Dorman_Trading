@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP PROCEDURE [dbo].[PROC_Get_Current_Cash_Portal_Back_Office]
 GO
 

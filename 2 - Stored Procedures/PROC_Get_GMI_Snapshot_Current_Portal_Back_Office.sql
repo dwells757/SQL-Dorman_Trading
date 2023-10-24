@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP PROCEDURE [dbo].[PROC_Get_GMI_Snapshot_Current_Portal_Back_Office]
 GO
 
