@@ -18,6 +18,33 @@ REM END - Generate %YESTERDAY%
 REM **************************************************************
 
 REM **************************************************************************************************************
+REM START - Risk Report
+REM **************************************************************************************************************
+
+echo DEL Risk_Report_%YESTERDAY%.csv >> %Log%
+DEL Risk_Report_%YESTERDAY%.csv >> %Log%
+
+REM NOTE: -E (use trusted connection)
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -h-1 -o Risk_Report_%YESTERDAY%.csv >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -h-1 -o Risk_Report_%YESTERDAY%.csv >> %Log%
+
+echo dir Risk_Report_%YESTERDAY%.csv >> %Log%
+dir Risk_Report_%YESTERDAY%.csv >> %Log%
+
+echo DEL "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
+
+echo COPY Risk_Report_%YESTERDAY%.csv "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
+COPY Risk_Report_%YESTERDAY%.csv "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
+
+echo DIR "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
+DIR "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Risk Report
+REM **************************************************************************************************************
+
+REM **************************************************************************************************************
 REM START - Registered Rep OPC01
 REM **************************************************************************************************************
 
@@ -71,4 +98,105 @@ COPY DTN_File_Current_OPC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\OPC Tes
 
 REM **************************************************************************************************************
 REM END - Registered Rep OPC01
+REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Registered Rep PRIME
+REM **************************************************************************************************************
+
+echo DEL GMIPOSF1_File_Current_PRIME.csv >> %Log%
+DEL GMIPOSF1_File_Current_PRIME.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'PRIME'" queryout GMIPOSF1_File_Current_PRIME.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'PRIME'" queryout GMIPOSF1_File_Current_PRIME.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Prime\Position File Updated\PRIME_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Prime\Position File Updated\PRIME_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_PRIME.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Prime\Position File Updated\PRIME_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_PRIME.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Prime\Position File Updated\PRIME_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Registered Rep PRIME
+REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Registered Rep RCM02
+REM **************************************************************************************************************
+
+echo DEL GMIMNYF1_File_Current_RCM02.csv >> %Log%
+DEL GMIMNYF1_File_Current_RCM02.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIMNYF1_File_Current_RCM02.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIMNYF1_File_Current_RCM02.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_RCM02.csv >> %Log%
+DEL GMIPOSF1_File_Current_RCM02.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIPOSF1_File_Current_RCM02.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIPOSF1_File_Current_RCM02.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_RCM02.csv >> %Log%
+DEL GMIST4F1_File_Current_RCM02.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIST4F1_File_Current_RCM02.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIST4F1_File_Current_RCM02.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_RCM02.csv >> %Log%
+DEL DTN_File_Current_RCM02.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'RCM02'" queryout DTN_File_Current_RCM02.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'RCM02'" queryout DTN_File_Current_RCM02.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Ultimus Fund Sol\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_RCM02.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Equity Armor\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+
+REM **************************************************************************************************************
+REM END - Registered Rep RCM02
 REM **************************************************************************************************************
