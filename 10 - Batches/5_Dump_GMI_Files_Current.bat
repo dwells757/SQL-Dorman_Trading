@@ -21,21 +21,21 @@ REM ****************************************************************************
 REM START - Risk Report
 REM **************************************************************************************************************
 
-echo DEL Risk_Report_%YESTERDAY%.csv >> %Log%
-DEL Risk_Report_%YESTERDAY%.csv >> %Log%
+echo DEL Risk_Report.csv >> %Log%
+DEL Risk_Report.csv >> %Log%
 
 REM NOTE: -E (use trusted connection)
-echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -h-1 -o Risk_Report_%YESTERDAY%.csv >> %Log%
-sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -h-1 -o Risk_Report_%YESTERDAY%.csv >> %Log%
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -h-1 -o Risk_Report.csv >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -h-1 -o Risk_Report.csv >> %Log%
 
-echo dir Risk_Report_%YESTERDAY%.csv >> %Log%
-dir Risk_Report_%YESTERDAY%.csv >> %Log%
+echo dir Risk_Report.csv >> %Log%
+dir Risk_Report.csv >> %Log%
 
 echo DEL "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
 DEL "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
 
-echo COPY Risk_Report_%YESTERDAY%.csv "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
-COPY Risk_Report_%YESTERDAY%.csv "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
+echo COPY Risk_Report.csv "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
+COPY Risk_Report.csv "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
 
 echo DIR "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
 DIR "\\192.168.89.212\m$\Risk Management\Risk Reports\Risk_Report_%YESTERDAY%.csv" >> %Log%
