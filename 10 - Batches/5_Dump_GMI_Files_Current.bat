@@ -25,8 +25,8 @@ echo DEL Risk_Report.csv >> %Log%
 DEL Risk_Report.csv >> %Log%
 
 REM NOTE: -E (use trusted connection)
-echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -h-1 -o Risk_Report.csv >> %Log%
-sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -h-1 -o Risk_Report.csv >> %Log%
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -y 0 -o Risk_Report.csv >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Generate_Risk_Report_CSV_File]" -S REACT -b -y 0 -o Risk_Report.csv >> %Log%
 
 echo dir Risk_Report.csv >> %Log%
 dir Risk_Report.csv >> %Log%
@@ -335,4 +335,116 @@ COPY GNACMFF1_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tr
 
 REM **************************************************************************************************************
 REM END - Registered Rep TB001
+REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Registered Rep STAN2
+REM **************************************************************************************************************
+
+echo DEL GMIMNYF1_File_Current_STAN2.csv >> %Log%
+DEL GMIMNYF1_File_Current_STAN2.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIMNYF1_File_Current_STAN2.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIMNYF1_File_Current_STAN2.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_MNY_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_MNY_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_STAN2.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_MNY_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_STAN2.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_MNY_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_STAN2.csv >> %Log%
+DEL GMIPOSF1_File_Current_STAN2.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIPOSF1_File_Current_STAN2.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIPOSF1_File_Current_STAN2.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_POS_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_POS_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_STAN2.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_POS_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_STAN2.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_POS_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_STAN2.csv >> %Log%
+DEL GMIST4F1_File_Current_STAN2.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIST4F1_File_Current_STAN2.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIST4F1_File_Current_STAN2.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_ST4_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_ST4_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_STAN2.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_ST4_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_STAN2.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_ST4_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_STAN2.csv >> %Log%
+DEL DTN_File_Current_STAN2.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'STAN2'" queryout DTN_File_Current_STAN2.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'STAN2'" queryout DTN_File_Current_STAN2.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_DTN_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_DTN_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_STAN2.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_DTN_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_STAN2.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Lighthouse Commodities\STAN2_DTN_File_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Registered Rep STAN2
+REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Related Account D / 153 / AA085
+REM **************************************************************************************************************
+
+echo DEL GMIMNYF1_File_Current_153_AA085.csv >> %Log%
+DEL GMIMNYF1_File_Current_153_AA085.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIMNYF1_File_Current_153_AA085.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIMNYF1_File_Current_153_AA085.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_MNY_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_MNY_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_153_AA085.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_MNY_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_153_AA085.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_MNY_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_153_AA085.csv >> %Log%
+DEL GMIPOSF1_File_Current_153_AA085.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIPOSF1_File_Current_153_AA085.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIPOSF1_File_Current_153_AA085.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_POS_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_POS_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_153_AA085.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_POS_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_153_AA085.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_POS_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_153_AA085.csv >> %Log%
+DEL GMIST4F1_File_Current_153_AA085.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIST4F1_File_Current_153_AA085.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIST4F1_File_Current_153_AA085.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_ST4_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_ST4_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_153_AA085.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_ST4_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_153_AA085.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_ST4_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_153_AA085.csv >> %Log%
+DEL DTN_File_Current_153_AA085.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Related_Account] 'D', '153','AA085'" queryout DTN_File_Current_153_AA085.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Related_Account] 'D', '153','AA085'" queryout DTN_File_Current_153_AA085.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_DTN_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_DTN_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_153_AA085.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_DTN_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_153_AA085.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alpha Optimization\153_AA085_DTN_File_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Related Account D / 153 / AA085
 REM **************************************************************************************************************
