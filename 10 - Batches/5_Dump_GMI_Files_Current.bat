@@ -448,3 +448,59 @@ COPY DTN_File_Current_153_AA085.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Alp
 REM **************************************************************************************************************
 REM END - Related Account D / 153 / AA085
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Related Account D / 153 / 47614
+REM **************************************************************************************************************
+
+echo DEL GMIMNYF1_File_Current_153_47614.csv >> %Log%
+DEL GMIMNYF1_File_Current_153_47614.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIMNYF1_File_Current_153_47614.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIMNYF1_File_Current_153_47614.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_MNY_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_MNY_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_153_47614.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_MNY_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_153_47614.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_MNY_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_153_47614.csv >> %Log%
+DEL GMIPOSF1_File_Current_153_47614.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIPOSF1_File_Current_153_47614.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIPOSF1_File_Current_153_47614.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_POS_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_POS_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_153_47614.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_POS_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_153_47614.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_POS_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_153_47614.csv >> %Log%
+DEL GMIST4F1_File_Current_153_47614.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIST4F1_File_Current_153_47614.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIST4F1_File_Current_153_47614.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_ST4_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_ST4_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_153_47614.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_ST4_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_153_47614.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_ST4_File_%YESTERDAY%.csv" >> %Log%
+
+REM echo DEL DTN_File_Current_153_47614.csv >> %Log%
+REM DEL DTN_File_Current_153_47614.csv >> %Log%
+
+REM echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Related_Account] 'D', '153','47614'" queryout DTN_File_Current_153_47614.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+REM bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Related_Account] 'D', '153','47614'" queryout DTN_File_Current_153_47614.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+REM echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_DTN_File_%YESTERDAY%.csv" >> %Log%
+REM DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_DTN_File_%YESTERDAY%.csv" >> %Log%
+
+REM echo COPY DTN_File_Current_153_47614.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_DTN_File_%YESTERDAY%.csv" >> %Log%
+REM COPY DTN_File_Current_153_47614.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Pineberry\GMI Files\153_47614_DTN_File_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Related Account D / 153 / 47614
+REM **************************************************************************************************************
