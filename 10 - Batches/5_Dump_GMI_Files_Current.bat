@@ -270,71 +270,71 @@ REM END - Registered Rep Group Trade_Pro_Futures
 REM **************************************************************************************************************
 
 REM **************************************************************************************************************
-REM START - Registered Rep TB001
+REM START - Registered Rep Group Tradier
 REM **************************************************************************************************************
 
-echo DEL GMIMNYF1_File_Current_TB001.csv >> %Log%
-DEL GMIMNYF1_File_Current_TB001.csv >> %Log%
+echo DEL GMIMNYF1_File_Current_Tradier.csv >> %Log%
+DEL GMIMNYF1_File_Current_Tradier.csv >> %Log%
 
-echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'TB001'" queryout GMIMNYF1_File_Current_TB001.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
-bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'TB001'" queryout GMIMNYF1_File_Current_TB001.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIMNYF1_File_Current_Tradier.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIMNYF1_File_Current_Tradier.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
 
-echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_MNYF1_File_%YESTERDAY%.csv" >> %Log%
-DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 
-echo COPY GMIMNYF1_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_MNYF1_File_%YESTERDAY%.csv" >> %Log%
-COPY GMIMNYF1_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+echo COPY GMIMNYF1_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 
-echo DEL GMIPOSF1_File_Current_TB001.csv >> %Log%
-DEL GMIPOSF1_File_Current_TB001.csv >> %Log%
+echo DEL GMIPOSF1_File_Current_Tradier.csv >> %Log%
+DEL GMIPOSF1_File_Current_Tradier.csv >> %Log%
 
-echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'TB001'" queryout GMIPOSF1_File_Current_TB001.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
-bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'TB001'" queryout GMIPOSF1_File_Current_TB001.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIPOSF1_File_Current_Tradier.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIPOSF1_File_Current_Tradier.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
 
-echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_POSF1_File_%YESTERDAY%.csv" >> %Log%
-DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_POSF1_File_%YESTERDAY%.csv" >> %Log%
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
 
-echo COPY GMIPOSF1_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_POSF1_File_%YESTERDAY%.csv" >> %Log%
-COPY GMIPOSF1_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_POSF1_File_%YESTERDAY%.csv" >> %Log%
+echo COPY GMIPOSF1_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
 
-echo DEL GMIST4F1_File_Current_TB001.csv >> %Log%
-DEL GMIST4F1_File_Current_TB001.csv >> %Log%
+echo DEL GMIST4F1_File_Current_Tradier.csv >> %Log%
+DEL GMIST4F1_File_Current_Tradier.csv >> %Log%
 
-echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'TB001'" queryout GMIST4F1_File_Current_TB001.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
-bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'TB001'" queryout GMIST4F1_File_Current_TB001.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIST4F1_File_Current_Tradier.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIST4F1_File_Current_Tradier.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
 
-echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_ST4F1_File_%YESTERDAY%.csv" >> %Log%
-DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 
-echo COPY GMIST4F1_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_ST4F1_File_%YESTERDAY%.csv" >> %Log%
-COPY GMIST4F1_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+echo COPY GMIST4F1_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 
-echo DEL DTN_File_Current_TB001.csv >> %Log%
-DEL DTN_File_Current_TB001.csv >> %Log%
+echo DEL DTN_File_Current_Tradier.csv >> %Log%
+DEL DTN_File_Current_Tradier.csv >> %Log%
 
-echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'TB001'" queryout DTN_File_Current_TB001.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
-bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'TB001'" queryout DTN_File_Current_TB001.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'Tradier'" queryout DTN_File_Current_Tradier.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'Tradier'" queryout DTN_File_Current_Tradier.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
 
-echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_DTNF1_File_%YESTERDAY%.csv" >> %Log%
-DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 
-echo COPY DTN_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_DTNF1_File_%YESTERDAY%.csv" >> %Log%
-COPY DTN_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+echo COPY DTN_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 
-echo DEL GNACMFF1_File_Current_TB001.csv >> %Log%
-DEL GNACMFF1_File_Current_TB001.csv >> %Log%
+echo DEL GNACMFF1_File_Current_Tradier.csv >> %Log%
+DEL GNACMFF1_File_Current_Tradier.csv >> %Log%
 
-echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep] 'TB001'" -S REACT -b -h-1 -o GNACMFF1_File_Current_TB001.csv >> %Log%
-sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep] 'TB001'" -S REACT -b -h-1 -o GNACMFF1_File_Current_TB001.csv >> %Log%
+echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group] 'Tradier'" -S REACT -b -h-1 -o GNACMFF1_File_Current_Tradier.csv >> %Log%
+sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group] 'Tradier'" -S REACT -b -h-1 -o GNACMFF1_File_Current_Tradier.csv >> %Log%
 
-echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_CMFF1_File_%YESTERDAY%.csv" >> %Log%
-DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_CMFF1_File_%YESTERDAY%.csv" >> %Log%
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_CMFF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_CMFF1_File_%YESTERDAY%.csv" >> %Log%
 
-echo COPY GNACMFF1_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_CMFF1_File_%YESTERDAY%.csv" >> %Log%
-COPY GNACMFF1_File_Current_TB001.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\TB001_CMFF1_File_%YESTERDAY%.csv" >> %Log%
+echo COPY GNACMFF1_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_CMFF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GNACMFF1_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_CMFF1_File_%YESTERDAY%.csv" >> %Log%
 
 REM **************************************************************************************************************
-REM END - Registered Rep TB001
+REM END - Registered Rep Group Tradier
 REM **************************************************************************************************************
 
 REM **************************************************************************************************************
