@@ -101,6 +101,15 @@ REM END - Load [dbo].[Current_Information]
 REM **************************************************************
 
 REM **************************************************************
+REM START - Load [dbo].[Registered_Representatives_Current]
+REM **************************************************************
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Registered_Representatives_Current]" -S REACT -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Registered_Representatives_Current]" -S REACT -b -h-1 >> %Log%
+REM **************************************************************
+REM END - Load [dbo].[Registered_Representatives_Current]
+REM **************************************************************
+
+REM **************************************************************
 REM START - Load "SOD" Tables
 REM **************************************************************
 echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GMI_Customer_Master]" -S REACT -b -h-1 >> %Log%
@@ -138,6 +147,9 @@ sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_MNYF1_File_History_with_GMIMNYF1_Fi
 
 echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_ST4F1_File_History_with_GMIST4F1_File_Current]" -S REACT -b -h-1 >> %Log%
 sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_ST4F1_File_History_with_GMIST4F1_File_Current]" -S REACT -b -h-1 >> %Log%
+
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Commission_Fees_Volume_History_with_GMIST4F1_File_Current]" -S REACT -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Commission_Fees_Volume_History_with_GMIST4F1_File_Current]" -S REACT -b -h-1 >> %Log%
 REM **************************************************************
 REM END - Load History Tables
 REM **************************************************************
