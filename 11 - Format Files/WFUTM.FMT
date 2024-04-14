@@ -1,0 +1,15 @@
+14.0
+13
+1       SQLCHAR             0     255       ","     1     GMIEX       		   SQL_Latin1_General_CP1_CI_AS
+2       SQLCHAR             0     255       ","     2     EXCHDESC                 SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR             0     255       ","     3     GMIFC               	   SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR             0     255       ","     4     TYPE                     SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR             0     255       ","     5     PRODTYP                  SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR             0     255       ","     6     PROMPT                   SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR             0     255       ","     7     DESC                     SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR             0     255       ","     8     LONGDESC                 SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR             0     255       ","     9     EXALTFC                  SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR             0     255       ","    10     OTHERDESC                SQL_Latin1_General_CP1_CI_AS
+11      SQLCHAR             0     255       ","    11     EXPCOMM                  SQL_Latin1_General_CP1_CI_AS
+12      SQLCHAR             0     255       ","    12     SPANCOMM                 SQL_Latin1_General_CP1_CI_AS
+13      SQLCHAR             0    3500       "\n"   13     CFTCFC       		   SQL_Latin1_General_CP1_CI_AS
