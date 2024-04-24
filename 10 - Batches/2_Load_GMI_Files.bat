@@ -17,6 +17,49 @@ REM END - Generate %YESTERDAY%
 REM **************************************************************
 
 REM **************************************************************
+REM START - Generate Current_Processing_Date.txt
+REM **************************************************************
+
+echo DEL Current_Processing_Date.txt >> %Log%
+DEL Current_Processing_Date.txt >> %Log%
+
+echo creating Current_Processing_Date.txt ... >> %Log%
+echo %YESTERDAY% > Current_Processing_Date.txt
+
+echo DIR Current_Processing_Date.txt >> %Log%
+DIR Current_Processing_Date.txt >> %Log%
+
+REM **************************************************************
+REM END - Generate Current_Processing_Date.txt
+REM **************************************************************
+
+REM **************************************************************
+REM START - Load [dbo].[Current_Processing_Date]
+REM **************************************************************
+
+echo sqlcmd -E -Q"TRUNCATE TABLE [GMIDATA].[dbo].[Current_Processing_Date]" -S REACT -b >> %Log%
+sqlcmd -E -Q"TRUNCATE TABLE [GMIDATA].[dbo].[Current_Processing_Date]" -S REACT -b >> %Log%
+
+echo bcp GMIDATA..Current_Processing_Date in C:\React\Files\Current_Processing_Date.txt -f C:\React\Code\Format_Files\Current_Processing_Date.FMT -m50 -S REACT -T -h"TABLOCK" >> %Log%
+bcp GMIDATA..Current_Processing_Date in C:\React\Files\Current_Processing_Date.txt -f C:\React\Code\Format_Files\Current_Processing_Date.FMT -m50 -S REACT -T -h"TABLOCK" >> %Log%
+
+REM **************************************************************
+REM END - Load [dbo].[Current_Processing_Date]
+REM **************************************************************
+
+REM **************************************************************
+REM START - Load [dbo].[Current_Information]
+REM **************************************************************
+REM (DWH 3/30/24) echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_with_GMIPOSF1]" -S REACT -b -h-1 >> %Log%
+REM (DWH 3/30/24) sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_with_GMIPOSF1]" -S REACT -b -h-1 >> %Log%
+
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_with_Current_Processing_Date]" -S REACT -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_with_Current_Processing_Date]" -S REACT -b -h-1 >> %Log%
+REM **************************************************************
+REM END - Load [dbo].[Current_Information]
+REM **************************************************************
+
+REM **************************************************************
 REM START - Get GMI Files
 REM **************************************************************
 echo DEL *.csv >> %Log%
@@ -89,15 +132,6 @@ echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GNACMFF1_File_Current]" -S REA
 sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GNACMFF1_File_Current]" -S REACT -b -h-1 >> %Log%
 REM **************************************************************
 REM END - Load Current Tables
-REM **************************************************************
-
-REM **************************************************************
-REM START - Load [dbo].[Current_Information]
-REM **************************************************************
-echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_with_GMIPOSF1]" -S REACT -b -h-1 >> %Log%
-sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_with_GMIPOSF1]" -S REACT -b -h-1 >> %Log%
-REM **************************************************************
-REM END - Load [dbo].[Current_Information]
 REM **************************************************************
 
 REM **************************************************************
