@@ -64,3 +64,6 @@ sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GMI_Snapshot_Current]" -S REACT -b 
 
 echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Current_Accounts]" -S REACT -b -h-1 >> %Log%
 sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Current_Accounts]" -S REACT -b -h-1 >> %Log%
+
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_Snapshot_Time]" -S REACT -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_Current_Information_Snapshot_Time]" -S REACT -b -h-1 >> %Log%

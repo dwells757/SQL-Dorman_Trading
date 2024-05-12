@@ -256,8 +256,8 @@ COPY DTN_File_Current_Trade_Pro_Futures.csv "\\192.168.89.212\e$\inetpub\ftproot
 echo DEL GNACMFF1_File_Current_Trade_Pro_Futures.csv >> %Log%
 DEL GNACMFF1_File_Current_Trade_Pro_Futures.csv >> %Log%
 
-echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Trade_Pro_Futures'" -S REACT -b -h-1 -o GNACMFF1_File_Current_Trade_Pro_Futures.csv >> %Log%
-sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Trade_Pro_Futures'" -S REACT -b -h-1 -o GNACMFF1_File_Current_Trade_Pro_Futures.csv >> %Log%
+echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Trade_Pro_Futures'" -S REACT -b -h-1 -W -o GNACMFF1_File_Current_Trade_Pro_Futures.csv >> %Log%
+sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Trade_Pro_Futures'" -S REACT -b -h-1 -W -o GNACMFF1_File_Current_Trade_Pro_Futures.csv >> %Log%
 
 echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_CMFF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_CMFF1_File_%YESTERDAY%.csv" >> %Log%
@@ -324,8 +324,8 @@ COPY DTN_File_Current_Tradier.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradi
 echo DEL GNACMFF1_File_Current_Tradier.csv >> %Log%
 DEL GNACMFF1_File_Current_Tradier.csv >> %Log%
 
-echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Tradier'" -S REACT -b -h-1 -o GNACMFF1_File_Current_Tradier.csv >> %Log%
-sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Tradier'" -S REACT -b -h-1 -o GNACMFF1_File_Current_Tradier.csv >> %Log%
+echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Tradier'" -S REACT -b -h-1 -W -o GNACMFF1_File_Current_Tradier.csv >> %Log%
+sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Tradier'" -S REACT -b -h-1 -W -o GNACMFF1_File_Current_Tradier.csv >> %Log%
 
 echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_CMFF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Tradier Futures\Tradier\Tradier_CMFF1_File_%YESTERDAY%.csv" >> %Log%
