@@ -42,7 +42,8 @@ CQG_Contract VARCHAR(100),
 YY VARCHAR(2) DEFAULT '??',
 MM VARCHAR(2) DEFAULT '??',
 Month_Code VARCHAR(1) DEFAULT '?',
-CQG_Product VARCHAR(20) DEFAULT 'UNDEFINED')
+CQG_Product VARCHAR(20) DEFAULT 'UNDEFINED',
+CQG_to_GMI_Price_Multiplier NUMERIC(19,9) DEFAULT 1)
 
 --***********************************************************************************************************
 -- Load #GMIPOSF1_File_Current
@@ -87,7 +88,8 @@ GMI_LONGDESC=B.GMI_LONGDESC,
 CQG_Symbol=B.CQG_Symbol,
 CQG_Exchange=B.CQG_Exchange,
 CQG_Description=B.CQG_Description,
-CQG_Contract=B.CQG_Contract
+CQG_Contract=B.CQG_Contract,
+CQG_to_GMI_Price_Multiplier=B.CQG_to_GMI_Price_Multiplier
 FROM #GMIPOSF1_File_Current A
 INNER JOIN [dbo].[GMI_to_CQG_Mappings] B
 ON (A.GMI_Exchange=B.GMI_Exchange)
@@ -144,6 +146,7 @@ CQG_Symbol VARCHAR(10),
 CQG_Exchange VARCHAR(100),
 CQG_Description VARCHAR(100),
 CQG_Product VARCHAR(20),
+CQG_to_GMI_Price_Multiplier NUMERIC(19,9),
 PCLOSE NUMERIC(15,8),
 CQG_Price NUMERIC(18,9) DEFAULT 0)
 
@@ -161,6 +164,7 @@ CQG_Symbol,
 CQG_Exchange,
 CQG_Description,
 CQG_Product,
+CQG_to_GMI_Price_Multiplier,
 PCLOSE)
 SELECT
 GMI_Exchange,
@@ -173,6 +177,7 @@ CQG_Symbol,
 CQG_Exchange,
 CQG_Description,
 CQG_Product,
+CQG_to_GMI_Price_Multiplier,
 PCLOSE
 FROM #GMIPOSF1_File_Current
 WHERE (IN_GMI_to_CQG_Mappings_YN=@IN_GMI_to_CQG_Mappings_YN)
