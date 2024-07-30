@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP TABLE [dbo].[GMI_to_CQG_Mappings]
 GO
 

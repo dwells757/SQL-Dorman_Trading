@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP TABLE [dbo].[WFUTM]
 GO
 

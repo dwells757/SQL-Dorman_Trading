@@ -1,0 +1,14 @@
+14.0
+12
+1       SQLCHAR             0     255       ","     1     ContractSymbol  	   	SQL_Latin1_General_CP1_CI_AS
+2       SQLCHAR             0     255       ","     2     GMI_Record_Number        	SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR             0     255       ","     3     PEXCH               	   	SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR             0     255       ","     4     PFC                      	SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR             0     255       ","     5     PCTYM                    	SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR             0     255       ","     6     PCLOSE                   	SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR             0     255       ","     7     StatusCode               	SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR             0     255       ","     8     Level                    	SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR             0     255       ","     9     ScaledPrice              	SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR             0     255       ","    10     CorrectPriceScale        	SQL_Latin1_General_CP1_CI_AS
+11      SQLCHAR             0     255       ","    11     CQG_to_GMI_Price_Multiplier   SQL_Latin1_General_CP1_CI_AS
+12      SQLCHAR             0    3500       "\r\n" 12     CQG_Price       	   	SQL_Latin1_General_CP1_CI_AS

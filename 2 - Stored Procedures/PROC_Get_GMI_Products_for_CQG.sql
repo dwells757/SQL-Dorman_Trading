@@ -1,6 +1,3 @@
-USE [GMIDATA]
-GO
-
 DROP PROCEDURE [dbo].[PROC_Get_GMI_Products_for_CQG]
 GO
 
