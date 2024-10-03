@@ -550,3 +550,71 @@ REM *********************************************
 REM **************************************************************************************************************
 REM END - Registered Rep TJM04
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Registered Rep ARC01
+REM **************************************************************************************************************
+
+echo DEL GMIMNYF1_File_Current_ARC01.csv >> %Log%
+DEL GMIMNYF1_File_Current_ARC01.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIMNYF1_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIMNYF1_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_MNY_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_MNY_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_MNY_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_MNY_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_ARC01.csv >> %Log%
+DEL GMIPOSF1_File_Current_ARC01.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIPOSF1_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIPOSF1_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_POS_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_POS_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_POS_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_POS_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_ARC01.csv >> %Log%
+DEL GMIST4F1_File_Current_ARC01.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIST4F1_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIST4F1_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_ST4_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_ST4_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_ST4_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_ST4_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_ARC01.csv >> %Log%
+DEL DTN_File_Current_ARC01.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'ARC01'" queryout DTN_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'ARC01'" queryout DTN_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_DTN_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_DTN_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_DTN_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_DTN_File_%YESTERDAY%.csv" >> %Log%
+
+REM echo DEL CMF_File_Current_ARC01.csv >> %Log%
+REM DEL CMF_File_Current_ARC01.csv >> %Log%
+
+REM echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep] 'ARC01'" queryout CMF_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+REM bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep] 'ARC01'" queryout CMF_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+
+REM echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
+REM DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
+
+REM echo COPY CMF_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
+REM COPY CMF_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Registered Rep ARC01
+REM **************************************************************************************************************
