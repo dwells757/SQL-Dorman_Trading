@@ -603,17 +603,17 @@ DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_DT
 echo COPY DTN_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_DTN_File_%YESTERDAY%.csv" >> %Log%
 COPY DTN_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_DTN_File_%YESTERDAY%.csv" >> %Log%
 
-REM echo DEL CMF_File_Current_ARC01.csv >> %Log%
-REM DEL CMF_File_Current_ARC01.csv >> %Log%
+echo DEL CMF_File_Current_ARC01.csv >> %Log%
+DEL CMF_File_Current_ARC01.csv >> %Log%
 
-REM echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep] 'ARC01'" queryout CMF_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
-REM bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep] 'ARC01'" queryout CMF_File_Current_ARC01.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S REACT -T >> %Log%
+echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_2] 'ARC01'" -S REACT -b -h-1 -W -o CMF_File_Current_ARC01.csv >> %Log%
+sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_2] 'ARC01'" -S REACT -b -h-1 -W -o CMF_File_Current_ARC01.csv >> %Log%
 
-REM echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
-REM DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
+echo DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
 
-REM echo COPY CMF_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
-REM COPY CMF_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
+echo COPY CMF_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
+COPY CMF_File_Current_ARC01.csv "\\192.168.89.212\e$\inetpub\ftproot\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
 
 REM **************************************************************************************************************
 REM END - Registered Rep ARC01
