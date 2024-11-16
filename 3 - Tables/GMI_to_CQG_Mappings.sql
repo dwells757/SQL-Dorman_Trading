@@ -20,6 +20,7 @@ CREATE TABLE [dbo].[GMI_to_CQG_Mappings](
 	[CQG_Description] [varchar](100) NOT NULL,
 	[CQG_Contract] [varchar](100) NOT NULL,
 	[CQG_to_GMI_Price_Multiplier] [numeric](19,9) NOT NULL,
+	[GMI_to_CQG_Strike_Price_Multiplier] [numeric](19,9) NOT NULL DEFAULT 1,
 	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
 	
 	CONSTRAINT [PK_GMI_to_CQG_Mappings] PRIMARY KEY CLUSTERED
