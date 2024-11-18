@@ -73,10 +73,10 @@ COUNT(*) --GMIPOS_Records
 FROM [dbo].[GMIPOSF1_File_Raw]
 WHERE (PSTYPE='F') --Security Type Code
 AND (PTYPE='O') --Contract Type Code
---DWH
-AND (PEXCH='13')
-AND (PFC='28')
---DWH
+----DWH
+--AND (PEXCH='01')
+--AND (PFC='S-')
+----DWH
 GROUP BY
 PEXCH,
 PFC,
