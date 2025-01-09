@@ -509,39 +509,39 @@ REM ****************************************************************************
 REM START - Registered Rep TJM04
 REM **************************************************************************************************************
 
-echo DEL TJM04_*.csv >> %Log%
-DEL TJM04_*.csv >> %Log%
+REM (1/7/25) echo DEL TJM04_*.csv >> %Log%
+REM (1/7/25) DEL TJM04_*.csv >> %Log%
 
-echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIMNY_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
-bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIMNY_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+REM (1/7/25) echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIMNY_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+REM (1/7/25) bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIMNY_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
 
-echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIPOS_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
-bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIPOS_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+REM (1/7/25) echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIPOS_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+REM (1/7/25) bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIPOS_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
 
-echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIST4_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
-bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIST4_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+REM (1/7/25) echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIST4_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+REM (1/7/25) bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'TJM04'" queryout TJM04_GMIST4_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
 
-echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'TJM04'" queryout TJM04_DTN_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
-bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'TJM04'" queryout TJM04_DTN_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+REM (1/7/25) echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'TJM04'" queryout TJM04_DTN_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+REM (1/7/25) bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'TJM04'" queryout TJM04_DTN_File_%YESTERDAY%.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
 
 REM *********************************************
 REM START - Send TJM04 files with WinSCP
 REM *********************************************
 
-echo DEL send_files_to_Centaur.ftp >> %Log%
-DEL send_files_to_Centaur.ftp >> %Log%
+REM (1/7/25) echo DEL send_files_to_Centaur.ftp >> %Log%
+REM (1/7/25) DEL send_files_to_Centaur.ftp >> %Log%
 
-echo COPY BASE_send_files_to_Centaur.ftp send_files_to_Centaur.ftp >> %Log%
-COPY BASE_send_files_to_Centaur.ftp send_files_to_Centaur.ftp >> %Log%
+REM (1/7/25) echo COPY BASE_send_files_to_Centaur.ftp send_files_to_Centaur.ftp >> %Log%
+REM (1/7/25) COPY BASE_send_files_to_Centaur.ftp send_files_to_Centaur.ftp >> %Log%
 
-echo put -resumesupport=off TJM04_GMIMNY_File_%YESTERDAY%.csv >> send_files_to_Centaur.ftp
-echo put -resumesupport=off TJM04_GMIPOS_File_%YESTERDAY%.csv >> send_files_to_Centaur.ftp
-echo put -resumesupport=off TJM04_GMIST4_File_%YESTERDAY%.csv >> send_files_to_Centaur.ftp
-echo put -resumesupport=off TJM04_DTN_File_%YESTERDAY%.csv >> send_files_to_Centaur.ftp
-echo exit >> send_files_to_Centaur.ftp
+REM (1/7/25) echo put -resumesupport=off TJM04_GMIMNY_File_%YESTERDAY%.csv >> send_files_to_Centaur.ftp
+REM (1/7/25) echo put -resumesupport=off TJM04_GMIPOS_File_%YESTERDAY%.csv >> send_files_to_Centaur.ftp
+REM (1/7/25) echo put -resumesupport=off TJM04_GMIST4_File_%YESTERDAY%.csv >> send_files_to_Centaur.ftp
+REM (1/7/25) echo put -resumesupport=off TJM04_DTN_File_%YESTERDAY%.csv >> send_files_to_Centaur.ftp
+REM (1/7/25) echo exit >> send_files_to_Centaur.ftp
 
-echo "C:\Program Files (x86)\WinSCP\WinSCP" /script=send_files_to_Centaur.ftp >> %Log%
-"C:\Program Files (x86)\WinSCP\WinSCP" /script=send_files_to_Centaur.ftp >> %Log%
+REM (1/7/25) echo "C:\Program Files (x86)\WinSCP\WinSCP" /script=send_files_to_Centaur.ftp >> %Log%
+REM (1/7/25) "C:\Program Files (x86)\WinSCP\WinSCP" /script=send_files_to_Centaur.ftp >> %Log%
 
 REM *********************************************
 REM END - Send TJM04 files with WinSCP
