@@ -101,6 +101,12 @@ sqlcmd -E -Q"TRUNCATE TABLE [GMIDATA].[dbo].[GMIST4F1_File_Raw]" -S DORT-DB-1 -b
 
 echo sqlcmd -E -Q"TRUNCATE TABLE [GMIDATA].[dbo].[GNACMFF1_File_Raw]" -S DORT-DB-1 -b >> %Log%
 sqlcmd -E -Q"TRUNCATE TABLE [GMIDATA].[dbo].[GNACMFF1_File_Raw]" -S DORT-DB-1 -b >> %Log%
+
+echo sqlcmd -E -Q"TRUNCATE TABLE [GMIDATA].[dbo].[GNACMFF4_File_Raw]" -S DORT-DB-1 -b >> %Log%
+sqlcmd -E -Q"TRUNCATE TABLE [GMIDATA].[dbo].[GNACMFF4_File_Raw]" -S DORT-DB-1 -b >> %Log%
+
+echo sqlcmd -E -Q"TRUNCATE TABLE [GMIDATA].[dbo].[DOREMAILA3_File_Raw]" -S DORT-DB-1 -b >> %Log%
+sqlcmd -E -Q"TRUNCATE TABLE [GMIDATA].[dbo].[DOREMAILA3_File_Raw]" -S DORT-DB-1 -b >> %Log%
 REM **************************************************************
 REM END - Truncate Raw Tables
 REM **************************************************************
@@ -119,6 +125,12 @@ bcp GMIDATA..GMIST4F1_File_Raw in C:\React\Files\GMIST4F1%YESTERDAY%.csv -f C:\R
 
 echo bcp GMIDATA..GNACMFF1_File_Raw in C:\React\Files\GNACMFF1%YESTERDAY%.csv -f C:\React\Code\Format_Files\GNACMFF1_File.xml -m50 -S DORT-DB-1 -T -h"TABLOCK" -F 2 >> %Log%
 bcp GMIDATA..GNACMFF1_File_Raw in C:\React\Files\GNACMFF1%YESTERDAY%.csv -f C:\React\Code\Format_Files\GNACMFF1_File.xml -m50 -S DORT-DB-1 -T -h"TABLOCK" -F 2 >> %Log%
+
+echo bcp GMIDATA..GNACMFF4_File_Raw in C:\React\Files\GNACMFF4%YESTERDAY%.csv -f C:\React\Code\Format_Files\GNACMFF4_File.xml -m50 -S DORT-DB-1 -T -h"TABLOCK" -F 2 >> %Log%
+bcp GMIDATA..GNACMFF4_File_Raw in C:\React\Files\GNACMFF4%YESTERDAY%.csv -f C:\React\Code\Format_Files\GNACMFF4_File.xml -m50 -S DORT-DB-1 -T -h"TABLOCK" -F 2 >> %Log%
+
+echo bcp GMIDATA..DOREMAILA3_File_Raw in C:\React\Files\DOREMAILA3%YESTERDAY%.csv -f C:\React\Code\Format_Files\DOREMAILA3_File.xml -m50 -S DORT-DB-1 -T -h"TABLOCK" -F 2 >> %Log%
+bcp GMIDATA..DOREMAILA3_File_Raw in C:\React\Files\DOREMAILA3%YESTERDAY%.csv -f C:\React\Code\Format_Files\DOREMAILA3_File.xml -m50 -S DORT-DB-1 -T -h"TABLOCK" -F 2 >> %Log%
 REM **************************************************************
 REM END - Load Raw Tables
 REM **************************************************************
@@ -137,6 +149,12 @@ sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GMIST4F1_File_Current]" -S DORT-DB-
 
 echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GNACMFF1_File_Current]" -S DORT-DB-1 -b -h-1 >> %Log%
 sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GNACMFF1_File_Current]" -S DORT-DB-1 -b -h-1 >> %Log%
+
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GNACMFF4_File_Current]" -S DORT-DB-1 -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_GNACMFF4_File_Current]" -S DORT-DB-1 -b -h-1 >> %Log%
+
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_DOREMAILA3_File_Current]" -S DORT-DB-1 -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_DOREMAILA3_File_Current]" -S DORT-DB-1 -b -h-1 >> %Log%
 REM **************************************************************
 REM END - Load Current Tables
 REM **************************************************************
