@@ -12,11 +12,11 @@ CASE DATA_TYPE
 	WHEN 'datetime' THEN ' 20'
 	ELSE ' 20'
 END + --Columns 30-32
-'      "\t"                   ' + --Columns 33-60
+'      ","                   ' + --Columns 33-60
 RIGHT('    ' + CONVERT(VARCHAR,ORDINAL_POSITION),3) + --Columns 61-63
 '      ' + --Collumns 64-69
 COLUMN_NAME --Columns 70-...
 FROM INFORMATION_SCHEMA.COLUMNS
-WHERE (TABLE_NAME = 'CQGPOSF1_File_Current')
+WHERE (TABLE_NAME = 'GMI_Micro_Contracts')
 
 SET NOCOUNT OFF
