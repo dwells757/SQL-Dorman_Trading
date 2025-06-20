@@ -1,8 +1,8 @@
 USE [GMIDATA]
 GO
 
-DROP TABLE [dbo].[Commission_Fees_Volume_History_2_Excluded_Records]
-GO
+--------------DROP TABLE [dbo].[Commission_Fees_Volume_History_2_Excluded_Records]
+--------------GO
 
 SET ANSI_NULLS ON
 GO
@@ -35,6 +35,7 @@ CREATE TABLE [dbo].[Commission_Fees_Volume_History_2_Excluded_Records](
 	[PRECID] [varchar](1) NOT NULL,
 	[PCLASS] [varchar](1) NOT NULL,
 	[PSUBCL] [varchar](1) NOT NULL,
+	[PSPRED] [varchar](1) NOT NULL,
 	[PATYPE] [varchar](2) NOT NULL,
 	[PCURAT] [varchar](3) NOT NULL,
 	[PLOC] [varchar](1) NOT NULL,

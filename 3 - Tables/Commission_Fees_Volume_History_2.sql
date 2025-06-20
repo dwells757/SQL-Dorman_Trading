@@ -1,8 +1,8 @@
 USE [GMIDATA]
 GO
 
-------------------DROP TABLE [dbo].[Commission_Fees_Volume_History_2]
-------------------GO
+--------------DROP TABLE [dbo].[Commission_Fees_Volume_History_2]
+--------------GO
 
 SET ANSI_NULLS ON
 GO
@@ -33,14 +33,12 @@ CREATE TABLE [dbo].[Commission_Fees_Volume_History_2](
 	[PRECID] [varchar](1) NOT NULL,
 	[PCLASS] [varchar](1) NOT NULL,
 	[PSUBCL] [varchar](1) NOT NULL,
+	[PSPRED] [varchar](1) NOT NULL,
 	[PATYPE] [varchar](2) NOT NULL,
 	[PCURAT] [varchar](3) NOT NULL,
-
 	[PCOMM] [numeric](15,2) NOT NULL,
 	[PATCOM] [varchar](2) NOT NULL,
 	[PATCOM_Currency_Code] [varchar](3) NOT NULL,
-	--[PRTHT] [varchar](1) NOT NULL,
-
 	[PFEE1] [numeric](15,2) NOT NULL,
 	[PATFE1] [varchar](2) NOT NULL,
 	[PATFE1_Currency_Code] [varchar](3) NOT NULL,
@@ -68,7 +66,6 @@ CREATE TABLE [dbo].[Commission_Fees_Volume_History_2](
 	[PFEE9] [numeric](15,2) NOT NULL,
 	[PATFE9] [varchar](2) NOT NULL,
 	[PATFE9_Currency_Code] [varchar](3) NOT NULL,
-
 	[PGICHG] [numeric](15,2) NOT NULL,
 	[PATGIV] [varchar](2) NOT NULL,
 	[PATGIV_Currency_Code] [varchar](3) NOT NULL,
@@ -93,19 +90,15 @@ CREATE TABLE [dbo].[Commission_Fees_Volume_History_2](
 	[PMOTHR] [numeric](15,2) NOT NULL,
 	[PATALO] [varchar](2) NOT NULL,
 	[PATALO_Currency_Code] [varchar](3) NOT NULL,
-
 	[Transactions] [int] NOT NULL,
 	[Quantity] [numeric](18) NOT NULL,
 	[Commission_Quantity] [numeric](18) NOT NULL,
-
 	[USD_Commission_Amount] [numeric](15,2) NOT NULL,
 	[USD_Total_Fees] [numeric](15,2) NOT NULL,
 	[EUR_Total_Fees] [numeric](15,2) NOT NULL,
 	[USD_Transaction_Fees] [numeric](15,2) NOT NULL,
 	[EUR_Transaction_Fees] [numeric](15,2) NOT NULL,
-
 	[GMI_Account_Type_Description] [varchar](255) NOT NULL,
-
 	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
 	
 	--CONSTRAINT [PK_Commission_Fees_Volume_History_2] PRIMARY KEY CLUSTERED
