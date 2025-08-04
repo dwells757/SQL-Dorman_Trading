@@ -674,3 +674,35 @@ COPY DTN_File_Current_HarvestIQ.csv "\\Laservault\gmi\HarvestIQ\HarvestIQ_DTNF1_
 REM **************************************************************************************************************
 REM END - Registered Rep Group Trade_Pro_Futures
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Registered Rep SWEET_FUTURES
+REM **************************************************************************************************************
+
+echo DEL GNACMF_File_Current_SWEET_FUTURES.csv >> %Log%
+DEL GNACMF_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_3] 'SWEET_FUTURES'" -S DORT-DB-1 -b -h-1 -W -o GNACMF_File_Current_SWEET_FUTURES.csv >> %Log%
+sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_3] 'SWEET_FUTURES'" -S DORT-DB-1 -b -h-1 -W -o GNACMF_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_CMF_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_CMF_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GNACMF_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_CMF_File_%YESTERDAY%.csv" >> %Log%
+COPY GNACMF_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_CMF_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DOREMAILA3_File_Current_SWEET_FUTURES.csv >> %Log%
+DEL DOREMAILA3_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_DOREMAILA3_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" -S DORT-DB-1 -b -h-1 -W -o DOREMAILA3_File_Current_SWEET_FUTURES.csv >> %Log%
+sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_DOREMAILA3_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" -S DORT-DB-1 -b -h-1 -W -o DOREMAILA3_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DOREMAILA3_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
+COPY DOREMAILA3_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Registered Rep SWEET_FUTURES
+REM **************************************************************************************************************
