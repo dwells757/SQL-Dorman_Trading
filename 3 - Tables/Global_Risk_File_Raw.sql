@@ -49,7 +49,13 @@ CREATE TABLE [dbo].[Global_Risk_File_Raw](
 	[PCLOSE] [varchar](255) NOT NULL DEFAULT '',
 	[PSDATE] [varchar](255) NOT NULL DEFAULT '',
 	[PNET] [varchar](255) NOT NULL DEFAULT '',
+	[Record_Number] [int] IDENTITY(1,1),
 	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
+
+	PRIMARY KEY CLUSTERED
+	(
+		[Record_Number] ASC
+	)
 	
 ) ON [PRIMARY]
 GO

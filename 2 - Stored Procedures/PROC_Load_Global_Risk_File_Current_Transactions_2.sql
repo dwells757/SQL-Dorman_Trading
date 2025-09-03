@@ -1,7 +1,7 @@
 USE [GMIDATA]
 GO
 
-DROP PROCEDURE [dbo].[PROC_Load_Global_Risk_File_Current_Transactions]
+DROP PROCEDURE [dbo].[PROC_Load_Global_Risk_File_Current_Transactions_2]
 GO
 
 SET ANSI_NULLS ON
@@ -11,14 +11,14 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATE PROCEDURE [dbo].[PROC_Load_Global_Risk_File_Current_Transactions]
+CREATE PROCEDURE [dbo].[PROC_Load_Global_Risk_File_Current_Transactions_2]
 
 AS
 
 SET NOCOUNT ON
 
 PRINT '************************************************************************************************************'
-PRINT ' [dbo].[PROC_Load_Global_Risk_File_Current_Transactions] STARTED'
+PRINT ' [dbo].[PROC_Load_Global_Risk_File_Current_Transactions_2] STARTED'
 PRINT '************************************************************************************************************'
 SELECT GETDATE() "Start Time"
 
@@ -50,9 +50,9 @@ SELECT @@ROWCOUNT "Records Loaded"
 SELECT GETDATE() "End Time"
 
 --**************************************************************************
--- Create #Global_Risk_File_Current_Transactions
+-- Create #Global_Risk_File_Current_Transactions_2
 --**************************************************************************
-CREATE TABLE #Global_Risk_File_Current_Transactions
+CREATE TABLE #Global_Risk_File_Current_Transactions_2
 (PRECNO INT,
 PRECID VARCHAR(1),
 PFIRM VARCHAR(1),
@@ -115,14 +115,14 @@ Currency_Code VARCHAR(3) DEFAULT '',
 Processing_Date DATE DEFAULT GETDATE())
 
 PRINT '**************************************************************************'
-PRINT ' Load #Global_Risk_File_Current_Transactions'
+PRINT ' Load #Global_Risk_File_Current_Transactions_2'
 PRINT ' with #MAX_Record_Numbers'
 PRINT ' and [dbo].[Global_Risk_File_Raw]'
 PRINT '**************************************************************************'
 
 SELECT GETDATE() "Start Time"
 
-INSERT INTO #Global_Risk_File_Current_Transactions
+INSERT INTO #Global_Risk_File_Current_Transactions_2
 (PRECNO,
 PRECID,
 PFIRM,
@@ -214,7 +214,7 @@ PRINT '*************************************************************************
 
 SELECT GETDATE() "Start Time"
 
-UPDATE #Global_Risk_File_Current_Transactions
+UPDATE #Global_Risk_File_Current_Transactions_2
 SET GMI_Security_Type =
 	CASE PSTYPE
 		WHEN 'B' THEN 'TBILL'
@@ -247,7 +247,7 @@ GMI_Currency_Code=A.GMI_Currency_Code,
 --Expiration_Date=A.Expiration_Date,
 IN_GMI_Contracts_SOD='Y'
 FROM [dbo].[GMI_Contracts_SOD] A
-INNER JOIN #Global_Risk_File_Current_Transactions B
+INNER JOIN #Global_Risk_File_Current_Transactions_2 B
 ON (A.GMI_Exchange=B.PEXCH)
 AND (A.GMI_Symbol=B.PFC)
 AND (A.GMI_Security_Type=B.GMI_Security_Type)
@@ -262,7 +262,7 @@ PRINT '*************************************************************************
 
 SELECT GETDATE() "Start Time"
 
-UPDATE #Global_Risk_File_Current_Transactions
+UPDATE #Global_Risk_File_Current_Transactions_2
 SET Product =
 RTRIM(PEXCH) +
 '/' +
@@ -282,7 +282,7 @@ PRINT '*************************************************************************
 
 SELECT GETDATE() "Start Time"
 
-UPDATE #Global_Risk_File_Current_Transactions
+UPDATE #Global_Risk_File_Current_Transactions_2
 SET Product =
 RTRIM(PEXCH) +
 '/' +
@@ -306,7 +306,7 @@ PRINT '*************************************************************************
 
 SELECT GETDATE() "Start Time"
 
-UPDATE #Global_Risk_File_Current_Transactions
+UPDATE #Global_Risk_File_Current_Transactions_2
 SET Product =
 RTRIM(PSTYPE) +
 '/' +
@@ -418,7 +418,7 @@ YCFTSB = A.YCFTSB--,
 --			END
 --		END
 FROM #GMI_Customer_Master A
-INNER JOIN #Global_Risk_File_Current_Transactions B
+INNER JOIN #Global_Risk_File_Current_Transactions_2 B
 ON (A.YFIRM=B.PFIRM)
 AND (A.YOFFIC=B.POFFIC)
 AND (A.YACCT=B.PACCT)
@@ -442,7 +442,7 @@ SELECT GETDATE() "Start Time"
 UPDATE B
 SET Currency_Code=A.Currency_Code
 FROM [dbo].[GMI_Account_Types] A
-INNER JOIN #Global_Risk_File_Current_Transactions B
+INNER JOIN #Global_Risk_File_Current_Transactions_2 B
 ON (A.GMI_Account_Type=B.PATYPE)
 
 SELECT @@ROWCOUNT "Records Updated"
@@ -450,18 +450,18 @@ SELECT @@ROWCOUNT "Records Updated"
 SELECT GETDATE() "End Time"
 
 PRINT '**************************************************************************'
-PRINT ' TRUNCATE TABLE [dbo].[Global_Risk_File_Current_Transactions]'
+PRINT ' TRUNCATE TABLE [dbo].[Global_Risk_File_Current_Transactions_2]'
 PRINT '**************************************************************************'
-TRUNCATE TABLE [dbo].[Global_Risk_File_Current_Transactions]
+TRUNCATE TABLE [dbo].[Global_Risk_File_Current_Transactions_2]
 
 PRINT '**************************************************************************'
-PRINT ' Load [dbo].[Global_Risk_File_Current_Transactions]'
-PRINT ' with #Global_Risk_File_Current_Transactions'
+PRINT ' Load [dbo].[Global_Risk_File_Current_Transactions_2]'
+PRINT ' with #Global_Risk_File_Current_Transactions_2'
 PRINT '**************************************************************************'
 
 SELECT GETDATE() "Start Time"
 
-INSERT INTO [dbo].[Global_Risk_File_Current_Transactions]
+INSERT INTO [dbo].[Global_Risk_File_Current_Transactions_2]
 (PRECNO,
 PRECID,
 PFIRM,
@@ -569,16 +569,16 @@ PSDATE,
 PNET,
 Currency_Code,
 Processing_Date
-FROM #Global_Risk_File_Current_Transactions
+FROM #Global_Risk_File_Current_Transactions_2
 
 SELECT @@ROWCOUNT "Records Loaded"
 
 SELECT GETDATE() "End Time"
 
-DROP TABLE #Global_Risk_File_Current_Transactions
+DROP TABLE #Global_Risk_File_Current_Transactions_2
 
 PRINT '************************************************************************************************************'
-PRINT ' [dbo].[PROC_Load_Global_Risk_File_Current_Transactions] ENDED'
+PRINT ' [dbo].[PROC_Load_Global_Risk_File_Current_Transactions_2] ENDED'
 PRINT '************************************************************************************************************'
 SELECT GETDATE() "End Time"
 

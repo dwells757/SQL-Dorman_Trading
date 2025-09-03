@@ -672,7 +672,7 @@ echo COPY DTN_File_Current_HarvestIQ.csv "\\Laservault\gmi\HarvestIQ\HarvestIQ_D
 COPY DTN_File_Current_HarvestIQ.csv "\\Laservault\gmi\HarvestIQ\HarvestIQ_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 
 REM **************************************************************************************************************
-REM END - Registered Rep Group Trade_Pro_Futures
+REM END - Account Number Group HarvestIQ
 REM **************************************************************************************************************
 
 REM **************************************************************************************************************
@@ -705,4 +705,60 @@ COPY DOREMAILA3_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\S
 
 REM **************************************************************************************************************
 REM END - Registered Rep SWEET_FUTURES
+REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Account Number Group Gradable
+REM **************************************************************************************************************
+
+echo DEL GMIMNYF1_File_Current_Gradable.csv >> %Log%
+DEL GMIMNYF1_File_Current_Gradable.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIMNYF1_File_Current_Gradable.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIMNYF1_File_Current_Gradable.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DEL "\\Laservault\gmi\Gradable\Gradable_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Gradable\Gradable_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_Gradable.csv "\\Laservault\gmi\Gradable\Gradable_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_Gradable.csv "\\Laservault\gmi\Gradable\Gradable_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_Gradable.csv >> %Log%
+DEL GMIPOSF1_File_Current_Gradable.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIPOSF1_File_Current_Gradable.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIPOSF1_File_Current_Gradable.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DEL "\\Laservault\gmi\Gradable\Gradable_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Gradable\Gradable_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_Gradable.csv "\\Laservault\gmi\Gradable\Gradable_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_Gradable.csv "\\Laservault\gmi\Gradable\Gradable_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_Gradable.csv >> %Log%
+DEL GMIST4F1_File_Current_Gradable.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIST4F1_File_Current_Gradable.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIST4F1_File_Current_Gradable.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DEL "\\Laservault\gmi\Gradable\Gradable_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Gradable\Gradable_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_Gradable.csv "\\Laservault\gmi\Gradable\Gradable_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_Gradable.csv "\\Laservault\gmi\Gradable\Gradable_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_Gradable.csv >> %Log%
+DEL DTN_File_Current_Gradable.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Gradable'" queryout DTN_File_Current_Gradable.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Gradable'" queryout DTN_File_Current_Gradable.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DEL "\\Laservault\gmi\Gradable\Gradable_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Gradable\Gradable_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_Gradable.csv "\\Laservault\gmi\Gradable\Gradable_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_Gradable.csv "\\Laservault\gmi\Gradable\Gradable_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Account Number Group Gradable
 REM **************************************************************************************************************

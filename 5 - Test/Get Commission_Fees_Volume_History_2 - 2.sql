@@ -7,8 +7,8 @@ DECLARE
 @Start_Date DATE,
 @End_Date DATE
 
-SET @Start_Date='5/1/24'
-SET @End_Date='4/30/25'
+SET @Start_Date='6/1/25'
+SET @End_Date='6/30/25'
 
 --******************************************************************************
 -- Create #Commission_Fees_Volume_History_2

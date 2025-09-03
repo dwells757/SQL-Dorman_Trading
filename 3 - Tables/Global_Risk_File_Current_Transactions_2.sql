@@ -1,4 +1,4 @@
-DROP TABLE [dbo].[Global_Risk_File_Current_Transactions]
+DROP TABLE [dbo].[Global_Risk_File_Current_Transactions_2]
 GO
 
 SET ANSI_NULLS ON
@@ -10,7 +10,7 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [dbo].[Global_Risk_File_Current_Transactions](
+CREATE TABLE [dbo].[Global_Risk_File_Current_Transactions_2](
 	[PRECNO] [int] NOT NULL,
 	[PRECID] [varchar](1) NOT NULL,
 	[PFIRM] [varchar](1) NOT NULL,
