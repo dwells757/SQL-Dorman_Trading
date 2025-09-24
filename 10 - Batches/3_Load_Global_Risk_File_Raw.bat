@@ -41,8 +41,14 @@ IF EXIST C:\React\Files\Top_Day\GBLRSKRTG.CSV (
 	bcp GMIDATA..Global_Risk_File_Raw in C:\React\Files\Top_Day\GBLRSKRTG.CSV -f C:\React\Code\Format_Files\Global_Risk_File_Raw.xml -m50 -S DORT-DB-1 -T -h"TABLOCK" -F 2 >> %Log%
 )
 
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Add_Records_to_Global_Risk_File_Raw]" -S DORT-DB-1 -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Add_Records_to_Global_Risk_File_Raw]" -S DORT-DB-1 -b -h-1 >> %Log%
+
 echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Global_Risk_File_Current_Transactions]" -S DORT-DB-1 -b -h-1 >> %Log%
 sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Global_Risk_File_Current_Transactions]" -S DORT-DB-1 -b -h-1 >> %Log%
+
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Global_Risk_File_Current_Transactions_2]" -S DORT-DB-1 -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Global_Risk_File_Current_Transactions_2]" -S DORT-DB-1 -b -h-1 >> %Log%
 
 echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_GMI_Current_Price]" -S DORT-DB-1 -b -h-1 >> %Log%
 sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Update_GMI_Current_Price]" -S DORT-DB-1 -b -h-1 >> %Log%
