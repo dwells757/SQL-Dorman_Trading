@@ -762,3 +762,83 @@ COPY DTN_File_Current_Gradable.csv "\\Laservault\gmi\Gradable\Gradable_DTNF1_Fil
 REM **************************************************************************************************************
 REM END - Account Number Group Gradable
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Registered Rep OPC05
+REM **************************************************************************************************************
+
+echo DEL GMIMNYF1_File_Current_OPC05.csv >> %Log%
+DEL GMIMNYF1_File_Current_OPC05.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIMNYF1_File_Current_OPC05.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIMNYF1_File_Current_OPC05.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DEL "\\Laservault\gmi\Greenfield Commodities\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Greenfield Commodities\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_OPC05.csv "\\Laservault\gmi\Greenfield Commodities\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_OPC05.csv "\\Laservault\gmi\Greenfield Commodities\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL "\\Laservault\gmi\Hedgefacts\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Hedgefacts\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_OPC05.csv "\\Laservault\gmi\Hedgefacts\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_OPC05.csv "\\Laservault\gmi\Hedgefacts\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_OPC05.csv >> %Log%
+DEL GMIPOSF1_File_Current_OPC05.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIPOSF1_File_Current_OPC05.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIPOSF1_File_Current_OPC05.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DEL "\\Laservault\gmi\Greenfield Commodities\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Greenfield Commodities\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_OPC05.csv "\\Laservault\gmi\Greenfield Commodities\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_OPC05.csv "\\Laservault\gmi\Greenfield Commodities\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL "\\Laservault\gmi\Hedgefacts\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Hedgefacts\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_OPC05.csv "\\Laservault\gmi\Hedgefacts\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_OPC05.csv "\\Laservault\gmi\Hedgefacts\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_OPC05.csv >> %Log%
+DEL GMIST4F1_File_Current_OPC05.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIST4F1_File_Current_OPC05.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIST4F1_File_Current_OPC05.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DEL "\\Laservault\gmi\Greenfield Commodities\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Greenfield Commodities\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_OPC05.csv "\\Laservault\gmi\Greenfield Commodities\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_OPC05.csv "\\Laservault\gmi\Greenfield Commodities\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL "\\Laservault\gmi\Hedgefacts\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Hedgefacts\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_OPC05.csv "\\Laservault\gmi\Hedgefacts\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_OPC05.csv "\\Laservault\gmi\Hedgefacts\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_OPC05.csv >> %Log%
+DEL DTN_File_Current_OPC05.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'OPC05'" queryout DTN_File_Current_OPC05.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'OPC05'" queryout DTN_File_Current_OPC05.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DEL "\\Laservault\gmi\Greenfield Commodities\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Greenfield Commodities\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_OPC05.csv "\\Laservault\gmi\Greenfield Commodities\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_OPC05.csv "\\Laservault\gmi\Greenfield Commodities\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL "\\Laservault\gmi\Hedgefacts\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Hedgefacts\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_OPC05.csv "\\Laservault\gmi\Hedgefacts\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_OPC05.csv "\\Laservault\gmi\Hedgefacts\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Registered Rep OPC05
+REM **************************************************************************************************************
