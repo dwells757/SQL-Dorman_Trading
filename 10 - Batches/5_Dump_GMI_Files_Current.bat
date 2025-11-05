@@ -842,3 +842,35 @@ COPY DTN_File_Current_OPC05.csv "\\Laservault\gmi\Hedgefacts\OPC05_DTNF1_File_%Y
 REM **************************************************************************************************************
 REM END - Registered Rep OPC05
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Office 442
+REM **************************************************************************************************************
+
+echo DEL GNACMF_File_Current_GigaTrade.csv >> %Log%
+DEL GNACMF_File_Current_GigaTrade.csv >> %Log%
+
+echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Office] '442'" -S DORT-DB-1 -b -h-1 -W -o GNACMF_File_Current_GigaTrade.csv >> %Log%
+sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Office] '442'" -S DORT-DB-1 -b -h-1 -W -o GNACMF_File_Current_GigaTrade.csv >> %Log%
+
+echo DEL "\\LASERVAULT\ftproot\GMI\Gigatrade\Customer Master File\GigaTrade_CMF_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\LASERVAULT\ftproot\GMI\Gigatrade\Customer Master File\GigaTrade_CMF_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GNACMF_File_Current_GigaTrade.csv "\\LASERVAULT\ftproot\GMI\Gigatrade\Customer Master File\GigaTrade_CMF_File_%YESTERDAY%.csv" >> %Log%
+COPY GNACMF_File_Current_GigaTrade.csv "\\LASERVAULT\ftproot\GMI\Gigatrade\Customer Master File\GigaTrade_CMF_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DOREMAILA3_File_Current_GigaTrade.csv >> %Log%
+DEL DOREMAILA3_File_Current_GigaTrade.csv >> %Log%
+
+echo sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_DOREMAILA3_File_Current_by_Office] '442'" -S DORT-DB-1 -b -h-1 -W -o DOREMAILA3_File_Current_GigaTrade.csv >> %Log%
+sqlcmd -E -Q"[GMIDATA].[dbo].[PROC_Dump_DOREMAILA3_File_Current_by_Office] '442'" -S DORT-DB-1 -b -h-1 -W -o DOREMAILA3_File_Current_GigaTrade.csv >> %Log%
+
+echo DEL "\\LASERVAULT\ftproot\GMI\Gigatrade\Customer Master File\GigaTrade_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\LASERVAULT\ftproot\GMI\Gigatrade\Customer Master File\GigaTrade_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DOREMAILA3_File_Current_GigaTrade.csv "\\LASERVAULT\ftproot\GMI\Gigatrade\Customer Master File\GigaTrade_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
+COPY DOREMAILA3_File_Current_GigaTrade.csv "\\LASERVAULT\ftproot\GMI\Gigatrade\Customer Master File\GigaTrade_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
+
+REM **************************************************************************************************************
+REM END - Office 442
+REM **************************************************************************************************************
