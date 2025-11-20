@@ -703,6 +703,66 @@ DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DOREMAILA3_File_%YESTERDAY%.cs
 echo COPY DOREMAILA3_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
 COPY DOREMAILA3_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
 
+echo DEL GMIMNYF1_File_Current_SWEET_FUTURES.csv >> %Log%
+DEL GMIMNYF1_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIMNYF1_File_Current_SWEET_FUTURES.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIMNYF1_File_Current_SWEET_FUTURES.csv -f C:\React\Code\Format_Files\GMIMNYF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DIR GMIMNYF1_File_Current_SWEET_FUTURES.csv >> %Log%
+DIR GMIMNYF1_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_SWEET_FUTURES.csv >> %Log%
+DEL GMIPOSF1_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIPOSF1_File_Current_SWEET_FUTURES.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIPOSF1_File_Current_SWEET_FUTURES.csv -f C:\React\Code\Format_Files\GMIPOSF1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DIR GMIPOSF1_File_Current_SWEET_FUTURES.csv >> %Log%
+DIR GMIPOSF1_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_SWEET_FUTURES.csv >> %Log%
+DEL GMIST4F1_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIST4F1_File_Current_SWEET_FUTURES.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIST4F1_File_Current_SWEET_FUTURES.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DIR GMIST4F1_File_Current_SWEET_FUTURES.csv >> %Log%
+DIR GMIST4F1_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_SWEET_FUTURES.csv >> %Log%
+DEL DTN_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout DTN_File_Current_SWEET_FUTURES.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+bcp "EXEC [GMIDATA].[dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout DTN_File_Current_SWEET_FUTURES.csv -f C:\React\Code\Format_Files\GMIST4F1_File.xml -m50 -S DORT-DB-1 -T >> %Log%
+
+echo DIR DTN_File_Current_SWEET_FUTURES.csv >> %Log%
+DIR DTN_File_Current_SWEET_FUTURES.csv >> %Log%
+
+echo DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_SWEET_FUTURES.csv "\\Laservault\gmi\Sweet Futures\SWEET_FUTURES_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
 REM **************************************************************************************************************
 REM END - Registered Rep SWEET_FUTURES
 REM **************************************************************************************************************
