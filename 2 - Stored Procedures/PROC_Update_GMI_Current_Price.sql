@@ -19,27 +19,27 @@ PRINT '*************************************************************************
 SELECT GETDATE() "Start Time"
 
 --**************************************************************
--- Create #MAX_Record_Numbers
+-- Create #MAX_PRECNO
 --**************************************************************
-CREATE TABLE #MAX_Record_Numbers
+CREATE TABLE #MAX_PRECNO
 (Product VARCHAR(50),
-MAX_Record_Number INT)
+MAX_PRECNO INT)
 
 PRINT '**************************************************************************'
-PRINT ' Load #MAX_Record_Numbers'
+PRINT ' Load #MAX_PRECNO'
 PRINT ' with [dbo].[Global_Risk_File_Current_Transactions]'
 PRINT '**************************************************************************'
 
 SELECT GETDATE() "Start Time"
 
-INSERT INTO #MAX_Record_Numbers
+INSERT INTO #MAX_PRECNO
 (Product,
-MAX_Record_Number)
+MAX_PRECNO)
 SELECT
-Product,
-MAX(Record_Number) --MAX_Record_Number
+[Product],
+MAX(PRECNO) --MAX_PRECNO
 FROM [dbo].[Global_Risk_File_Current_Transactions]
-GROUP BY Product
+GROUP BY [Product]
 
 SELECT @@ROWCOUNT "Records Loaded"
 
@@ -54,27 +54,27 @@ GMI_Current_Price NUMERIC(18,9))
 
 PRINT '**************************************************************************'
 PRINT ' Load #Global_Risk_File_Current_Transactions'
-PRINT ' with #MAX_Record_Numbers'
+PRINT ' with #MAX_PRECNO'
 PRINT ' and [dbo].[Global_Risk_File_Current_Transactions]'
 PRINT '**************************************************************************'
 
 SELECT GETDATE() "Start Time"
 
 INSERT INTO #Global_Risk_File_Current_Transactions
-(Product,
+([Product],
 GMI_Current_Price)
 SELECT
-B.Product,
+B.[Product],
 B.GMI_Trade_Price --GMI_Current_Price
-FROM #MAX_Record_Numbers A
+FROM #MAX_PRECNO A
 INNER JOIN [dbo].[Global_Risk_File_Current_Transactions] B
-ON (A.MAX_Record_Number=B.Record_Number)
+ON (A.MAX_PRECNO=B.PRECNO)
 
 SELECT @@ROWCOUNT "Records Loaded"
 
 SELECT GETDATE() "End Time"
 
-DROP TABLE #MAX_Record_Numbers
+DROP TABLE #MAX_PRECNO
 
 PRINT '**************************************************************************'
 PRINT ' Update [dbo].[GMI_Products]'
