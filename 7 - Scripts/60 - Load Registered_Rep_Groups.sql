@@ -45,6 +45,7 @@ INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VA
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Tradier','TB013')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Tradier','TB014')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Tradier','TB015')
+INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Tradier','TB016')
 
 SELECT COUNT(*) "Records Loaded"
 FROM [dbo].[Registered_Rep_Groups]

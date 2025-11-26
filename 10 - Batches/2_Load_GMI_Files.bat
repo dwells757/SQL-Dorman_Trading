@@ -209,6 +209,9 @@ sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_ST4F1_File_History_with_GMIST4F1_Fi
 
 echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Commission_Fees_Volume_History_with_GMIST4F1_File_Current]" -S DORT-DB-1 -b -h-1 >> %Log%
 sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Commission_Fees_Volume_History_with_GMIST4F1_File_Current]" -S DORT-DB-1 -b -h-1 >> %Log%
+
+echo sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Commission_Fees_Volume_History_2]" -S DORT-DB-1 -b -h-1 >> %Log%
+sqlcmd -E -Q"EXEC [GMIDATA].[dbo].[PROC_Load_Commission_Fees_Volume_History_2]" -S DORT-DB-1 -b -h-1 >> %Log%
 REM **************************************************************
 REM END - Load History Tables
 REM **************************************************************
