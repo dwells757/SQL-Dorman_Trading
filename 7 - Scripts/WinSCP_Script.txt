@@ -1,0 +1,4 @@
+open sftp://sftpdorman:v9j%40LeLq7eWz@files.cqgtrader.com/ -hostkey="ssh-rsa 4096 G4crk+VRY7bpKg3cyjElsJUd3KexgUpFSIo1hmeV8L4" -rawsettings FSProtocol=2
+cd /GMI/GlobalRisk
+get GBLRSKRTG.zip
+exit
