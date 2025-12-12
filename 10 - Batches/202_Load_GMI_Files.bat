@@ -62,8 +62,8 @@ DEL *.csv >> %Log%
 echo DEL *.zip >> %Log%
 DEL *.zip >> %Log%
 
-echo COPY "N:\Dorman Reports\*%YESTERDAY%.zip" >> %Log%
-COPY "N:\Dorman Reports\*%YESTERDAY%.zip" >> %Log%
+echo COPY "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\*%YESTERDAY%.zip" >> %Log%
+COPY "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\*%YESTERDAY%.zip" >> %Log%
 
 echo DIR *.zip >> %Log%
 DIR *.zip >> %Log%
