@@ -845,3 +845,57 @@ COPY DOREMAILA3_File_Current_GigaTrade.csv "\\dormansftp1.file.core.windows.net\
 REM **************************************************************************************************************
 REM END - Office 442
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Account Number Group Backhouse
+REM **************************************************************************************************************
+echo DEL GMIMNYF1_File_Current_Backhouse.csv >> %Log%
+DEL GMIMNYF1_File_Current_Backhouse.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIMNYF1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIMNYF1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_Backhouse.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_Backhouse.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_Backhouse.csv >> %Log%
+DEL GMIPOSF1_File_Current_Backhouse.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIPOSF1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIPOSF1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_Backhouse.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_Backhouse.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_Backhouse.csv >> %Log%
+DEL GMIST4F1_File_Current_Backhouse.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIST4F1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIST4F1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_Backhouse.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_Backhouse.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_Backhouse.csv >> %Log%
+DEL DTN_File_Current_Backhouse.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Backhouse'" queryout DTN_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Backhouse'" queryout DTN_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_Backhouse.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_Backhouse.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+REM **************************************************************************************************************
+REM END - Account Number Group Backhouse
+REM **************************************************************************************************************
