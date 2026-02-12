@@ -899,3 +899,27 @@ COPY DTN_File_Current_Backhouse.csv "\\dormansftp1.file.core.windows.net\sftp\GM
 REM **************************************************************************************************************
 REM END - Account Number Group Backhouse
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Registered Rep 00999
+REM **************************************************************************************************************
+echo DEL Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
+DEL Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
+
+echo sqlcmd -Q"[dbo].[PROC_Fee_Report_Details_by_Registered_Rep_to_CSV] '00999'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
+sqlcmd -Q"[dbo].[PROC_Fee_Report_Details_by_Registered_Rep_to_CSV] '00999'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
+
+echo DIR Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
+DIR Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\Daily_Files\Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\Daily_Files\Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days_%YESTERDAY%.csv" >> %Log%
+
+echo COPY Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\Daily_Files\Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days_%YESTERDAY%.csv" >> %Log%
+COPY Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\Daily_Files\Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days_%YESTERDAY%.csv" >> %Log%
+
+echo DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\Daily_Files\Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days_%YESTERDAY%.csv" >> %Log%
+DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\Daily_Files\Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days_%YESTERDAY%.csv" >> %Log%
+REM **************************************************************************************************************
+REM end - Registered Rep 00999
+REM **************************************************************************************************************
