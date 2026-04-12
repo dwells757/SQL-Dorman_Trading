@@ -923,3 +923,107 @@ DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\Daily_Files\Fee
 REM **************************************************************************************************************
 REM end - Registered Rep 00999
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - SARNA
+REM **************************************************************************************************************
+REM NOTE: This file is created above in the "Registered Rep Group Tradier" section
+echo DIR GMIMNYF1_File_Current_Tradier.csv >> %Log%
+DIR GMIMNYF1_File_Current_Tradier.csv >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_Tradier.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_Tradier.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+REM NOTE: This file is created above in the "Registered Rep Group Tradier" section
+echo DIR GMIPOSF1_File_Current_Tradier.csv >> %Log%
+DIR GMIPOSF1_File_Current_Tradier.csv >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_Tradier.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_Tradier.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\SARNA\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
+REM **************************************************************************************************************
+REM END - SARNA
+REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Office Group MetroTrade
+REM **************************************************************************************************************
+echo DEL GMIMNYF1_File_Current_MetroTrade.csv >> %Log%
+DEL GMIMNYF1_File_Current_MetroTrade.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIMNYF1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIMNYF1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_MetroTrade.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_MetroTrade.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_MetroTrade.csv >> %Log%
+DEL GMIPOSF1_File_Current_MetroTrade.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIPOSF1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIPOSF1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_MetroTrade.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_MetroTrade.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_MetroTrade.csv >> %Log%
+DEL GMIST4F1_File_Current_MetroTrade.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIST4F1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIST4F1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_MetroTrade.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_MetroTrade.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_MetroTrade.csv >> %Log%
+DEL DTN_File_Current_MetroTrade.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Office_Group] 'MetroTrade'" queryout DTN_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Office_Group] 'MetroTrade'" queryout DTN_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_MetroTrade.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_MetroTrade.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+REM **************************************************************************************************************
+REM END - Office Group MetroTrade
+REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Distribute WFUTM.csv
+REM **************************************************************************************************************
+echo DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" >> %Log%
+DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\EOD GMI Files\WFUTM.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\EOD GMI Files\WFUTM.csv" >> %Log%
+
+echo COPY "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\EOD GMI Files\WFUTM.csv" >> %Log%
+COPY "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\EOD GMI Files\WFUTM.csv" >> %Log%
+
+echo DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\EOD GMI Files\WFUTM.csv" >> %Log%
+DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\EOD GMI Files\WFUTM.csv" >> %Log%
+REM **************************************************************************************************************
+REM END - Distribute WFUTM.csv
+REM **************************************************************************************************************
