@@ -6,6 +6,15 @@ echo CD \HCC\Files >> %Log%
 CD \HCC\Files >> %Log%
 
 REM **************************************************************
+REM START - Load "Yest" Tables
+REM **************************************************************
+echo sqlcmd -Q"EXEC [dbo].[PROC_Load_Yest_Tables]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+sqlcmd -Q"EXEC [dbo].[PROC_Load_Yest_Tables]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+REM **************************************************************
+REM END - Load "Yest" Tables
+REM **************************************************************
+
+REM **************************************************************
 REM START - Generate %YESTERDAY%
 REM **************************************************************
 FOR /F "usebackq tokens=*" %%t IN (`powershell -NoProfile -Command "(Get-Date).AddDays(-1).ToString('yyyyMMdd')"`) DO (SET "YESTERDAY=%%t")
@@ -172,6 +181,9 @@ sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_SOD_Positions_Detailed]" -d gmidata -S ncusp
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Contracts_SOD]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Contracts_SOD]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+
+echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Contracts_History]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Contracts_History]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Products]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Products]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%

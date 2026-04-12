@@ -12,5 +12,6 @@ INSERT INTO [dbo].[Account_Groups](Account_Group,Account)VALUES('SILVERCAPE_INVS
 INSERT INTO [dbo].[Account_Groups](Account_Group,Account)VALUES('SILVERCAPE_INVSMT','D-10014')
 INSERT INTO [dbo].[Account_Groups](Account_Group,Account)VALUES('SILVERCAPE_INVSMT','D-10016')
 INSERT INTO [dbo].[Account_Groups](Account_Group,Account)VALUES('SILVERCAPE_INVSMT','D-10018')
+INSERT INTO [dbo].[Account_Groups](Account_Group,Account)VALUES('SILVERCAPE_INVSMT','D-10019')
 
 SET NOCOUNT OFF

@@ -21,7 +21,7 @@ CREATE TABLE [dbo].[Template_Table](
 	[Field_5] [varchar](255) NOT NULL,
 	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE()
 	
-	CONSTRAINT [PK_Template_Table] PRIMARY KEY CLUSTERED
+	PRIMARY KEY CLUSTERED
 	(
 		[Field_1] ASC,
 		[Field_2] ASC,
