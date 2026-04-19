@@ -80,7 +80,7 @@ GMI_Multiplier NUMERIC(18,9) DEFAULT 1,
 GMI_Currency_Code VARCHAR(3) DEFAULT '',
 --PTDATE VARCHAR(8),
 --Expiration_Date VARCHAR(8) DEFAULT '',
-IN_GMI_Contracts_SOD VARCHAR(1) DEFAULT 'N',
+IN_GMI_Contracts_History VARCHAR(1) DEFAULT 'N',
 PCLASS VARCHAR(2),
 PEXPDT VARCHAR(8),
 PSTYPE VARCHAR(1),
@@ -234,7 +234,7 @@ SELECT GETDATE() "End Time"
 
 PRINT '**************************************************************************'
 PRINT ' Update #Global_Risk_File_Current_Transactions'
-PRINT ' with [dbo].[GMI_Contracts_SOD]'
+PRINT ' with [dbo].[GMI_Contracts_History]'
 PRINT '**************************************************************************'
 
 SELECT GETDATE() "Start Time"
@@ -245,8 +245,8 @@ GMI_Multiplier=A.GMI_Multiplier,
 --GMI_Last_Closing_Price=A.GMI_Last_Closing_Price,
 GMI_Currency_Code=A.GMI_Currency_Code,
 --Expiration_Date=A.Expiration_Date,
-IN_GMI_Contracts_SOD='Y'
-FROM [dbo].[GMI_Contracts_SOD] A
+IN_GMI_Contracts_History='Y'
+FROM [dbo].[GMI_Contracts_History] A
 INNER JOIN #Global_Risk_File_Current_Transactions_2 B
 ON (A.GMI_Exchange=B.PEXCH)
 AND (A.GMI_Symbol=B.PFC)
@@ -485,7 +485,7 @@ GMI_Trade_Price,
 GMI_Multiplier,
 GMI_Currency_Code,
 --Expiration_Date,
-IN_GMI_Contracts_SOD,
+IN_GMI_Contracts_History,
 PCLASS,
 PEXPDT,
 PSTYPE,
@@ -539,7 +539,7 @@ GMI_Trade_Price,
 GMI_Multiplier,
 GMI_Currency_Code,
 --Expiration_Date,
-IN_GMI_Contracts_SOD,
+IN_GMI_Contracts_History,
 PCLASS,
 PEXPDT,
 PSTYPE,

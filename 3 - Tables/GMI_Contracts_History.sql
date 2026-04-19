@@ -1,5 +1,5 @@
-DROP TABLE [dbo].[GMI_Contracts_History]
-GO
+--------------DROP TABLE [dbo].[GMI_Contracts_History]
+--------------GO
 
 SET ANSI_NULLS ON
 GO
@@ -16,10 +16,11 @@ CREATE TABLE [dbo].[GMI_Contracts_History](
 	[GMI_Security_Type] [varchar](10) NOT NULL,
 	[GMI_Multiplier] [numeric](18,9) NOT NULL,
 	[GMI_Currency_Code] [varchar](3) NOT NULL,
-	[DateLoaded] [datetime] NOT NULL DEFAULT GETDATE(),
+	[DateLoaded] [datetime] NOT NULL,
+	[Processing_Date_Loaded] [varchar](8) NOT NULL,
 	[Days_In_GMIPOSF1_File] [int] NOT NULL,
-	[Processing_Date_Updated] [varchar](8) NOT NULL,
-	[Date_Updated] [datetime] NOT NULL DEFAULT GETDATE()
+	[Date_Updated] [datetime] NOT NULL,
+	[Processing_Date_Updated] [varchar](8) NOT NULL
 	
 	PRIMARY KEY CLUSTERED
 	(

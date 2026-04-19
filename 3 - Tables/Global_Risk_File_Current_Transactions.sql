@@ -38,7 +38,7 @@ CREATE TABLE [dbo].[Global_Risk_File_Current_Transactions](
 	[GMI_Currency_Code] [varchar](3) NOT NULL,
 	--[PTDATE] [varchar](8) NOT NULL,
 	--[Expiration_Date] [varchar](8) NOT NULL,
-	[IN_GMI_Contracts_SOD] [varchar](1) NOT NULL,
+	[IN_GMI_Contracts_History] [varchar](1) NOT NULL,
 	[PCLASS] [varchar](1) NOT NULL,
 	[PEXPDT] [varchar](8) NOT NULL,
 	[PSTYPE] [varchar](1) NOT NULL,

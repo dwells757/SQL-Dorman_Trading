@@ -11,6 +11,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[PROC_Load_GMI_Contracts_History]
+													@Current_Processing_Date VARCHAR(8)=''
 
 AS
 
@@ -21,11 +22,10 @@ PRINT ' [dbo].[PROC_Load_GMI_Contracts_History] STARTED'
 PRINT '************************************************************************************************************'
 SELECT GETDATE() "Start Time"
 
-DECLARE
-@Current_Processing_Date VARCHAR(8)
-
-SELECT @Current_Processing_Date=Current_Processing_Date
-FROM [dbo].[Current_Processing_Date]
+IF (@Current_Processing_Date='') BEGIN
+	SELECT @Current_Processing_Date=Current_Processing_Date
+	FROM [dbo].[Current_Processing_Date]
+END
 
 SELECT @Current_Processing_Date "@Current_Processing_Date"
 
@@ -101,7 +101,10 @@ GMI_Symbol,
 GMI_Security_Type,
 GMI_Multiplier,
 GMI_Currency_Code,
+DateLoaded,
+Processing_Date_Loaded,
 Days_In_GMIPOSF1_File,
+Date_Updated,
 Processing_Date_Updated)
 SELECT
 GMI_Exchange,
@@ -109,7 +112,10 @@ GMI_Symbol,
 GMI_Security_Type,
 GMI_Multiplier,
 GMI_Currency_Code,
+GETDATE(), --DateLoaded
+@Current_Processing_Date, --Processing_Date_Loaded,
 1, --Days_In_GMIPOSF1_File,
+GETDATE(), --Date_Updated
 @Current_Processing_Date --Processing_Date_Updated
 FROM #GMI_Contracts_SOD
 WHERE (IN_GMI_Contracts_History_YN='N')
@@ -121,7 +127,7 @@ SELECT GETDATE() "End Time"
 PRINT '**************************************************************************'
 PRINT ' Update [dbo].[GMI_Contracts_History]'
 PRINT ' with #GMI_Contracts_SOD'
-PRINT ' WHERE (IN_GMI_Contracts_History_YN="N")'
+PRINT ' WHERE (IN_GMI_Contracts_History_YN="Y")'
 PRINT ' AND (Processing_Date_Updated<>"' + @Current_Processing_Date + '")'
 PRINT '**************************************************************************'
 
