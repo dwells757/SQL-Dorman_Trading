@@ -1013,6 +1013,7 @@ REM ****************************************************************************
 REM **************************************************************************************************************
 REM START - Distribute WFUTM.csv
 REM **************************************************************************************************************
+REM Gigatrade
 echo DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" >> %Log%
 DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" >> %Log%
 
@@ -1024,6 +1025,19 @@ COPY "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" "\\
 
 echo DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\EOD GMI Files\WFUTM.csv" >> %Log%
 DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\EOD GMI Files\WFUTM.csv" >> %Log%
+
+REM MetroTrade
+echo DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" >> %Log%
+DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\WFUTM.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\WFUTM.csv" >> %Log%
+
+echo COPY "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\WFUTM.csv" >> %Log%
+COPY "\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\WFUTM.csv" "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\WFUTM.csv" >> %Log%
+
+echo DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\WFUTM.csv" >> %Log%
+DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\WFUTM.csv" >> %Log%
 REM **************************************************************************************************************
 REM END - Distribute WFUTM.csv
 REM **************************************************************************************************************
