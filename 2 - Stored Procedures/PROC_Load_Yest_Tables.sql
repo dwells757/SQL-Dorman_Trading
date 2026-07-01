@@ -1,14 +1,14 @@
-USE [GMIDATA]
-GO
-
+/****** Object:  StoredProcedure [dbo].[PROC_Load_Yest_Tables]    Script Date: 6/30/2026 5:58:08 PM ******/
 DROP PROCEDURE [dbo].[PROC_Load_Yest_Tables]
 GO
 
+/****** Object:  StoredProcedure [dbo].[PROC_Load_Yest_Tables]    Script Date: 6/30/2026 5:58:08 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 CREATE PROCEDURE [dbo].[PROC_Load_Yest_Tables]
 
@@ -216,7 +216,7 @@ PQTY,
 GMI_Trade_Price,
 GMI_Multiplier,
 GMI_Currency_Code,
-IN_GMI_Contracts_SOD,
+IN_GMI_Contracts_History,
 PCLASS,
 PEXPDT,
 PSTYPE,
@@ -269,7 +269,7 @@ PQTY,
 GMI_Trade_Price,
 GMI_Multiplier,
 GMI_Currency_Code,
-IN_GMI_Contracts_SOD,
+IN_GMI_Contracts_History,
 PCLASS,
 PEXPDT,
 PSTYPE,
@@ -340,7 +340,7 @@ PQTY,
 GMI_Trade_Price,
 GMI_Multiplier,
 GMI_Currency_Code,
-IN_GMI_Contracts_SOD,
+IN_GMI_Contracts_History,
 PCLASS,
 PEXPDT,
 PSTYPE,
@@ -393,7 +393,7 @@ PQTY,
 GMI_Trade_Price,
 GMI_Multiplier,
 GMI_Currency_Code,
-IN_GMI_Contracts_SOD,
+IN_GMI_Contracts_History,
 PCLASS,
 PEXPDT,
 PSTYPE,
@@ -437,3 +437,5 @@ SELECT GETDATE() "End Time"
 SET NOCOUNT OFF
 
 GO
+
+

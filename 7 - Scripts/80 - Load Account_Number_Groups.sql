@@ -16,9 +16,11 @@ INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VA
 --Gamma_Q
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Gamma_Q','GAM01')
 --Gradable
+INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Gradable','PC144')
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Gradable','PC171')
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Gradable','PC181')
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Gradable','PC441')
+INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Gradable','PC502')
 --HarvestIQ
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('HarvestIQ','AA057')
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('HarvestIQ','AA062')
