@@ -161,7 +161,7 @@ PSDATE, --Trade_Date,
 MAX(PATYPE), --Account_Type,
 MAX(Currency_Code) --Currency_Code
 FROM [dbo].[Global_Risk_File_Current_Transactions]
-WHERE (IN_GMI_Contracts_SOD='Y')
+WHERE (IN_GMI_Contracts_History='Y')
 GROUP BY
 Account,
 Related_Account, --WARNING: This may cause a PRIMARY KEY violation!!!
