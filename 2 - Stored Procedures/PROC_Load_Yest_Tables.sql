@@ -136,6 +136,106 @@ SELECT @@ROWCOUNT "Records Loaded"
 SELECT GETDATE() "End Time"
 
 PRINT '**************************************************************************'
+PRINT ' TRUNCATE TABLE [dbo].[Global_Risk_File_Raw_Yest]'
+PRINT '**************************************************************************'
+TRUNCATE TABLE [dbo].[Global_Risk_File_Raw_Yest]
+
+PRINT '**************************************************************************'
+PRINT ' Load [dbo].[Global_Risk_File_Raw_Yest]'
+PRINT ' with [dbo].[Global_Risk_File_Raw]'
+PRINT '**************************************************************************'
+
+SELECT GETDATE() "Start Time"
+
+INSERT INTO [dbo].[Global_Risk_File_Raw_Yest]
+(PRECID,
+PRECNO,
+PFIRM,
+POFFIC,
+PACCT,
+PATYPE,
+PCLASS,
+PROUT3,
+PPCNTY,
+PCARD,
+PEXCH,
+PFC,
+PSYMBL,
+PSUBTY_UFC_UNSYMB,
+PCUSP2,
+Undefined_1,
+PSTAT5,
+PSTYPE,
+PSUBTY,
+PSDSC1,
+PPTYPE,
+PBS,
+PQTY,
+PBUSTQ,
+PLEAVQ,
+PCTYM,
+PSBCUS,
+PSTRIK,
+PEXPDT,
+PTPRIC,
+PCABCD,
+PCMNT2,
+PSTAT7,
+PDELET,
+PDEST,
+PCLOSE,
+PSDATE,
+PNET,
+Record_Number,
+DateLoaded)
+SELECT
+PRECID,
+PRECNO,
+PFIRM,
+POFFIC,
+PACCT,
+PATYPE,
+PCLASS,
+PROUT3,
+PPCNTY,
+PCARD,
+PEXCH,
+PFC,
+PSYMBL,
+PSUBTY_UFC_UNSYMB,
+PCUSP2,
+Undefined_1,
+PSTAT5,
+PSTYPE,
+PSUBTY,
+PSDSC1,
+PPTYPE,
+PBS,
+PQTY,
+PBUSTQ,
+PLEAVQ,
+PCTYM,
+PSBCUS,
+PSTRIK,
+PEXPDT,
+PTPRIC,
+PCABCD,
+PCMNT2,
+PSTAT7,
+PDELET,
+PDEST,
+PCLOSE,
+PSDATE,
+PNET,
+Record_Number,
+DateLoaded
+FROM [dbo].[Global_Risk_File_Raw]
+
+SELECT @@ROWCOUNT "Records Loaded"
+
+SELECT GETDATE() "End Time"
+
+PRINT '**************************************************************************'
 PRINT ' TRUNCATE TABLE [dbo].[Global_Risk_File_Current_Cash_Yest]'
 PRINT '**************************************************************************'
 TRUNCATE TABLE [dbo].[Global_Risk_File_Current_Cash_Yest]
