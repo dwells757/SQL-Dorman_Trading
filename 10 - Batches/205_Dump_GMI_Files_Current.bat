@@ -1041,3 +1041,57 @@ DIR "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\WFUTM
 REM **************************************************************************************************************
 REM END - Distribute WFUTM.csv
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Account Number Group Buckingham_Global_Advisors
+REM **************************************************************************************************************
+echo DEL GMIMNYF1_File_Current_Buckingham_Global_Advisors.csv >> %Log%
+DEL GMIMNYF1_File_Current_Buckingham_Global_Advisors.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIMNYF1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIMNYF1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIMNYF1_File_Current_Buckingham_Global_Advisors.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIMNYF1_File_Current_Buckingham_Global_Advisors.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_MNYF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIPOSF1_File_Current_Buckingham_Global_Advisors.csv >> %Log%
+DEL GMIPOSF1_File_Current_Buckingham_Global_Advisors.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIPOSF1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIPOSF1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_POSF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIPOSF1_File_Current_Buckingham_Global_Advisors.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_POSF1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIPOSF1_File_Current_Buckingham_Global_Advisors.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_POSF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL GMIST4F1_File_Current_Buckingham_Global_Advisors.csv >> %Log%
+DEL GMIST4F1_File_Current_Buckingham_Global_Advisors.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIST4F1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIST4F1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY GMIST4F1_File_Current_Buckingham_Global_Advisors.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+COPY GMIST4F1_File_Current_Buckingham_Global_Advisors.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_ST4F1_File_%YESTERDAY%.csv" >> %Log%
+
+echo DEL DTN_File_Current_Buckingham_Global_Advisors.csv >> %Log%
+DEL DTN_File_Current_Buckingham_Global_Advisors.csv >> %Log%
+
+echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout DTN_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout DTN_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+
+echo COPY DTN_File_Current_Buckingham_Global_Advisors.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+COPY DTN_File_Current_Buckingham_Global_Advisors.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_DTNF1_File_%YESTERDAY%.csv" >> %Log%
+REM **************************************************************************************************************
+REM END - Account Number Group Buckingham_Global_Advisors
+REM **************************************************************************************************************

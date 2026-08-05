@@ -29,8 +29,9 @@ INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VA
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('HarvestIQ','AA065')
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('HarvestIQ','AA066')
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('HarvestIQ','AA067')
-
-
+--Buckingham_Global_Advisors
+INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Buckingham_Global_Advisors','57325')
+INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Buckingham_Global_Advisors','57326')
 
 SELECT COUNT(*) "Records Loaded"
 FROM [dbo].[Account_Number_Groups]
