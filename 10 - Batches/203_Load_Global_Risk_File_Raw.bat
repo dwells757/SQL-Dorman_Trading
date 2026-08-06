@@ -14,11 +14,14 @@ DEL GBLRSKRTG.zip >> %Log%
 echo DEL GBLRSKRTG.CSV >> %Log%
 DEL GBLRSKRTG.CSV >> %Log%
 
-echo DEL WinSCP.log >> %Log%
-DEL WinSCP.log >> %Log%
+REM echo DEL WinSCP.log >> %Log%
+REM DEL WinSCP.log >> %Log%
 
-echo "C:\Program Files (x86)\WinSCP\WinSCP.exe" /log="C:\HCC\Files\Top_Day\WinSCP.log" /ini=nul /script="C:\HCC\Files\Top_Day\WinSCP_Script.txt"
-"C:\Program Files (x86)\WinSCP\WinSCP.exe" /log="C:\HCC\Files\Top_Day\WinSCP.log" /ini=nul /script="C:\HCC\Files\Top_Day\WinSCP_Script.txt"
+REM echo "C:\Program Files (x86)\WinSCP\WinSCP.exe" /log="C:\HCC\Files\Top_Day\WinSCP.log" /ini=nul /script="C:\HCC\Files\Top_Day\WinSCP_Script.txt"
+REM "C:\Program Files (x86)\WinSCP\WinSCP.exe" /log="C:\HCC\Files\Top_Day\WinSCP.log" /ini=nul /script="C:\HCC\Files\Top_Day\WinSCP_Script.txt"
+
+echo COPY "\\dormansftp1.file.core.windows.net\sftp\GMI\GlobalRisk\GBLRSKRTG.zip" >> %Log%
+COPY "\\dormansftp1.file.core.windows.net\sftp\GMI\GlobalRisk\GBLRSKRTG.zip" >> %Log%
 
 echo DIR GBLRSKRTG.zip >> %Log%
 DIR GBLRSKRTG.zip >> %Log%
