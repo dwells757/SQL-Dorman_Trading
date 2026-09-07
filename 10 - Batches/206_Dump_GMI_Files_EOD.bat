@@ -81,3 +81,24 @@ COPY Backhouse_End_of_Day_Position_File_by_Account.csv "\\dormansftp1.file.core.
 REM **************************************************************************************************************
 REM END - Backhouse
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Save off GBLRSKRTG.CSV
+REM **************************************************************************************************************
+echo CD \HCC\Files\Top_Day >> %Log%
+CD \HCC\Files\Top_Day >> %Log%
+
+echo DIR GBLRSKRTG.CSV >> %Log%
+DIR GBLRSKRTG.CSV >> %Log%
+
+echo DEL GBLRSKRTG_206_Dump_GMI_Files_EOD.CSV >> %Log%
+DEL GBLRSKRTG_206_Dump_GMI_Files_EOD.CSV >> %Log%
+
+echo COPY GBLRSKRTG.CSV GBLRSKRTG_206_Dump_GMI_Files_EOD.CSV >> %Log%
+COPY GBLRSKRTG.CSV GBLRSKRTG_206_Dump_GMI_Files_EOD.CSV >> %Log%
+
+echo DIR GBLRSKRTG_206_Dump_GMI_Files_EOD.CSV >> %Log%
+DIR GBLRSKRTG_206_Dump_GMI_Files_EOD.CSV >> %Log%
+REM **************************************************************************************************************
+REM END - Save off GBLRSKRTG.CSV
+REM **************************************************************************************************************
