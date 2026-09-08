@@ -1095,3 +1095,24 @@ COPY DTN_File_Current_Buckingham_Global_Advisors.csv "\\dormansftp1.file.core.wi
 REM **************************************************************************************************************
 REM END - Account Number Group Buckingham_Global_Advisors
 REM **************************************************************************************************************
+
+REM **************************************************************************************************************
+REM START - Save off GBLRSKRTG.CSV
+REM **************************************************************************************************************
+echo CD \HCC\Files\Top_Day >> %Log%
+CD \HCC\Files\Top_Day >> %Log%
+
+echo DIR GBLRSKRTG.CSV >> %Log%
+DIR GBLRSKRTG.CSV >> %Log%
+
+echo DEL GBLRSKRTG_205_Dump_GMI_Files_Current.CSV >> %Log%
+DEL GBLRSKRTG_205_Dump_GMI_Files_Current.CSV >> %Log%
+
+echo COPY GBLRSKRTG.CSV GBLRSKRTG_205_Dump_GMI_Files_Current.CSV >> %Log%
+COPY GBLRSKRTG.CSV GBLRSKRTG_205_Dump_GMI_Files_Current.CSV >> %Log%
+
+echo DIR GBLRSKRTG_205_Dump_GMI_Files_Current.CSV >> %Log%
+DIR GBLRSKRTG_205_Dump_GMI_Files_Current.CSV >> %Log%
+REM **************************************************************************************************************
+REM END - Save off GBLRSKRTG.CSV
+REM **************************************************************************************************************
