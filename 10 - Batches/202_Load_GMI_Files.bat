@@ -225,3 +225,5 @@ CALL C:\HCC\Code\Batches\205_Dump_GMI_Files_Current
 REM **************************************************************
 REM END - Run 205_Dump_GMI_Files_Current.bat
 REM **************************************************************
+
+C:\HCC\Code\VBScript\send_email.vbs "202_Load_GMI_Files.bat completed"

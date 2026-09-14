@@ -1116,3 +1116,5 @@ DIR GBLRSKRTG_205_Dump_GMI_Files_Current.CSV >> %Log%
 REM **************************************************************************************************************
 REM END - Save off GBLRSKRTG.CSV
 REM **************************************************************************************************************
+
+C:\HCC\Code\VBScript\send_email.vbs "205_Dump_GMI_Files_Current.bat completed"

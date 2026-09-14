@@ -102,3 +102,5 @@ DIR GBLRSKRTG_206_Dump_GMI_Files_EOD.CSV >> %Log%
 REM **************************************************************************************************************
 REM END - Save off GBLRSKRTG.CSV
 REM **************************************************************************************************************
+
+C:\HCC\Code\VBScript\send_email.vbs "206_Dump_GMI_Files_EOD.bat completed"
