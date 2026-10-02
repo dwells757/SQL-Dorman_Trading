@@ -1,3 +1,8 @@
+SET "THE_FULL_PATH=%~f0"
+SET "FILE_NAME=%~nx0"
+
+CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% START
+
 DEL C:\HCC\Test_Files\6_Dump_GMI_Files_EOD.log
 
 SET Log=C:\HCC\Test_Files\6_Dump_GMI_Files_EOD.log
@@ -30,6 +35,7 @@ DEL SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Account.csv >> %Log%
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Position_File_by_Account_Group_2] 'SILVERCAPE_INVSMT'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Account.csv >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Position_File_by_Account_Group_2] 'SILVERCAPE_INVSMT'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Account.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DIR SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Account.csv >> %Log%
 DIR SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Account.csv >> %Log%
@@ -45,6 +51,7 @@ DEL SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Related_Account.csv >> %Log%
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Position_File_by_Related_Account_2] 'D-153-10012'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Related_Account.csv >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Position_File_by_Related_Account_2] 'D-153-10012'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Related_Account.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DIR SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Related_Account.csv >> %Log%
 DIR SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Related_Account.csv >> %Log%
@@ -68,6 +75,7 @@ DEL Backhouse_End_of_Day_Position_File_by_Account.csv >> %Log%
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Position_File_by_Account_Group_2] 'Backhouse'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o Backhouse_End_of_Day_Position_File_by_Account.csv >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Position_File_by_Account_Group_2] 'Backhouse'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o Backhouse_End_of_Day_Position_File_by_Account.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DIR Backhouse_End_of_Day_Position_File_by_Account.csv >> %Log%
 DIR Backhouse_End_of_Day_Position_File_by_Account.csv >> %Log%
@@ -103,4 +111,18 @@ REM ****************************************************************************
 REM END - Save off GBLRSKRTG.CSV
 REM **************************************************************************************************************
 
-C:\HCC\Code\VBScript\send_email.vbs "206_Dump_GMI_Files_EOD.bat completed"
+GOTO DONE
+
+:GENERROR
+SET emailSubject="ERROR(2) - %FILE_NAME%"
+SET emailBody="There was an ERROR with %THE_FULL_PATH%"
+C:\HCC\Code\VBScript\send_email.vbs %emailSubject% %emailBody%
+CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% ERROR
+EXIT
+
+:DONE
+SET emailSubject="Success(2) - %FILE_NAME%"
+SET emailBody="%THE_FULL_PATH% ran successfully"
+C:\HCC\Code\VBScript\send_email.vbs %emailSubject% %emailBody%
+CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% END
+EXIT

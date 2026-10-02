@@ -1,6 +1,6 @@
 ' Check if any arguments were passed
 If WScript.Arguments.Count < 1 Then
-    WScript.Echo "Error: Please provide an argument."
+'    WScript.Echo "Error: Please provide an argument."
     WScript.Quit
 End If
 
@@ -8,7 +8,7 @@ End If
 Dim emailSubject
 emailSubject  = WScript.Arguments.Item(0)
 
-WScript.Echo "emailSubject: " & emailSubject
+' WScript.Echo "emailSubject: " & emailSubject
 
 ' Define the path to your password text file
 Dim passwordFilePath
@@ -27,12 +27,12 @@ If fso.FileExists(passwordFilePath) Then
     
     txtFile.Close
 Else
-    WScript.Echo "Error: Password file not found."
+'    WScript.Echo "Error: Password file not found."
     WScript.Quit
 End If
 
 ' Use the password variable in your script
-WScript.Echo "Password loaded successfully."
+' WScript.Echo "Password loaded successfully."
 
 
 ' Define Configuration Schema Constant
@@ -95,9 +95,9 @@ On Error Resume Next
 objEmail.Send
 
 If Err.Number = 0 Then
-    WScript.Echo "Success: Email sent successfully!"
+'    WScript.Echo "Success: Email sent successfully!"
 Else
-    WScript.Echo "Error " & Err.Number & ": " & Err.Description
+'    WScript.Echo "Error " & Err.Number & ": " & Err.Description
     Err.Clear
 End If
 
