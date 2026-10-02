@@ -1,3 +1,8 @@
+SET "THE_FULL_PATH=%~f0"
+SET "FILE_NAME=%~nx0"
+
+CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% START
+
 DEL C:\HCC\Files\202_Load_GMI_Files.log
 
 SET Log=C:\HCC\Files\202_Load_GMI_Files.log
@@ -10,6 +15,7 @@ REM START - Load "Yest" Tables
 REM **************************************************************
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_Yest_Tables]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_Yest_Tables]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 REM **************************************************************
 REM END - Load "Yest" Tables
 REM **************************************************************
@@ -46,9 +52,11 @@ REM START - Load [dbo].[Current_Processing_Date]
 REM **************************************************************
 echo sqlcmd -Q"TRUNCATE TABLE [dbo].[Current_Processing_Date]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 sqlcmd -Q"TRUNCATE TABLE [dbo].[Current_Processing_Date]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo bcp [dbo].[Current_Processing_Date] in C:\HCC\Files\Current_Processing_Date.txt -f C:\HCC\Code\Format_Files\Current_Processing_Date.FMT -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" >> %Log%
 bcp [dbo].[Current_Processing_Date] in C:\HCC\Files\Current_Processing_Date.txt -f C:\HCC\Code\Format_Files\Current_Processing_Date.FMT -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 REM **************************************************************
 REM END - Load [dbo].[Current_Processing_Date]
 REM **************************************************************
@@ -58,6 +66,7 @@ REM START - Load [dbo].[Current_Information]
 REM **************************************************************
 echo sqlcmd -Q"EXEC [dbo].[PROC_Update_Current_Information_with_Current_Processing_Date]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Update_Current_Information_with_Current_Processing_Date]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 REM **************************************************************
 REM END - Load [dbo].[Current_Information]
 REM **************************************************************
@@ -91,21 +100,27 @@ REM START - Truncate Raw Tables
 REM **************************************************************
 echo sqlcmd -Q"TRUNCATE TABLE [dbo].[GMIMNYF1_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 sqlcmd -Q"TRUNCATE TABLE [dbo].[GMIMNYF1_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"TRUNCATE TABLE [dbo].[GMIPOSF1_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 sqlcmd -Q"TRUNCATE TABLE [dbo].[GMIPOSF1_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"TRUNCATE TABLE [dbo].[GMIST4F1_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 sqlcmd -Q"TRUNCATE TABLE [dbo].[GMIST4F1_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"TRUNCATE TABLE [dbo].[GNACMFF1_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 sqlcmd -Q"TRUNCATE TABLE [dbo].[GNACMFF1_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"TRUNCATE TABLE [dbo].[GNACMFF4_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 sqlcmd -Q"TRUNCATE TABLE [dbo].[GNACMFF4_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"TRUNCATE TABLE [dbo].[DOREMAILA3_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 sqlcmd -Q"TRUNCATE TABLE [dbo].[DOREMAILA3_File_Raw]" -d gmidata -S ncusprdsql01.database.windows.net -b -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 REM **************************************************************
 REM END - Truncate Raw Tables
 REM **************************************************************
@@ -115,21 +130,27 @@ REM START - Load Raw Tables
 REM **************************************************************
 echo bcp [dbo].[GMIMNYF1_File_Raw] in C:\HCC\Files\GMIMNYF1%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
 bcp [dbo].[GMIMNYF1_File_Raw] in C:\HCC\Files\GMIMNYF1%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo bcp [dbo].[GMIPOSF1_File_Raw] in C:\HCC\Files\GMIPOSF1%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
 bcp [dbo].[GMIPOSF1_File_Raw] in C:\HCC\Files\GMIPOSF1%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo bcp [dbo].[GMIST4F1_File_Raw] in C:\HCC\Files\GMIST4F1%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
 bcp [dbo].[GMIST4F1_File_Raw] in C:\HCC\Files\GMIST4F1%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo bcp [dbo].[GNACMFF1_File_Raw] in C:\HCC\Files\GNACMFF1%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GNACMFF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
 bcp [dbo].[GNACMFF1_File_Raw] in C:\HCC\Files\GNACMFF1%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GNACMFF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo bcp [dbo].[GNACMFF4_File_Raw] in C:\HCC\Files\GNACMFF4%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GNACMFF4_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
 bcp [dbo].[GNACMFF4_File_Raw] in C:\HCC\Files\GNACMFF4%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\GNACMFF4_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo bcp [dbo].[DOREMAILA3_File_Raw] in C:\HCC\Files\DOREMAILA3%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\DOREMAILA3_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
 bcp [dbo].[DOREMAILA3_File_Raw] in C:\HCC\Files\DOREMAILA3%YESTERDAY%.csv -f C:\HCC\Code\Format_Files\DOREMAILA3_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -h"TABLOCK" -F 2 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 REM **************************************************************
 REM END - Load Raw Tables
 REM **************************************************************
@@ -139,21 +160,27 @@ REM START - Load Current Tables
 REM **************************************************************
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMIMNYF1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMIMNYF1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMIPOSF1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMIPOSF1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMIST4F1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMIST4F1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GNACMFF1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GNACMFF1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GNACMFF4_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GNACMFF4_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_DOREMAILA3_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_DOREMAILA3_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 REM **************************************************************
 REM END - Load Current Tables
 REM **************************************************************
@@ -163,6 +190,7 @@ REM START - Load [dbo].[Registered_Representatives_Current]
 REM **************************************************************
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_Registered_Representatives_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_Registered_Representatives_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 REM **************************************************************
 REM END - Load [dbo].[Registered_Representatives_Current]
 REM **************************************************************
@@ -172,30 +200,39 @@ REM START - Load "SOD" Tables
 REM **************************************************************
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Customer_Master]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Customer_Master]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_SOD_Money]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_SOD_Money]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_SOD_Positions_Detailed]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_SOD_Positions_Detailed]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Contracts_SOD]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Contracts_SOD]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Contracts_History]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Contracts_History]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Products]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Products]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Snapshot_SOD]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_GMI_Snapshot_SOD]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_Groups]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_Groups]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_Group_Members]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_Group_Members]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 REM **************************************************************
 REM END - Load "SOD" Tables
 REM **************************************************************
@@ -205,15 +242,19 @@ REM START - Load History Tables
 REM **************************************************************
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_MNYF1_File_History_with_GMIMNYF1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_MNYF1_File_History_with_GMIMNYF1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_ST4F1_File_History_with_GMIST4F1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_ST4F1_File_History_with_GMIST4F1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_Commission_Fees_Volume_History_with_GMIST4F1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_Commission_Fees_Volume_History_with_GMIST4F1_File_Current]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Load_Commission_Fees_Volume_History_2]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Load_Commission_Fees_Volume_History_2]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 REM **************************************************************
 REM END - Load History Tables
 REM **************************************************************
@@ -226,4 +267,22 @@ REM **************************************************************
 REM END - Run 205_Dump_GMI_Files_Current.bat
 REM **************************************************************
 
-C:\HCC\Code\VBScript\send_email.vbs "202_Load_GMI_Files.bat completed"
+REM reset these variables after calling 205_Dump_GMI_Files_Current.bat
+SET "THE_FULL_PATH=%~f0"
+SET "FILE_NAME=%~nx0"
+
+GOTO DONE
+
+:GENERROR
+SET emailSubject="ERROR - %FILE_NAME%"
+SET emailBody="There was an ERROR with %THE_FULL_PATH%"
+C:\HCC\Code\VBScript\send_email.vbs %emailSubject% %emailBody%
+CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% ERROR
+EXIT
+
+:DONE
+SET emailSubject="Success - %FILE_NAME%"
+SET emailBody="%THE_FULL_PATH% ran successfully"
+C:\HCC\Code\VBScript\send_email.vbs %emailSubject% %emailBody%
+CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% END
+EXIT

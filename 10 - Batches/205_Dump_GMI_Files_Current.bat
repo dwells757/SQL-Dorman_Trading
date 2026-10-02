@@ -1,3 +1,8 @@
+SET "THE_FULL_PATH=%~f0"
+SET "FILE_NAME=%~nx0"
+
+CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% START
+
 DEL C:\HCC\Test_Files\205_Dump_GMI_Files_Current.log
 
 SET Log=C:\HCC\Test_Files\205_Dump_GMI_Files_Current.log
@@ -25,6 +30,7 @@ DEL Risk_Report.csv >> %Log%
 
 echo sqlcmd -Q"EXEC [dbo].[PROC_Generate_Risk_Report_CSV_File]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o Risk_Report.csv >> %Log%
 sqlcmd -Q"EXEC [dbo].[PROC_Generate_Risk_Report_CSV_File]" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o Risk_Report.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo dir Risk_Report.csv >> %Log%
 dir Risk_Report.csv >> %Log%
@@ -50,6 +56,7 @@ DEL GMIMNYF1_File_Current_OPC01.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'OPC01'" queryout GMIMNYF1_File_Current_OPC01.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'OPC01'" queryout GMIMNYF1_File_Current_OPC01.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\OPC Test\OPC01_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\OPC Test\OPC01_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -62,6 +69,7 @@ DEL GMIPOSF1_File_Current_OPC01.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'OPC01'" queryout GMIPOSF1_File_Current_OPC01.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'OPC01'" queryout GMIPOSF1_File_Current_OPC01.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\OPC Test\OPC01_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\OPC Test\OPC01_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -74,6 +82,7 @@ DEL GMIST4F1_File_Current_OPC01.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'OPC01'" queryout GMIST4F1_File_Current_OPC01.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'OPC01'" queryout GMIST4F1_File_Current_OPC01.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\OPC Test\OPC01_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\OPC Test\OPC01_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -86,6 +95,7 @@ DEL DTN_File_Current_OPC01.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'OPC01'" queryout DTN_File_Current_OPC01.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'OPC01'" queryout DTN_File_Current_OPC01.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\OPC Test\OPC01_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\OPC Test\OPC01_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -104,6 +114,7 @@ DEL GMIPOSF1_File_Current_PRIME.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'PRIME'" queryout GMIPOSF1_File_Current_PRIME.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'PRIME'" queryout GMIPOSF1_File_Current_PRIME.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Prime\Position File Updated\PRIME_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Prime\Position File Updated\PRIME_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -122,6 +133,7 @@ DEL GMIMNYF1_File_Current_RCM02.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIMNYF1_File_Current_RCM02.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIMNYF1_File_Current_RCM02.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Ultimus Fund Sol\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Ultimus Fund Sol\RCM02_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -140,6 +152,7 @@ DEL GMIPOSF1_File_Current_RCM02.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIPOSF1_File_Current_RCM02.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIPOSF1_File_Current_RCM02.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Ultimus Fund Sol\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Ultimus Fund Sol\RCM02_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -158,6 +171,7 @@ DEL GMIST4F1_File_Current_RCM02.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIST4F1_File_Current_RCM02.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'RCM02'" queryout GMIST4F1_File_Current_RCM02.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Ultimus Fund Sol\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Ultimus Fund Sol\RCM02_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -176,6 +190,7 @@ DEL DTN_File_Current_RCM02.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'RCM02'" queryout DTN_File_Current_RCM02.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'RCM02'" queryout DTN_File_Current_RCM02.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Ultimus Fund Sol\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Ultimus Fund Sol\RCM02_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -200,6 +215,7 @@ DEL GMIMNYF1_File_Current_Trade_Pro_Futures.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'Trade_Pro_Futures'" queryout GMIMNYF1_File_Current_Trade_Pro_Futures.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'Trade_Pro_Futures'" queryout GMIMNYF1_File_Current_Trade_Pro_Futures.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -212,6 +228,7 @@ DEL GMIPOSF1_File_Current_Trade_Pro_Futures.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'Trade_Pro_Futures'" queryout GMIPOSF1_File_Current_Trade_Pro_Futures.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'Trade_Pro_Futures'" queryout GMIPOSF1_File_Current_Trade_Pro_Futures.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -224,6 +241,7 @@ DEL GMIST4F1_File_Current_Trade_Pro_Futures.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'Trade_Pro_Futures'" queryout GMIST4F1_File_Current_Trade_Pro_Futures.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'Trade_Pro_Futures'" queryout GMIST4F1_File_Current_Trade_Pro_Futures.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -236,6 +254,7 @@ DEL DTN_File_Current_Trade_Pro_Futures.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'Trade_Pro_Futures'" queryout DTN_File_Current_Trade_Pro_Futures.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'Trade_Pro_Futures'" queryout DTN_File_Current_Trade_Pro_Futures.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -248,6 +267,7 @@ DEL GNACMFF1_File_Current_Trade_Pro_Futures.csv >> %Log%
 
 echo sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Trade_Pro_Futures'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o GNACMFF1_File_Current_Trade_Pro_Futures.csv >> %Log%
 sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Trade_Pro_Futures'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o GNACMFF1_File_Current_Trade_Pro_Futures.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_CMFF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Trade Pro Futures\Trade_Pro_Futures_CMFF1_File_%YESTERDAY%.csv" >> %Log%
@@ -266,6 +286,7 @@ DEL GMIMNYF1_File_Current_Tradier.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIMNYF1_File_Current_Tradier.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIMNYF1_File_Current_Tradier.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -278,6 +299,7 @@ DEL GMIPOSF1_File_Current_Tradier.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIPOSF1_File_Current_Tradier.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIPOSF1_File_Current_Tradier.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -290,6 +312,7 @@ DEL GMIST4F1_File_Current_Tradier.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIST4F1_File_Current_Tradier.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'Tradier'" queryout GMIST4F1_File_Current_Tradier.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -302,6 +325,7 @@ DEL DTN_File_Current_Tradier.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'Tradier'" queryout DTN_File_Current_Tradier.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'Tradier'" queryout DTN_File_Current_Tradier.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -314,6 +338,7 @@ DEL GNACMFF1_File_Current_Tradier.csv >> %Log%
 
 echo sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Tradier'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o GNACMFF1_File_Current_Tradier.csv >> %Log%
 sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_2] 'Tradier'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o GNACMFF1_File_Current_Tradier.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_CMFF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Tradier Futures\Tradier\Tradier_CMFF1_File_%YESTERDAY%.csv" >> %Log%
@@ -332,6 +357,7 @@ DEL GMIMNYF1_File_Current_STAN2.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIMNYF1_File_Current_STAN2.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIMNYF1_File_Current_STAN2.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Lighthouse Commodities\STAN2_MNY_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Lighthouse Commodities\STAN2_MNY_File_%YESTERDAY%.csv" >> %Log%
@@ -344,6 +370,7 @@ DEL GMIPOSF1_File_Current_STAN2.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIPOSF1_File_Current_STAN2.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIPOSF1_File_Current_STAN2.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Lighthouse Commodities\STAN2_POS_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Lighthouse Commodities\STAN2_POS_File_%YESTERDAY%.csv" >> %Log%
@@ -356,6 +383,7 @@ DEL GMIST4F1_File_Current_STAN2.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIST4F1_File_Current_STAN2.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'STAN2'" queryout GMIST4F1_File_Current_STAN2.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Lighthouse Commodities\STAN2_ST4_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Lighthouse Commodities\STAN2_ST4_File_%YESTERDAY%.csv" >> %Log%
@@ -368,6 +396,7 @@ DEL DTN_File_Current_STAN2.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'STAN2'" queryout DTN_File_Current_STAN2.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'STAN2'" queryout DTN_File_Current_STAN2.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Lighthouse Commodities\STAN2_DTN_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Lighthouse Commodities\STAN2_DTN_File_%YESTERDAY%.csv" >> %Log%
@@ -386,6 +415,7 @@ DEL GMIMNYF1_File_Current_153_AA085.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIMNYF1_File_Current_153_AA085.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIMNYF1_File_Current_153_AA085.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Alpha Optimization\153_AA085_MNY_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Alpha Optimization\153_AA085_MNY_File_%YESTERDAY%.csv" >> %Log%
@@ -398,6 +428,7 @@ DEL GMIPOSF1_File_Current_153_AA085.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIPOSF1_File_Current_153_AA085.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIPOSF1_File_Current_153_AA085.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Alpha Optimization\153_AA085_POS_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Alpha Optimization\153_AA085_POS_File_%YESTERDAY%.csv" >> %Log%
@@ -410,6 +441,7 @@ DEL GMIST4F1_File_Current_153_AA085.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIST4F1_File_Current_153_AA085.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Related_Account] 'D', '153','AA085'" queryout GMIST4F1_File_Current_153_AA085.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Alpha Optimization\153_AA085_ST4_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Alpha Optimization\153_AA085_ST4_File_%YESTERDAY%.csv" >> %Log%
@@ -422,6 +454,7 @@ DEL DTN_File_Current_153_AA085.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Related_Account] 'D', '153','AA085'" queryout DTN_File_Current_153_AA085.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Related_Account] 'D', '153','AA085'" queryout DTN_File_Current_153_AA085.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Alpha Optimization\153_AA085_DTN_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Alpha Optimization\153_AA085_DTN_File_%YESTERDAY%.csv" >> %Log%
@@ -440,6 +473,7 @@ DEL GMIMNYF1_File_Current_153_47614.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIMNYF1_File_Current_153_47614.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIMNYF1_File_Current_153_47614.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Pineberry\GMI Files\153_47614_MNY_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Pineberry\GMI Files\153_47614_MNY_File_%YESTERDAY%.csv" >> %Log%
@@ -452,6 +486,7 @@ DEL GMIPOSF1_File_Current_153_47614.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIPOSF1_File_Current_153_47614.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIPOSF1_File_Current_153_47614.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Pineberry\GMI Files\153_47614_POS_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Pineberry\GMI Files\153_47614_POS_File_%YESTERDAY%.csv" >> %Log%
@@ -464,6 +499,7 @@ DEL GMIST4F1_File_Current_153_47614.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIST4F1_File_Current_153_47614.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Related_Account] 'D', '153','47614'" queryout GMIST4F1_File_Current_153_47614.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Pineberry\GMI Files\153_47614_ST4_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Pineberry\GMI Files\153_47614_ST4_File_%YESTERDAY%.csv" >> %Log%
@@ -482,6 +518,7 @@ DEL GMIMNYF1_File_Current_ARC01.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIMNYF1_File_Current_ARC01.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIMNYF1_File_Current_ARC01.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_MNY_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_MNY_File_%YESTERDAY%.csv" >> %Log%
@@ -494,6 +531,7 @@ DEL GMIPOSF1_File_Current_ARC01.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIPOSF1_File_Current_ARC01.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIPOSF1_File_Current_ARC01.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_POS_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_POS_File_%YESTERDAY%.csv" >> %Log%
@@ -506,6 +544,7 @@ DEL GMIST4F1_File_Current_ARC01.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIST4F1_File_Current_ARC01.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'ARC01'" queryout GMIST4F1_File_Current_ARC01.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_ST4_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_ST4_File_%YESTERDAY%.csv" >> %Log%
@@ -518,6 +557,7 @@ DEL DTN_File_Current_ARC01.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'ARC01'" queryout DTN_File_Current_ARC01.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'ARC01'" queryout DTN_File_Current_ARC01.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_DTN_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_DTN_File_%YESTERDAY%.csv" >> %Log%
@@ -530,6 +570,7 @@ DEL CMF_File_Current_ARC01.csv >> %Log%
 
 echo sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_2] 'ARC01'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o CMF_File_Current_ARC01.csv >> %Log%
 sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_2] 'ARC01'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o CMF_File_Current_ARC01.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Architect\Outbox\GMI Files\ARC01_CMF_File_%YESTERDAY%.csv" >> %Log%
@@ -548,6 +589,7 @@ DEL GMIMNYF1_File_Current_HarvestIQ.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'HarvestIQ'" queryout GMIMNYF1_File_Current_HarvestIQ.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'HarvestIQ'" queryout GMIMNYF1_File_Current_HarvestIQ.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\HarvestIQ\HarvestIQ_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\HarvestIQ\HarvestIQ_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -560,6 +602,7 @@ DEL GMIPOSF1_File_Current_HarvestIQ.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'HarvestIQ'" queryout GMIPOSF1_File_Current_HarvestIQ.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'HarvestIQ'" queryout GMIPOSF1_File_Current_HarvestIQ.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\HarvestIQ\HarvestIQ_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\HarvestIQ\HarvestIQ_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -572,6 +615,7 @@ DEL GMIST4F1_File_Current_HarvestIQ.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'HarvestIQ'" queryout GMIST4F1_File_Current_HarvestIQ.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'HarvestIQ'" queryout GMIST4F1_File_Current_HarvestIQ.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\HarvestIQ\HarvestIQ_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\HarvestIQ\HarvestIQ_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -584,6 +628,7 @@ DEL DTN_File_Current_HarvestIQ.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'HarvestIQ'" queryout DTN_File_Current_HarvestIQ.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'HarvestIQ'" queryout DTN_File_Current_HarvestIQ.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\HarvestIQ\HarvestIQ_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\HarvestIQ\HarvestIQ_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -602,6 +647,7 @@ DEL GNACMF_File_Current_SWEET_FUTURES.csv >> %Log%
 
 echo sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_3] 'SWEET_FUTURES'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o GNACMF_File_Current_SWEET_FUTURES.csv >> %Log%
 sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Registered_Rep_Group_3] 'SWEET_FUTURES'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o GNACMF_File_Current_SWEET_FUTURES.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Sweet Futures\SWEET_FUTURES_CMF_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Sweet Futures\SWEET_FUTURES_CMF_File_%YESTERDAY%.csv" >> %Log%
@@ -614,6 +660,7 @@ DEL DOREMAILA3_File_Current_SWEET_FUTURES.csv >> %Log%
 
 echo sqlcmd -Q"[dbo].[PROC_Dump_DOREMAILA3_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o DOREMAILA3_File_Current_SWEET_FUTURES.csv >> %Log%
 sqlcmd -Q"[dbo].[PROC_Dump_DOREMAILA3_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o DOREMAILA3_File_Current_SWEET_FUTURES.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Sweet Futures\SWEET_FUTURES_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Sweet Futures\SWEET_FUTURES_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
@@ -626,6 +673,7 @@ DEL GMIMNYF1_File_Current_SWEET_FUTURES.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIMNYF1_File_Current_SWEET_FUTURES.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIMNYF1_File_Current_SWEET_FUTURES.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DIR GMIMNYF1_File_Current_SWEET_FUTURES.csv >> %Log%
 DIR GMIMNYF1_File_Current_SWEET_FUTURES.csv >> %Log%
@@ -641,6 +689,7 @@ DEL GMIPOSF1_File_Current_SWEET_FUTURES.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIPOSF1_File_Current_SWEET_FUTURES.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIPOSF1_File_Current_SWEET_FUTURES.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DIR GMIPOSF1_File_Current_SWEET_FUTURES.csv >> %Log%
 DIR GMIPOSF1_File_Current_SWEET_FUTURES.csv >> %Log%
@@ -656,6 +705,7 @@ DEL GMIST4F1_File_Current_SWEET_FUTURES.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIST4F1_File_Current_SWEET_FUTURES.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout GMIST4F1_File_Current_SWEET_FUTURES.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DIR GMIST4F1_File_Current_SWEET_FUTURES.csv >> %Log%
 DIR GMIST4F1_File_Current_SWEET_FUTURES.csv >> %Log%
@@ -671,6 +721,7 @@ DEL DTN_File_Current_SWEET_FUTURES.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout DTN_File_Current_SWEET_FUTURES.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep_Group] 'SWEET_FUTURES'" queryout DTN_File_Current_SWEET_FUTURES.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DIR DTN_File_Current_SWEET_FUTURES.csv >> %Log%
 DIR DTN_File_Current_SWEET_FUTURES.csv >> %Log%
@@ -692,6 +743,7 @@ DEL GMIMNYF1_File_Current_Gradable.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIMNYF1_File_Current_Gradable.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIMNYF1_File_Current_Gradable.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gradable\Gradable_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gradable\Gradable_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -704,6 +756,7 @@ DEL GMIPOSF1_File_Current_Gradable.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIPOSF1_File_Current_Gradable.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIPOSF1_File_Current_Gradable.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gradable\Gradable_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gradable\Gradable_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -716,6 +769,7 @@ DEL GMIST4F1_File_Current_Gradable.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIST4F1_File_Current_Gradable.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Gradable'" queryout GMIST4F1_File_Current_Gradable.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gradable\Gradable_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gradable\Gradable_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -728,6 +782,7 @@ DEL DTN_File_Current_Gradable.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Gradable'" queryout DTN_File_Current_Gradable.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Gradable'" queryout DTN_File_Current_Gradable.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gradable\Gradable_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gradable\Gradable_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -746,6 +801,7 @@ DEL GMIMNYF1_File_Current_OPC05.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIMNYF1_File_Current_OPC05.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIMNYF1_File_Current_OPC05.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Greenfield Commodities\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Greenfield Commodities\OPC05_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -764,6 +820,7 @@ DEL GMIPOSF1_File_Current_OPC05.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIPOSF1_File_Current_OPC05.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIPOSF1_File_Current_OPC05.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Greenfield Commodities\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Greenfield Commodities\OPC05_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -782,6 +839,7 @@ DEL GMIST4F1_File_Current_OPC05.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIST4F1_File_Current_OPC05.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Registered_Rep] 'OPC05'" queryout GMIST4F1_File_Current_OPC05.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Greenfield Commodities\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Greenfield Commodities\OPC05_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -800,6 +858,7 @@ DEL DTN_File_Current_OPC05.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'OPC05'" queryout DTN_File_Current_OPC05.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Registered_Rep] 'OPC05'" queryout DTN_File_Current_OPC05.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Greenfield Commodities\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Greenfield Commodities\OPC05_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -824,6 +883,7 @@ DEL GNACMF_File_Current_GigaTrade.csv >> %Log%
 
 echo sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Office] '442'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o GNACMF_File_Current_GigaTrade.csv >> %Log%
 sqlcmd -Q"[dbo].[PROC_Dump_GNACMFF1_File_Current_by_Office] '442'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o GNACMF_File_Current_GigaTrade.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\Customer Master File\GigaTrade_CMF_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\Customer Master File\GigaTrade_CMF_File_%YESTERDAY%.csv" >> %Log%
@@ -836,6 +896,7 @@ DEL DOREMAILA3_File_Current_GigaTrade.csv >> %Log%
 
 echo sqlcmd -Q"[dbo].[PROC_Dump_DOREMAILA3_File_Current_by_Office] '442'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o DOREMAILA3_File_Current_GigaTrade.csv >> %Log%
 sqlcmd -Q"[dbo].[PROC_Dump_DOREMAILA3_File_Current_by_Office] '442'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o DOREMAILA3_File_Current_GigaTrade.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\Customer Master File\GigaTrade_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Gigatrade\Customer Master File\GigaTrade_DOREMAILA3_File_%YESTERDAY%.csv" >> %Log%
@@ -854,6 +915,7 @@ DEL GMIMNYF1_File_Current_Backhouse.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIMNYF1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIMNYF1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -866,6 +928,7 @@ DEL GMIPOSF1_File_Current_Backhouse.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIPOSF1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIPOSF1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -878,6 +941,7 @@ DEL GMIST4F1_File_Current_Backhouse.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIST4F1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Backhouse'" queryout GMIST4F1_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -890,6 +954,7 @@ DEL DTN_File_Current_Backhouse.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Backhouse'" queryout DTN_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Backhouse'" queryout DTN_File_Current_Backhouse.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Backhouse\Backhouse_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -908,6 +973,7 @@ DEL Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
 
 echo sqlcmd -Q"[dbo].[PROC_Fee_Report_Details_by_Registered_Rep_to_CSV] '00999'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
 sqlcmd -Q"[dbo].[PROC_Fee_Report_Details_by_Registered_Rep_to_CSV] '00999'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -h-1 -W -o Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DIR Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
 DIR Fee_Report_Details_by_Registered_Rep_00999_Most_Recent_30_Days.csv >> %Log%
@@ -964,6 +1030,7 @@ DEL GMIMNYF1_File_Current_MetroTrade.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIMNYF1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIMNYF1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -976,6 +1043,7 @@ DEL GMIPOSF1_File_Current_MetroTrade.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIPOSF1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIPOSF1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -988,6 +1056,7 @@ DEL GMIST4F1_File_Current_MetroTrade.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIST4F1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Office_Group] 'MetroTrade'" queryout GMIST4F1_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -1000,6 +1069,7 @@ DEL DTN_File_Current_MetroTrade.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Office_Group] 'MetroTrade'" queryout DTN_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Office_Group] 'MetroTrade'" queryout DTN_File_Current_MetroTrade.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\MetroTrade\EOD_GMI_Files\MetroTrade_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -1050,6 +1120,7 @@ DEL GMIMNYF1_File_Current_Buckingham_Global_Advisors.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIMNYF1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIMNYF1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIMNYF1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIMNYF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_MNYF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_MNYF1_File_%YESTERDAY%.csv" >> %Log%
@@ -1062,6 +1133,7 @@ DEL GMIPOSF1_File_Current_Buckingham_Global_Advisors.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIPOSF1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIPOSF1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIPOSF1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIPOSF1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_POSF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_POSF1_File_%YESTERDAY%.csv" >> %Log%
@@ -1074,6 +1146,7 @@ DEL GMIST4F1_File_Current_Buckingham_Global_Advisors.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIST4F1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Dump_GMIST4F1_File_Current_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout GMIST4F1_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_ST4F1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_ST4F1_File_%YESTERDAY%.csv" >> %Log%
@@ -1086,6 +1159,7 @@ DEL DTN_File_Current_Buckingham_Global_Advisors.csv >> %Log%
 
 echo bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout DTN_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
 bcp "EXEC [dbo].[PROC_Generate_DTN_File_by_Account_Number_Group] 'Buckingham_Global_Advisors'" queryout DTN_File_Current_Buckingham_Global_Advisors.csv -f C:\HCC\Code\Format_Files\GMIST4F1_File.xml -m50 -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
 
 echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_DTNF1_File_%YESTERDAY%.csv" >> %Log%
 DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Buckingham GA\Buckingham_Global_Advisors_DTNF1_File_%YESTERDAY%.csv" >> %Log%
@@ -1117,4 +1191,20 @@ REM ****************************************************************************
 REM END - Save off GBLRSKRTG.CSV
 REM **************************************************************************************************************
 
-C:\HCC\Code\VBScript\send_email.vbs "205_Dump_GMI_Files_Current.bat completed"
+GOTO DONE
+
+:GENERROR
+SET emailSubject="ERROR - %FILE_NAME%"
+SET emailBody="There was an ERROR with %THE_FULL_PATH%"
+C:\HCC\Code\VBScript\send_email.vbs %emailSubject% %emailBody%
+CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% ERROR
+EXIT
+
+:DONE
+SET emailSubject="Success - %FILE_NAME%"
+SET emailBody="%THE_FULL_PATH% ran successfully"
+C:\HCC\Code\VBScript\send_email.vbs %emailSubject% %emailBody%
+CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% END
+REM exit /b will exit only this subroutine... 
+REM ...and return control to the line right after the call in the parent script.
+EXIT /b

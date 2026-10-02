@@ -114,14 +114,14 @@ REM ****************************************************************************
 GOTO DONE
 
 :GENERROR
-SET emailSubject="ERROR(2) - %FILE_NAME%"
+SET emailSubject="ERROR - %FILE_NAME%"
 SET emailBody="There was an ERROR with %THE_FULL_PATH%"
 C:\HCC\Code\VBScript\send_email.vbs %emailSubject% %emailBody%
 CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% ERROR
 EXIT
 
 :DONE
-SET emailSubject="Success(2) - %FILE_NAME%"
+SET emailSubject="Success - %FILE_NAME%"
 SET emailBody="%THE_FULL_PATH% ran successfully"
 C:\HCC\Code\VBScript\send_email.vbs %emailSubject% %emailBody%
 CALL C:\HCC\Code\Batches\Batch_Logger.bat %THE_FULL_PATH% END
