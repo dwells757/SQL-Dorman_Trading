@@ -1,5 +1,5 @@
 ' Check if any arguments were passed
-If WScript.Arguments.Count < 1 Then
+If WScript.Arguments.Count < 2 Then
 '    WScript.Echo "Error: Please provide an argument."
     WScript.Quit
 End If
@@ -7,6 +7,9 @@ End If
 ' Read arguments by their index (starting at 0)
 Dim emailSubject
 emailSubject  = WScript.Arguments.Item(0)
+
+Dim emailBody
+emailBody  = WScript.Arguments.Item(1)
 
 ' WScript.Echo "emailSubject: " & emailSubject
 
@@ -84,8 +87,9 @@ objEmail.To       = "dwhardesty2@hotmail.com; dwhardesty2@gmail.com"
 objEmail.Subject  = emailSubject
 
 ' Use TextBody for plain text, or HTMLBody for formatted content
-objEmail.TextBody = "Hello, this is a plain text message sent via CDO without Outlook!"
+' objEmail.TextBody = "Hello, this is a plain text message sent via CDO without Outlook!"
 ' objEmail.HTMLBody = "<h1>Hello</h1><p>This is a <b>formatted HTML</b> email.</p>"
+objEmail.TextBody = emailBody
 
 ' Optional: Add a file attachment (uncomment the line below to use)
 ' objEmail.AddAttachment "C:\path\to\your\file.txt"
