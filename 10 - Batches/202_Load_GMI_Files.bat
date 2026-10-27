@@ -99,7 +99,7 @@ IF NOT EXIST %DOREMAILA3_ZIP_File% (
 	echo %DOREMAILA3_ZIP_File% is not available... >> %Log%
 	GOTO SNOOZE
 )
-PAUSE
+
 IF NOT EXIST %GMIMNYF1_ZIP_File% (
 	echo %GMIMNYF1_ZIP_File% is not available... >> %Log%
 	GOTO SNOOZE
