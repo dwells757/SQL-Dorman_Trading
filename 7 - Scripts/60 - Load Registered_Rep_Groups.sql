@@ -20,11 +20,16 @@ INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VA
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('SWEET_FUTURES','SW007')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('SWEET_FUTURES','SW008')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('SWEET_FUTURES','SW009')
+INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('SWEET_FUTURES','SW010')
+INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('SWEET_FUTURES','SW011')
+INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('SWEET_FUTURES','SW012')
+
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Trade_Pro_Futures','00364')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Trade_Pro_Futures','00365')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Trade_Pro_Futures','00612')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Trade_Pro_Futures','C0074')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Trade_Pro_Futures','C0075')
+
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Tradier','00364')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Tradier','00365')
 INSERT INTO [dbo].[Registered_Rep_Groups](Registered_Rep_Group,Registered_Rep)VALUES('Tradier','00612')
