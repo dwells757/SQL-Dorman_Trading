@@ -72,8 +72,81 @@ REM END - Load [dbo].[Current_Information]
 REM **************************************************************
 
 REM **************************************************************
+REM START - Generate File Variables
+REM **************************************************************
+SET DOREMAILA3_ZIP_File="\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\DOREMAILA320261008.zip"
+SET GMIMNYF1_ZIP_File="\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\GMIMNYF120261008.zip"
+SET GMIPOSF1_ZIP_File="\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\GMIPOSF120261008.zip"
+SET GMIST4F1_ZIP_File="\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\GMIST4F120261008.zip"
+SET GNACMFF1_ZIP_File="\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\GNACMFF120261008.zip"
+SET GNACMFF4_ZIP_File="\\dormansftp1.file.core.windows.net\sftp\GMI\Dorman Reports\GNACMFF420261008.zip"
+
+echo DOREMAILA3_ZIP_File: %DOREMAILA3_ZIP_File% >> %Log%
+echo GMIMNYF1_ZIP_File: %GMIMNYF1_ZIP_File% >> %Log%
+echo GMIPOSF1_ZIP_File: %GMIPOSF1_ZIP_File% >> %Log%
+echo GMIST4F1_ZIP_File: %GMIST4F1_ZIP_File% >> %Log%
+echo GNACMFF1_ZIP_File: %GNACMFF1_ZIP_File% >> %Log%
+echo GNACMFF4_ZIP_File: %GNACMFF4_ZIP_File% >> %Log%
+REM **************************************************************
+REM END - Generate File Variables
+REM **************************************************************
+
+REM **************************************************************
+REM START - Check For Files
+REM **************************************************************
+:CHECK_FOR_FILES
+IF NOT EXIST %DOREMAILA3_ZIP_File% (
+	echo %DOREMAILA3_ZIP_File% is not available... >> %Log%
+	GOTO SNOOZE
+)
+PAUSE
+IF NOT EXIST %GMIMNYF1_ZIP_File% (
+	echo %GMIMNYF1_ZIP_File% is not available... >> %Log%
+	GOTO SNOOZE
+)
+
+IF NOT EXIST %GMIPOSF1_ZIP_File% (
+	echo %GMIPOSF1_ZIP_File% is not available... >> %Log%
+	GOTO SNOOZE
+)
+
+IF NOT EXIST %GMIST4F1_ZIP_File% (
+	echo %GMIST4F1_ZIP_File% is not available... >> %Log%
+	GOTO SNOOZE
+)
+
+IF NOT EXIST %GNACMFF1_ZIP_File% (
+	echo %GNACMFF1_ZIP_File% is not available... >> %Log%
+	GOTO SNOOZE
+)
+
+IF NOT EXIST %GNACMFF4_ZIP_File% (
+	echo %GNACMFF4_ZIP_File% is not available... >> %Log%
+	GOTO SNOOZE
+)
+
+GOTO GETFILES
+
+:SNOOZE
+set /A _TEMPCOUNT=%_TEMPCOUNT% +1
+IF %_TEMPCOUNT% LEQ 360 (
+	echo %time% - Attempt %_TEMPCOUNT%, will wait a minute... >> %Log%
+	TIMEOUT /T 60
+	GOTO CHECK_FOR_FILES
+) ELSE (
+	echo %time% - Attempt %_TEMPCOUNT%, not waiting anymore. >> %Log%
+	GOTO GENERROR
+)
+
+GOTO CHECK_FOR_FILES
+REM **************************************************************
+REM END - Check For Files
+REM **************************************************************
+
+REM **************************************************************
 REM START - Get GMI Files
 REM **************************************************************
+:GETFILES
 echo DEL *.csv >> %Log%
 DEL *.csv >> %Log%
 
