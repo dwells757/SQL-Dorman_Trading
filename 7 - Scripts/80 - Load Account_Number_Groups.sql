@@ -32,6 +32,7 @@ INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VA
 --Buckingham_Global_Advisors
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Buckingham_Global_Advisors','57325')
 INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Buckingham_Global_Advisors','57326')
+INSERT INTO [dbo].[Account_Number_Groups](Account_Number_Group,Account_Number)VALUES('Buckingham_Global_Advisors','57336')
 
 SELECT COUNT(*) "Records Loaded"
 FROM [dbo].[Account_Number_Groups]
