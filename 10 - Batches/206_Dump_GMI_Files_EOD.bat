@@ -62,6 +62,38 @@ DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_E
 echo COPY SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Related_Account.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Related_Account_%TODAY%.csv" >> %Log%
 COPY SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Related_Account.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Position_File_by_Related_Account_%TODAY%.csv" >> %Log%
 
+echo DEL SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account.csv >> %Log%
+DEL SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account.csv >> %Log%
+
+echo sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Transaction_File_by_Account_Group] 'SILVERCAPE_INVSMT'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account.csv >> %Log%
+sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Transaction_File_by_Account_Group] 'SILVERCAPE_INVSMT'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
+
+echo DIR SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account.csv >> %Log%
+DIR SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account.csv >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account_%TODAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account_%TODAY%.csv" >> %Log%
+
+echo COPY SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account_%TODAY%.csv" >> %Log%
+COPY SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Account_%TODAY%.csv" >> %Log%
+
+echo DEL SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account.csv >> %Log%
+DEL SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account.csv >> %Log%
+
+echo sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Transaction_File_by_Related_Account] 'D-153-10012'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account.csv >> %Log%
+sqlcmd -Q"EXEC [dbo].[PROC_Generate_End_of_Day_Transaction_File_by_Related_Account] 'D-153-10012'" -d gmidata -S ncusprdsql01.database.windows.net -U dorsqladmin -P bjTT6hw$ig9Bkq -b -y 0 -o SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account.csv >> %Log%
+IF %errorlevel% NEQ 0 GOTO GENERROR
+
+echo DIR SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account.csv >> %Log%
+DIR SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account.csv >> %Log%
+
+echo DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account_%TODAY%.csv" >> %Log%
+DEL "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account_%TODAY%.csv" >> %Log%
+
+echo COPY SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account_%TODAY%.csv" >> %Log%
+COPY SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account.csv "\\dormansftp1.file.core.windows.net\sftp\GMI\Silvercape\SILVERCAPE_INVSMT_End_of_Day_Transaction_File_by_Related_Account_%TODAY%.csv" >> %Log%
+
 REM **************************************************************************************************************
 REM END - SILVERCAPE_INVSMT
 REM **************************************************************************************************************
